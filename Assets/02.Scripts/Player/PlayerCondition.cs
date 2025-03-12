@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public interface IDamageable
@@ -14,8 +12,7 @@ public class PlayerCondition : MonoBehaviour, IDamageable
     Condition hp { get { return uiCondition.hp; } }
     Condition hunger { get { return uiCondition.hunger; } }
     Condition stamina { get { return uiCondition.stamina; } }
-    Condition thirst { get { return uiCondition.thirst; } }
-    Condition bodyTemp { get { return uiCondition.bodyTemp; } }
+    Condition thirst { get { return uiCondition.thirst; } } 
 
     public float noHungerHPDecay;
     public float noThirstHPDecay;
@@ -50,17 +47,7 @@ public class PlayerCondition : MonoBehaviour, IDamageable
 
         //if() 물이라면
         thirst.Add(amount);
-    }
-
-    public void Hot(float amount)
-    {
-        bodyTemp.Add(amount);
-    }
-
-    public void Cold(float amount)
-    {
-        bodyTemp.Subtract(amount);
-    }
+    }    
 
     public void Die()
     {
