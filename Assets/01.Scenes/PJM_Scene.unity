@@ -305,7 +305,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292286759}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 30
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -419,8 +419,8 @@ MonoBehaviour:
   mouseInsensity: 0.1
   minXRot: -60
   maxXRot: 60
-  lerpSpeed: 25
-  walkSpeed: 5
+  lerpSpeed: 15
+  walkSpeed: 2.5
   runSpeed: 10
   isRun: 0
 --- !u!1001 &765348336

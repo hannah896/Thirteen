@@ -24,10 +24,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float runSpeed;        // 달리는 속도
     [SerializeField] private bool isRun;            // 달리는 키 입력이 되었는지 확인
 
-
+    private Animator animator;
     private void Start()
     {
         rigid = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -70,6 +71,7 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         inputDir = context.ReadValue<Vector2>();
+        animator.SetFloat("InputDir", inputDir.magnitude);
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -88,5 +90,6 @@ public class PlayerController : MonoBehaviour
         {
             isRun = false;
         }
+        animator.SetBool("IsRun", isRun);
     }
 }
