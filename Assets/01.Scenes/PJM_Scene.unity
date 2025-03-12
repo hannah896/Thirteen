@@ -399,9 +399,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraContainer: {fileID: 2030426141}
+  character: {fileID: 2810827723892167615}
   mouseInsensity: 0.1
   minXRot: -60
   maxXRot: 60
+  lerpSpeed: 2
 --- !u!1001 &765348336
 PrefabInstance:
   m_ObjectHideFlags: 0

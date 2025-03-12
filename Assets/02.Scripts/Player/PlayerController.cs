@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Transform cameraContainer; // 메인 카메라 부모
+    [SerializeField] private Transform character;       // 캐릭터 매쉬 트랜스폼
 
     private Rigidbody rigid;        // 캐릭터의 리지드 바디
 
@@ -16,6 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float minXRot;
     [SerializeField] private float maxXRot;
     private float camXRot;          // 카메라 x 회전 값
+
+    [SerializeField] private float lerpSpeed = 2f;
 
     private void Start()
     {
@@ -44,7 +47,15 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        rigid.velocity = new Vector3(inputDir.x, rigid.velocity.y, inputDir.y);
+        Vector3 moveDir = cameraContainer.forward * inputDir.y + cameraContainer.right * inputDir.x;
+        moveDir.y = rigid.velocity.y;
+        if(inputDir.magnitude > 0)
+        {
+            Vector3 lookDir = new Vector3(moveDir.x, 0, moveDir.z);
+            character.forward = Vector3.Lerp(character.forward, lookDir, Time.deltaTime * lerpSpeed);
+        }
+
+        rigid.velocity = moveDir;
     }
 
     public void OnMove(InputAction.CallbackContext context)
