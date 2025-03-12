@@ -18,7 +18,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxXRot;
     private float camXRot;          // 카메라 x 회전 값
 
-    [SerializeField] private float lerpSpeed = 2f;
+    [SerializeField] private float lerpSpeed;      // 캐릭터 회전 속도
+
+    [SerializeField] private float walkSpeed;       // 걷는 속도
+    [SerializeField] private float runSpeed;        // 달리는 속도
+    [SerializeField] private bool isRun;            // 달리는 키 입력이 되었는지 확인
+
 
     private void Start()
     {
@@ -48,7 +53,11 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         Vector3 moveDir = cameraContainer.forward * inputDir.y + cameraContainer.right * inputDir.x;
+        // 달리기 키를 입력 받았다면 뛰는 속도로 적용
+        float speed = isRun ? runSpeed : walkSpeed;
+        moveDir *= speed;
         moveDir.y = rigid.velocity.y;
+
         if(inputDir.magnitude > 0)
         {
             Vector3 lookDir = new Vector3(moveDir.x, 0, moveDir.z);
@@ -67,5 +76,17 @@ public class PlayerController : MonoBehaviour
     {
         mouseDelta = context.ReadValue<Vector2>();
         Debug.Log(mouseDelta);
+    }
+
+    public void OnRun(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Started)
+        {
+            isRun = true;
+        }
+        else if(context.phase == InputActionPhase.Canceled)
+        {
+            isRun = false;
+        }
     }
 }

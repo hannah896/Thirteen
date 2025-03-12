@@ -381,6 +381,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3b2c527f-628d-469d-b053-9d18dc9ff34d
     m_ActionName: Player/MouseDelta[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 292286765}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnRun
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 35d2e62b-7312-443a-a678-86691addbb01
+    m_ActionName: Player/Run[/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -403,7 +419,10 @@ MonoBehaviour:
   mouseInsensity: 0.1
   minXRot: -60
   maxXRot: 60
-  lerpSpeed: 2
+  lerpSpeed: 25
+  walkSpeed: 5
+  runSpeed: 10
+  isRun: 0
 --- !u!1001 &765348336
 PrefabInstance:
   m_ObjectHideFlags: 0
