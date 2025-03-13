@@ -235,10 +235,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnResourceHit()
     {
-        Interaction interaction = GetComponent<Interaction>();
-        if (interaction.resource == null) return;
+        if (CharacterManager.Instance.Player.resource == null) return;
 
-        interaction.resource.MakingResource();
+        CharacterManager.Instance.Player.resource.MakingResource();
     }
 
     private void OnAnimatorMove()
