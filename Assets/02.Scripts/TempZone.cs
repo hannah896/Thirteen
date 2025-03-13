@@ -20,6 +20,7 @@ public class TempZone : MonoBehaviour
     [SerializeField]
     private ZoneType zoneType;
 
+    // 불이나 얼음 데였을 때 바로 데미지 입게 하고 싶으면 활성화
     //private void Start()
     //{
     //    InvokeRepeating("DealDamage", 0, damageRate);
@@ -56,6 +57,7 @@ public class TempZone : MonoBehaviour
         }
     }
 
+    // 불이나 얼음 데였을 때 바로 데미지 입게 하고 싶으면 활성화
     //private void OnTriggerEnter(Collider other)
     //{
     //    if(other.TryGetComponent(out IDamageable damageable))
@@ -64,6 +66,7 @@ public class TempZone : MonoBehaviour
     //    }
     //}
 
+    // 불이나 얼음 데였을 때 바로 데미지 입게 하고 싶으면 활성화
     //private void OnTriggerExit(Collider other)
     //{
     //    if(other.TryGetComponent(out IDamageable damageable))
