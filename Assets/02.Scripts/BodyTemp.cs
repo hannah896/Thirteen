@@ -1,20 +1,30 @@
-using TMPro;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BodyTemp : MonoBehaviour
 {
-    [Header("PlayerTemp")]
+    [Header("UI")]
     public float curTemp;
     public float startTemp;
     public float maxTemp;
     public float minTemp;
     public float passiveTemp;
-    public TextMeshProUGUI tempText;
+    public float recoveryTemp;
+    public Image tempBar;
 
     [Header("Damage")]
     public int tempZoneDamage;
     public float damageRate;
     private float damageTimer;
+
+    [Header("Indicator")]
+    public Image indicatorImage;
+    public float flashSpeed;
+
+    private Coroutine coroutine;
+    private bool isCoroutine = false;
+    private bool isInTempZone = false;
 
     private void Start()
     {
@@ -23,11 +33,11 @@ public class BodyTemp : MonoBehaviour
 
     private void Update()
     {
-        tempText.text = curTemp.ToString("F2") + "¡ÆC"; ;
+        tempBar.fillAmount = GetPercentage();
 
         damageTimer += Time.deltaTime;
 
-        if (curTemp >= maxTemp || curTemp <= minTemp)
+        if (curTemp >= 38f || curTemp <= 34f)
         {
             if (damageTimer >= damageRate)
             {
@@ -35,15 +45,72 @@ public class BodyTemp : MonoBehaviour
                 damageTimer = 0;
             }
         }
+
+        if (!isInTempZone)
+        {
+            curTemp = Mathf.Lerp(curTemp, 36.5f, recoveryTemp * Time.deltaTime);                       
+        }
+    }
+
+    private float GetPercentage()
+    {
+        return Mathf.InverseLerp(minTemp, maxTemp, curTemp);
     }
 
     public void Hot()
     {
+        isInTempZone = true;
         curTemp = Mathf.Min(curTemp + (passiveTemp * Time.deltaTime), maxTemp);
+        ShowIndicator(new Color(1f, 0f, 0f, 0.35f));
     }
 
     public void Cold()
     {
+        isInTempZone = true;
         curTemp = Mathf.Max(curTemp - (passiveTemp * Time.deltaTime), minTemp);
+        ShowIndicator(new Color(0f, 0f, 1f, 0.35f));
+    }
+
+    private void ShowIndicator(Color targetColor)
+    {
+        if (indicatorImage != null)
+        {
+            if (isCoroutine)
+            {
+                indicatorImage.color = targetColor;
+                return;
+            }
+
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
+
+            indicatorImage.enabled = true;
+            indicatorImage.color = targetColor;
+            coroutine = StartCoroutine(FadeIndicator());
+        }
+    }
+
+    private IEnumerator FadeIndicator()
+    {
+        isCoroutine = true;
+        float startAlpha = indicatorImage.color.a;
+        float alpha = startAlpha;
+
+        while (alpha > 0)
+        {
+            alpha -= (startAlpha / flashSpeed) * Time.deltaTime;
+            indicatorImage.color = new Color(indicatorImage.color.r, indicatorImage.color.g, indicatorImage.color.b, alpha);
+            yield return null;
+        }
+
+        indicatorImage.enabled = false;
+        isCoroutine = false;
+    }
+
+    public void ExitTempZone()
+    {
+        isInTempZone = false;
     }
 }
