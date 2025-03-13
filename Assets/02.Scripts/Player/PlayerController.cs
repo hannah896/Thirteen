@@ -26,14 +26,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float runSpeed;        // 달리는 속도
     [SerializeField] private bool isRun;            // 달리는 키 입력이 되었는지 확인
 
+    private float runStemina = 0.5f;                // 달리기 스태미나
+
     private Animator animator;
 
     private bool isJump;                        // 점프 상태 확인
     [SerializeField] private float jumpForce;   // 점프 파워
+    private float jumpStemina;                  // 점프 스태미나
 
     [SerializeField] private LayerMask groundMask;  // 땅을 표시하는 Layer
 
     private bool isAttack;                      // 공격 상태 확인
+    private float attackStemina;                // 공격 스태미나
 
     private void Start()
     {
@@ -52,6 +56,7 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         Look();
+        animator.SetBool("IsRun", isRun);
     }
     
     private void Look()
@@ -147,18 +152,29 @@ public class PlayerController : MonoBehaviour
         mouseDelta = context.ReadValue<Vector2>();
     }
 
+
+    private Coroutine RunCo = null;
     public void OnRun(InputAction.CallbackContext context)
     {
-        // 스태미너 확인 필요
-        if(context.phase == InputActionPhase.Started)
+        if (context.phase == InputActionPhase.Started)
         {
-            isRun = true;
+            RunCo = StartCoroutine(Run());
         }
-        else if(context.phase == InputActionPhase.Canceled)
+        else if (context.phase == InputActionPhase.Canceled)
         {
+            StopCoroutine(RunCo);
             isRun = false;
         }
-        animator.SetBool("IsRun", isRun);
+    }
+
+    private IEnumerator Run()
+    {
+        isRun = true;
+        while (CharacterManager.Instance.Player.condition.UseStamina(runStemina))
+        {
+            yield return null;
+        }
+        isRun = false;
     }
 
     public void OnJump(InputAction.CallbackContext context)

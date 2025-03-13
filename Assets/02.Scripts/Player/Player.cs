@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //public PlayerController controller;
+    public PlayerController controller;
     public PlayerCondition condition;
     //public Equipment equip;
 
@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         CharacterManager.Instance.Player = this;
-        //controller = GetComponent<PlayerController>();
+        controller = GetComponent<PlayerController>();
         condition = GetComponent<PlayerCondition>();
         //equip = GetComponent<Equipment>();
     }
