@@ -7,11 +7,11 @@ public class Player : MonoBehaviour
     public PlayerCondition condition;
     //public Equipment equip;
 
-    //public ItemData itemData;
+    public ItemData itemData;
+    public Resource resource;
     public Action addItem;
 
     public Transform dropPosition;
-    internal PlayerController controller;
 
     private void Awake()
     {

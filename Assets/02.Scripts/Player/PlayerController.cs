@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Security;
@@ -231,6 +231,14 @@ public class PlayerController : MonoBehaviour
     {
         isAttack = false;
         Debug.Log("End Attack");
+    }
+
+    public void OnResourceHit()
+    {
+        Interaction interaction = GetComponent<Interaction>();
+        if (interaction.resource == null) return;
+
+        interaction.resource.MakingResource();
     }
 
     private void OnAnimatorMove()

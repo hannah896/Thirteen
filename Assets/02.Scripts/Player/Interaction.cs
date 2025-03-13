@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -16,14 +16,11 @@ public class Interaction : MonoBehaviour
     private float lastInteractionTime;      // 마지막으로 감지한 시간
 
     [SerializeField] float rayDistance = 5f;
-    [SerializeField] LayerMask InteractionMask;
+    [SerializeField] LayerMask resourceMask;        // 캘 수 있는 자원의 마스크
+    [SerializeField] LayerMask interactableMask;    // 획득 할 수 있는 아이템의 마스크
 
     public GameObject rock;
     public GameObject tree;
-
-    //public IInteraction interactionObj;
-
-    //ItemData itemData;
 
     Animator animator;
     private void Start()
@@ -39,13 +36,17 @@ public class Interaction : MonoBehaviour
             // 마지막 감지한 시간을 현재로 설정
             lastInteractionTime = Time.time;
 
-            //Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
             Vector3 rayOrigin = transform.GetChild(0).position + Vector3.up * 0.5f;
-            Ray ray = new Ray(rayOrigin, new Vector3(transform.GetChild(0).forward.x, 0, transform.GetChild(0).forward.z));
+            Ray resourceRay = new Ray(rayOrigin, new Vector3(transform.GetChild(0).forward.x, 0, transform.GetChild(0).forward.z));
 
-            Debug.DrawRay(ray.origin, transform.GetChild(0).forward * rayDistance, Color.red);
-            if (Physics.Raycast(ray, out RaycastHit hit, rayDistance, InteractionMask))
+            Debug.DrawRay(resourceRay.origin, transform.GetChild(0).forward * rayDistance, Color.red);
+            if (Physics.Raycast(resourceRay, out RaycastHit hit, rayDistance, resourceMask))
             {
+                if(hit.transform.TryGetComponent(out Resource resource))
+                {
+                    CharacterManager.Instance.Player.resource = resource;
+                }
+
                 if(hit.transform.name == "Rock")
                 {
                     tree = null;
@@ -56,20 +57,27 @@ public class Interaction : MonoBehaviour
                     rock = null;
                     tree = hit.transform.gameObject;
                 }
-                //if(hit.transform.TryGetComponent<IInteraction>(out IInteraction interaction))
-                //{
-                //    interactionObj = interaction;
-                //    if(interactionObj is ItemData)
-                //    {
-                //        ItemData data = interactionObj as ItemData;
-                //        itemData = data;
-                //    }
-                //}
             }
             else
             {
                 rock = null;
                 tree = null;
+                CharacterManager.Instance.Player.resource = null;
+            }
+
+            // 주울 수 있는 아이템 감지
+            Ray interactableRay = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+            Debug.DrawRay(interactableRay.origin, interactableRay.direction * rayDistance, Color.red);
+            if (Physics.Raycast(interactableRay, out RaycastHit interactableHit, rayDistance, interactableMask))
+            {
+                if (hit.transform.TryGetComponent(out ItemData itemData))
+                {
+                    CharacterManager.Instance.Player.itemData = itemData;
+                }
+            }
+            else
+            {
+                CharacterManager.Instance.Player.itemData = null;
             }
         }
     }
@@ -83,11 +91,12 @@ public class Interaction : MonoBehaviour
 
     public void OnInteraction(InputAction.CallbackContext context)
     {
-        //if(context.phase == InputActionPhase.Started && itemData != null)
-        //{
-        //    // 인벤토리에 저장
-        //    itemData = null;
-        //    Destroy(itemData.);
-        //}
+        if (context.phase == InputActionPhase.Started && CharacterManager.Instance.Player.itemData != null)
+        {
+            // 인벤토리에 저장
+            //item.OnInteraction();
+            //item = null;
+            //Destroy(item.gameObject);
+        }
     }
 }
