@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,6 +26,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isRun;            // 달리는 키 입력이 되었는지 확인
 
     private Animator animator;
+
+    private bool isJump;                        // 점프 상태 확인
+    [SerializeField] private float jumpForce;   // 점프 파워
+
+    [SerializeField] private LayerMask groundMask;
+
     private void Start()
     {
         rigid = GetComponent<Rigidbody>();
@@ -54,18 +61,65 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         Vector3 moveDir = cameraContainer.forward * inputDir.y + cameraContainer.right * inputDir.x;
+        if (isJump) return;
         // 달리기 키를 입력 받았다면 뛰는 속도로 적용
         float speed = isRun ? runSpeed : walkSpeed;
         moveDir *= speed;
         moveDir.y = rigid.velocity.y;
+        rigid.velocity = moveDir;
 
-        if(inputDir.magnitude > 0)
+        if (inputDir.magnitude > 0)
         {
+            moveDir.Normalize();
             Vector3 lookDir = new Vector3(moveDir.x, 0, moveDir.z);
             character.forward = Vector3.Lerp(character.forward, lookDir, Time.deltaTime * lerpSpeed);
         }
+    }
 
-        rigid.velocity = moveDir;
+    private void Jump()
+    {
+        isJump = true;
+        animator.SetTrigger("Jump");
+        rigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+    }
+
+    // 바닥에 캐릭터가 닿아있는지 확인하는 함수
+    private bool IsGround()
+    {
+        // 우선 캐릭터 아래 방향으로 발사되는 Ray 4개를 준비한다.
+        float rayDistance = 0.2f;
+        Ray[] rays = new Ray[4] { 
+            new Ray(transform.position + (transform.forward * 0.3f) + (Vector3.up * 0.01f), Vector3.down),
+            new Ray(transform.position + (-transform.forward * 0.3f) + (Vector3.up * 0.01f), Vector3.down),
+            new Ray(transform.position + (transform.right * 0.3f) + (Vector3.up * 0.01f), Vector3.down),
+            new Ray(transform.position + (-transform.right * 0.3f) + (Vector3.up * 0.01f), Vector3.down),
+        };
+
+        // 그 후 Raycast를 통해 바닥에 닿으면 true를 하나도 닿지 않으면 false를 반환한다.
+        for (int i = 0; i < rays.Length; i++)
+        {
+            if(Physics.Raycast(rays[i], rayDistance, groundMask))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        float rayDistance = 0.2f;
+        Ray[] rays = new Ray[4] {
+            new Ray(transform.position + (transform.forward * 0.3f) + (Vector3.up * 0.01f), Vector3.down * rayDistance),
+            new Ray(transform.position + (-transform.forward * 0.3f) + (Vector3.up * 0.01f), Vector3.down * rayDistance),
+            new Ray(transform.position + (transform.right * 0.3f) + (Vector3.up * 0.01f), Vector3.down * rayDistance),
+            new Ray(transform.position + (-transform.right * 0.3f) + (Vector3.up * 0.01f), Vector3.down * rayDistance),
+        };
+
+        for (int i = 0; i < rays.Length; i++)
+        {
+            Gizmos.DrawRay(rays[i]);
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -91,5 +145,23 @@ public class PlayerController : MonoBehaviour
             isRun = false;
         }
         animator.SetBool("IsRun", isRun);
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Started && !isJump && IsGround())
+        {
+            Jump();
+        }
+    }
+
+    public void EndJump()
+    {
+        isJump = false;
+    }
+
+    private void OnAnimatorMove()
+    {
+        
     }
 }
