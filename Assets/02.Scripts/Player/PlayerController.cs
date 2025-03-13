@@ -26,18 +26,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float runSpeed;        // 달리는 속도
     [SerializeField] private bool isRun;            // 달리는 키 입력이 되었는지 확인
 
-    private float runStemina = 0.5f;                // 달리기 스태미나
+    private float runStemina = 0.1f;                // 달리기 스태미나
 
     private Animator animator;
 
     private bool isJump;                        // 점프 상태 확인
     [SerializeField] private float jumpForce;   // 점프 파워
-    private float jumpStemina;                  // 점프 스태미나
+    private float jumpStemina = 10;                  // 점프 스태미나
 
     [SerializeField] private LayerMask groundMask;  // 땅을 표시하는 Layer
 
     private bool isAttack;                      // 공격 상태 확인
-    private float attackStemina;                // 공격 스태미나
+    private float attackStemina = 10;                // 공격 스태미나
 
     private void Start()
     {
@@ -99,6 +99,7 @@ public class PlayerController : MonoBehaviour
     {
         isJump = true;
         animator.SetTrigger("Jump");
+        CharacterManager.Instance.Player.condition.UseStamina(jumpStemina);
         rigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 
@@ -204,6 +205,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            CharacterManager.Instance.Player.condition.UseStamina(attackStemina);
             // 무기가 없을 땐 기본 Attack
             animator.SetTrigger("Attack");
 
