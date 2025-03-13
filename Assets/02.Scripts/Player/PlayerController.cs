@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Security;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,12 +31,17 @@ public class PlayerController : MonoBehaviour
     private bool isJump;                        // 점프 상태 확인
     [SerializeField] private float jumpForce;   // 점프 파워
 
-    [SerializeField] private LayerMask groundMask;
+    [SerializeField] private LayerMask groundMask;  // 땅을 표시하는 Layer
+
+    private bool isAttack;                      // 공격 상태 확인
 
     private void Start()
     {
         rigid = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void FixedUpdate()
@@ -60,8 +66,16 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        Vector3 moveDir = cameraContainer.forward * inputDir.y + cameraContainer.right * inputDir.x;
         if (isJump) return;
+
+        if(isAttack)
+        {
+            // 공격 시 rigid의 Velocity를 0으로 만들어 줌
+            rigid.velocity = Vector3.zero;
+            return;
+        }
+
+        Vector3 moveDir = cameraContainer.forward * inputDir.y + cameraContainer.right * inputDir.x;
         // 달리기 키를 입력 받았다면 뛰는 속도로 적용
         float speed = isRun ? runSpeed : walkSpeed;
         moveDir *= speed;
@@ -155,9 +169,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Attack()
+    {
+        isAttack = true;
+        animator.SetTrigger("Attack");
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Started && !isAttack && !isJump)
+        {
+            Attack();
+        }
+    }
+
     public void EndJump()
     {
         isJump = false;
+    }
+
+    public void EndAttack()
+    {
+        isAttack = false;
     }
 
     private void OnAnimatorMove()
