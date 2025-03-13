@@ -145,11 +145,11 @@ public class PlayerController : MonoBehaviour
     public void OnLook(InputAction.CallbackContext context)
     {
         mouseDelta = context.ReadValue<Vector2>();
-        Debug.Log(mouseDelta);
     }
 
     public void OnRun(InputAction.CallbackContext context)
     {
+        // 스태미너 확인 필요
         if(context.phase == InputActionPhase.Started)
         {
             isRun = true;
@@ -163,6 +163,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        // 스태미너 확인 필요
         if(context.phase == InputActionPhase.Started && !isJump && IsGround())
         {
             Jump();
@@ -172,11 +173,31 @@ public class PlayerController : MonoBehaviour
     private void Attack()
     {
         isAttack = true;
-        animator.SetTrigger("Attack");
+
+        Interaction interaction = GetComponent<Interaction>();
+
+        if (interaction.rock != null)
+        {
+            // 곡괭이가 있고 Rock을 가리키고 있을 땐 RockAttack
+            animator.SetTrigger("RockAttack");
+        }
+        else if(interaction.tree != null)
+        {
+            // 도끼가 있고 Tree를 가리키고 있을 땐 TreeAttack
+            animator.SetTrigger("TreeAttack");
+        }
+        else
+        {
+            // 무기가 없을 땐 기본 Attack
+            animator.SetTrigger("Attack");
+
+            // 무기가 있을 땐 EquipAttack
+        }
     }
 
     public void OnAttack(InputAction.CallbackContext context)
     {
+        // 스태미너 확인 필요
         if(context.phase == InputActionPhase.Started && !isAttack && !isJump)
         {
             Attack();
@@ -191,6 +212,7 @@ public class PlayerController : MonoBehaviour
     public void EndAttack()
     {
         isAttack = false;
+        Debug.Log("End Attack");
     }
 
     private void OnAnimatorMove()
