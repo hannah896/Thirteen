@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2079814606131214472}
   - component: {fileID: 1152107630764660055}
+  - component: {fileID: 248919317552972150}
   m_Layer: 0
   m_Name: Tree1
   m_TagString: Untagged
@@ -50,6 +51,28 @@ MonoBehaviour:
   currentChances: 10
   second: 40
   resource: {fileID: 8178698732841966147, guid: 7dc429ba39198e24a83387ab5ae0ff31, type: 3}
+  Collider: {fileID: 248919317552972150}
+--- !u!65 &248919317552972150
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783222927093283224}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 25, z: 3}
+  m_Center: {x: 0, y: 12, z: 0}
 --- !u!1001 &2683535807927022278
 PrefabInstance:
   m_ObjectHideFlags: 0
