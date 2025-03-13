@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c02c2de53225e6b4abeaca2c0048e5aa, type: 3}
-  m_Name: Cabin
+  m_Name: Cabinet
   m_EditorClassIdentifier: 
-  displayName: "\uC624\uB450\uB9C9\uC9D1"
+  displayName: "\uC637\uC7A5"
   description: 
   icon: {fileID: 0}
-  buildPrefab: {fileID: 1220601838441206443, guid: b0957693b9d76804c8e4064b5243f750, type: 3}
+  buildPrefab: {fileID: 8764328446080242703, guid: 2bf71c42a66fa1642beeb2556659ea9e, type: 3}
   requiredResources: []
-  maxBuildCount: 1

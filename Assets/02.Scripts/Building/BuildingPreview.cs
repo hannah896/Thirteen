@@ -3,18 +3,17 @@ using UnityEngine;
 
 public class BuildingPreview : MonoBehaviour
 {
+    private BuildingManager buildingManager;
     private BuildingData buildingData;
+    private BuildingObject buildingObject;
     private GameObject previewInstance;     //미리보기 인스턴스
-    public Color validColor = Color.white;  //설치 가능 색상
+    public Color validColor = Color.green;  //설치 가능 색상
     public Color invalidColor = Color.red;  //설치 불가능 색상
     public LayerMask groundLayer;
 
     public float maxDistance;               //설치 거리
 
     private bool canBuild = false;
-    private List<Collider> collidersList = new List<Collider>();
-
-    private BuildingManager buildingManager;
     
     void Start()
     {
@@ -31,27 +30,40 @@ public class BuildingPreview : MonoBehaviour
         }
 
         buildingData = building;
-
         previewInstance = Instantiate(buildingData.buildPrefab);
-        previewInstance.GetComponent<Renderer>().material.color = validColor;
+        buildingObject = previewInstance.GetComponent<BuildingObject>();
 
         Collider previewCollider = previewInstance.GetComponent<Collider>();
         if (previewCollider != null)
         {
-            previewCollider.isTrigger = true;
+            if (previewCollider is MeshCollider mesh)
+            {
+                mesh.convex = true;
+                mesh.isTrigger = true;
+            }
+            else
+                previewCollider.isTrigger = true;
         }
 
         previewInstance.SetActive(true);
     }
 
-
     void Update()
     {
+        //미리보기 위치 표시
+        if (previewInstance == null) return;
+
         Vector3 targetPosition = GetTargetPosition();
         previewInstance.transform.position = targetPosition;
 
         canBuild = CheckBuildable(targetPosition);
         SetPreviewColor(canBuild);
+
+        //InputSystem으로 변경 예정
+        if (Input.GetKeyDown(KeyCode.E) && canBuild)
+        {
+            InstallBuilding(targetPosition);
+        }
     }
 
     //설치 위치 반환
@@ -64,9 +76,6 @@ public class BuildingPreview : MonoBehaviour
         {
             Vector3 hitPoint = hit.point;
 
-            float buildingHeight = previewInstance.GetComponent<Collider>().bounds.extents.y;
-            hitPoint.y = hit.point.y + buildingHeight;
-
             return hitPoint;
         }
 
@@ -76,7 +85,7 @@ public class BuildingPreview : MonoBehaviour
     //설치 가능 여부 확인
     private bool CheckBuildable(Vector3 targetPosition)
     {
-        if (collidersList.Count > 0 || !CheckSlope(targetPosition))
+        if (buildingObject.colliderList.Count > 0)
         {
             canBuild = false;
         }
@@ -98,30 +107,13 @@ public class BuildingPreview : MonoBehaviour
     private bool CheckSlope(Vector3 position)
     {
         float slope = Terrain.activeTerrain.terrainData.GetSteepness(position.x / Terrain.activeTerrain.terrainData.size.x, position.z / Terrain.activeTerrain.terrainData.size.z);
-        return slope > 15f;
+        return slope > 15f || slope < -15;
     }
 
-    //설치 후 미리보기 비활성화
+    //설치 후 미리보기 삭제
     private void InstallBuilding(Vector3 targetPosition)
     {
         buildingManager.BuildBuilding(buildingData, targetPosition);
-        previewInstance.SetActive(false);
-    }
-
-    //겹치는 오브젝트 체크
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.layer != groundLayer)
-        {
-            collidersList.Add(other);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.layer != groundLayer)
-        {
-            collidersList.Remove(other);
-        }
+        Destroy(previewInstance);
     }
 }

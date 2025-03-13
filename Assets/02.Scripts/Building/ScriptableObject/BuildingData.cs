@@ -14,7 +14,6 @@ public class BuildingData : ScriptableObject
 
     [Header("Construction Requirements")]
     public List<ResourceCost> requiredResources;    //자원 정보
-    public int maxBuildCount;       //최대 건축 가능 수량(0일 경우 무제한)
 }
 
 [Serializable]
