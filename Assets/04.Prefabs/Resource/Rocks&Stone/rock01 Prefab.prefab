@@ -111,7 +111,9 @@ MonoBehaviour:
   maxAmount: 5
   currentChances: 5
   second: 20
-  resource: {fileID: 5853784363298607412, guid: 12727f0e9bd24d743ab8323b05dea86a, type: 3}
+  dropItems:
+  - {fileID: 5853784363298607412, guid: 12727f0e9bd24d743ab8323b05dea86a, type: 3}
+  Collider: {fileID: 7629259498354361238}
 --- !u!1 &3996861152847027200
 GameObject:
   m_ObjectHideFlags: 0
