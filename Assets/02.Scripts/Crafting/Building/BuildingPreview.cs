@@ -37,16 +37,20 @@ public class BuildingPreview : MonoBehaviour
         previewInstance = Instantiate(buildingData.buildPrefab);
         buildingObject = previewInstance.GetComponent<BuildingObject>();
 
-        Collider previewCollider = previewInstance.GetComponent<Collider>();
+        Collider[] previewCollider = previewInstance.GetComponentsInChildren<Collider>();
         if (previewCollider != null)
         {
-            if (previewCollider is MeshCollider mesh)
+            for (int i = 0; i < previewCollider.Length; i++)
             {
-                mesh.convex = true;
-                mesh.isTrigger = true;
+
+                if (previewCollider[i] is MeshCollider mesh)
+                {
+                    mesh.convex = true;
+                    mesh.isTrigger = true;
+                }
+                else
+                    previewCollider[i].isTrigger = true;
             }
-            else
-                previewCollider.isTrigger = true;
         }
 
         previewInstance.SetActive(true);
@@ -122,10 +126,9 @@ public class BuildingPreview : MonoBehaviour
     }
 
     //바닥 경사면 체크
-    private bool CheckSlope(Vector3 position)
+    private bool CheckSlope()
     {
-        float slope = Terrain.activeTerrain.terrainData.GetSteepness(position.x / Terrain.activeTerrain.terrainData.size.x, position.z / Terrain.activeTerrain.terrainData.size.z);
-        return slope > 15f || slope < -15;
+        return true;
     }
 
     //설치 후 미리보기 삭제

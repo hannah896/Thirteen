@@ -9,19 +9,29 @@ public class BuildingObject : MonoBehaviour
     //겹치는 오브젝트 체크
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer != layerMask)
+        if ((layerMask.value == (1 << other.gameObject.layer)))
         {
-            colliderList.Add(other);
+            return;
         }
-        Debug.Log(colliderList.Count);
+        else if (other.gameObject.name == "Floor")
+        {
+            return;
+        }
+
+        colliderList.Add(other);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer != layerMask)
+        if ((layerMask.value == (1 << other.gameObject.layer)))
         {
-            colliderList.Remove(other);
+            return;
         }
-        Debug.Log(colliderList.Count);
+        else if (other.gameObject.name == "Floor")
+        {
+            return;
+        }
+
+        colliderList.Remove(other);
     }
 }

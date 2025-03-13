@@ -15,5 +15,5 @@ MonoBehaviour:
   displayName: cabin
   description: 
   icon: {fileID: 0}
-  buildPrefab: {fileID: 1220601838441206443, guid: b0957693b9d76804c8e4064b5243f750, type: 3}
+  buildPrefab: {fileID: 893341736339895226, guid: 72c8c918e4cabb64e812dd995f2894eb, type: 3}
   requiredResources: []
