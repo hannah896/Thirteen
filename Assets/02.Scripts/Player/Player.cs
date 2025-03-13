@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public Action addItem;
 
     public Transform dropPosition;
+    internal PlayerController controller;
 
     private void Awake()
     {
