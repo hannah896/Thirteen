@@ -6,7 +6,7 @@ public class UICondition : MonoBehaviour
     public Condition hunger;
     public Condition stamina;
     public Condition thirst;
-    public Condition bodyTemp;
+    public BodyTemp bodyTemp;
 
     private void Start()
     {
