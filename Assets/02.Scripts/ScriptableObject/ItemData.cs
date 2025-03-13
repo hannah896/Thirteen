@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using VInspector;
+//using VInspector;
 public enum ItemType
 {
     Equipable,
@@ -30,9 +30,13 @@ public class ItemData : ScriptableObject
     public bool canStack;
     public int maxStackAmount;
 
-    [Header("Effect"), ShowInInspector]
-    public Dictionary<ConsumableType, float> Effects;
+    //[Header("Effect"), ShowInInspector]
+   // public Dictionary<ConsumableType, float> Effects;
 
     [Header("Equip")]
     public GameObject equipPrefab;
+
+    [Header("Consume")]
+    public GameObject consumePrefab;
+    public int healAmount;
 }
