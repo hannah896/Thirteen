@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 6422321382151647077}
   - component: {fileID: 6885685659735723219}
   - component: {fileID: 8875031242046298531}
-  - component: {fileID: 2448671531963942704}
+  - component: {fileID: 6642881145051397366}
   m_Layer: 7
   m_Name: rock04 Prefab
   m_TagString: Untagged
@@ -414,7 +414,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2448671531963942704
+--- !u!114 &6642881145051397366
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -423,10 +423,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7332517779715074977}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 550f451ec42e74942be69bdd4c224cbb, type: 3}
+  m_Script: {fileID: 11500000, guid: 7aa41d17f4cc36743b866c66b8f0075b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemData: {fileID: 11400000, guid: cde2a3c7b5179c04e991d651e9a50d79, type: 2}
+  maxAmount: 5
+  currentChances: 5
+  second: 20
+  resource: {fileID: 1021220458035234048, guid: 79e5c75a9489bb54b8c1e89783d5fbb2, type: 3}
 --- !u!1 &9061756570486759854
 GameObject:
   m_ObjectHideFlags: 0

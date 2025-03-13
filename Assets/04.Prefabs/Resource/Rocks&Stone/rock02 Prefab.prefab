@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 1284414130466684507}
   - component: {fileID: 2276360807695443516}
   - component: {fileID: 264566043168558306}
-  - component: {fileID: 4292856984347092198}
+  - component: {fileID: 2084690499314501749}
   m_Layer: 7
   m_Name: rock02 Prefab
   m_TagString: Untagged
@@ -202,7 +202,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4292856984347092198
+--- !u!114 &2084690499314501749
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -211,10 +211,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3008406186670721724}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 550f451ec42e74942be69bdd4c224cbb, type: 3}
+  m_Script: {fileID: 11500000, guid: 7aa41d17f4cc36743b866c66b8f0075b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemData: {fileID: 11400000, guid: cde2a3c7b5179c04e991d651e9a50d79, type: 2}
+  maxAmount: 5
+  currentChances: 5
+  second: 20
+  resource: {fileID: 3692934630505276992, guid: 322bfb0b20d817245a6d35fc4ec4da9b, type: 3}
 --- !u!1 &3719692518439586413
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Resource : MonoBehaviour
 {
@@ -10,12 +11,23 @@ public class Resource : MonoBehaviour
     public float second; //쿨타임 도는 시간
     public GameObject resource;
 
+    public Collider Collider;
+
+    private void OnValidate()
+    {
+        Collider = GetComponentInChildren<Collider>();
+    }
+
     //자원을 생성하는 것을 반환
     public void MakingResource()
     {
-        if (currentChances < 0) return;
+        if (currentChances <= 0) return;
         currentChances--;
-        Instantiate(resource, transform.position,Quaternion.identity);
+        Instantiate(resource, transform.position +  new Vector3(
+            0.3f * Collider.bounds.size.x,
+            0.1f * Collider.bounds.size.y,
+            0
+            ), Quaternion.identity);
         Debug.Log("캐다");
         if (currentChances == 0)
         {
@@ -28,7 +40,7 @@ public class Resource : MonoBehaviour
     {
         Debug.Log("초기화중");
         yield return new WaitForSeconds(second);
-        currentChances = maxAmount;
+        currentChances = maxAmount; 
         yield break;
     }
 }
