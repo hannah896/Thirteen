@@ -3,11 +3,18 @@ using UnityEngine;
 
 public class BodyTemp : MonoBehaviour
 {
+    [Header("PlayerTemp")]
     public float curTemp;
     public float startTemp;
     public float maxTemp;
+    public float minTemp;
     public float passiveTemp;
     public TextMeshProUGUI tempText;
+
+    [Header("Damage")]
+    public int tempZoneDamage;
+    public float damageRate;
+    private float damageTimer;
 
     private void Start()
     {
@@ -18,20 +25,25 @@ public class BodyTemp : MonoBehaviour
     {
         tempText.text = curTemp.ToString("F2") + "°C"; ;
 
-        //if() 뜨거울 때
-        //Hot();
+        damageTimer += Time.deltaTime;
 
-        //if() 추울 때
-        //Cold();
+        if (curTemp >= maxTemp || curTemp <= minTemp)
+        {
+            if (damageTimer >= damageRate)
+            {
+                CharacterManager.Instance.Player.condition.TakeDamage(tempZoneDamage);
+                damageTimer = 0;
+            }
+        }
     }
 
     public void Hot()
     {
-        curTemp = Mathf.Min(curTemp + (passiveTemp * Time.deltaTime), maxTemp);        
+        curTemp = Mathf.Min(curTemp + (passiveTemp * Time.deltaTime), maxTemp);
     }
 
     public void Cold()
     {
-        curTemp = Mathf.Max(curTemp - (passiveTemp * Time.deltaTime), 0f);
+        curTemp = Mathf.Max(curTemp - (passiveTemp * Time.deltaTime), minTemp);
     }
 }
