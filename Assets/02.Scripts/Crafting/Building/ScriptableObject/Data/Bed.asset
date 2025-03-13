@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c02c2de53225e6b4abeaca2c0048e5aa, type: 3}
-  m_Name: Cabinet
+  m_Name: Bed
   m_EditorClassIdentifier: 
-  displayName: "\uC637\uC7A5"
+  displayName: bed
   description: 
   icon: {fileID: 0}
-  buildPrefab: {fileID: 8764328446080242703, guid: 2bf71c42a66fa1642beeb2556659ea9e, type: 3}
+  buildPrefab: {fileID: 1972322738948892535, guid: 0c8741363ba0c7b4bae3c03b9fa9dcb2, type: 3}
   requiredResources: []

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
 {
-    public List<BuildingData> buildings;
+    public List<BuildingData> buildingList;
     public BuildingPreview buildingPreview;
     
     public bool CanBuild(BuildingData building)
@@ -13,10 +13,10 @@ public class BuildingManager : MonoBehaviour
         return true;
     }
 
-    public void BuildBuilding(BuildingData building, Vector3 position)
+    public void BuildBuilding(BuildingData building, Vector3 position, Quaternion rotation)
     {
         //인벤토리에서 재료 삭제 후 건물 짓기
-        Instantiate(building.buildPrefab, position, Quaternion.identity);
+        Instantiate(building.buildPrefab, position, rotation);
     }
 
     public void OnSelectBuilding(BuildingData building)

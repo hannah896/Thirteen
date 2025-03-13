@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Building", menuName = "New Building")]
 
@@ -9,7 +10,7 @@ public class BuildingData : ScriptableObject
     [Header("Info")]
     public string displayName;      //이름
     public string description;      //설명
-    public Sprite icon;             //아이콘
+    public Image icon;             //아이콘
     public GameObject buildPrefab;  //건물
 
     [Header("Construction Requirements")]

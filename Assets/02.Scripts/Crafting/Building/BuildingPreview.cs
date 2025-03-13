@@ -12,8 +12,12 @@ public class BuildingPreview : MonoBehaviour
     public LayerMask groundLayer;
 
     public float maxDistance;               //설치 거리
+    private Quaternion previewRotation = Quaternion.identity;
 
     private bool canBuild = false;
+
+    //테스트
+    public Camera cam;
     
     void Start()
     {
@@ -60,16 +64,30 @@ public class BuildingPreview : MonoBehaviour
         SetPreviewColor(canBuild);
 
         //InputSystem으로 변경 예정
-        if (Input.GetKeyDown(KeyCode.E) && canBuild)
+        if (Input.GetKeyDown(KeyCode.R) && canBuild)
         {
             InstallBuilding(targetPosition);
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Destroy(previewInstance);
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            previewRotation *= Quaternion.Euler(0, -90f, 0);
+            previewInstance.transform.rotation = previewRotation;
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            previewRotation *= Quaternion.Euler(0, 90f, 0);
+            previewInstance.transform.rotation = previewRotation;
         }
     }
 
     //설치 위치 반환
     private Vector3 GetTargetPosition()
     {
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
         RaycastHit hit;
 
         if(Physics.Raycast(ray, out hit, maxDistance, groundLayer))
@@ -113,7 +131,7 @@ public class BuildingPreview : MonoBehaviour
     //설치 후 미리보기 삭제
     private void InstallBuilding(Vector3 targetPosition)
     {
-        buildingManager.BuildBuilding(buildingData, targetPosition);
+        buildingManager.BuildBuilding(buildingData, targetPosition, previewRotation);
         Destroy(previewInstance);
     }
 }
