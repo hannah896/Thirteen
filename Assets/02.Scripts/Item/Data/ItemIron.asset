@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e9a8c7433a0624d83fba986ef58660, type: 3}
   m_Name: ItemIron
   m_EditorClassIdentifier: 
-  itemName: 
-  itemDescription: 
+  itemName: "\uCCA0"
+  itemDescription: "\uC601\uC5B4\uB85C \uC544\uC774\uC5B8"
   Icon: {fileID: 0}
-  canStack: 0
-  maxStackAmount: 0
+  canStack: 1
+  maxStackAmount: 99
   equipPrefab: {fileID: 0}

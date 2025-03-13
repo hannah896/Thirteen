@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ItemWood
   m_EditorClassIdentifier: 
   itemName: "\uB098\uBB34"
-  itemDescription: 
+  itemDescription: "\uC601\uC5B4\uB85C \uC6B0\uB4DC"
   Icon: {fileID: 0}
-  canStack: 0
-  maxStackAmount: 0
+  canStack: 1
+  maxStackAmount: 99
   equipPrefab: {fileID: 0}
