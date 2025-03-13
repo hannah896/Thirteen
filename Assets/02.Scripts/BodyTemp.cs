@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class BodyTemp : MonoBehaviour
 {
-    [Header("PlayerTemp")]
+    [Header("UI")]
     public float curTemp;
     public float startTemp;
     public float maxTemp;
     public float minTemp;
     public float passiveTemp;
     public float recoveryTemp;
-    public TextMeshProUGUI tempText;
+    public Image tempBar;
 
     [Header("Damage")]
     public int tempZoneDamage;
@@ -34,7 +34,7 @@ public class BodyTemp : MonoBehaviour
 
     private void Update()
     {
-        tempText.text = curTemp.ToString("F2") + "¡ÆC"; ;
+        tempBar.fillAmount = GetPercentage();
 
         damageTimer += Time.deltaTime;
 
@@ -51,6 +51,11 @@ public class BodyTemp : MonoBehaviour
         {
             curTemp = Mathf.Lerp(curTemp, 36.5f, recoveryTemp * Time.deltaTime);                       
         }
+    }
+
+    private float GetPercentage()
+    {
+        return Mathf.InverseLerp(minTemp, maxTemp, curTemp);
     }
 
     public void Hot()
