@@ -12,7 +12,7 @@ public class PlayerCondition : MonoBehaviour, IDamageable
     Condition hp { get { return uiCondition.hp; } }
     Condition hunger { get { return uiCondition.hunger; } }
     Condition stamina { get { return uiCondition.stamina; } }
-    Condition thirst { get { return uiCondition.thirst; } } 
+    Condition thirst { get { return uiCondition.thirst; } }
 
     public float noHungerHPDecay;
     public float noThirstHPDecay;
@@ -25,7 +25,7 @@ public class PlayerCondition : MonoBehaviour, IDamageable
         thirst.Subtract(hunger.passiveValue * Time.deltaTime);
         stamina.Add(stamina.passiveValue * Time.deltaTime);
 
-        if(hunger.curValue == 0f)
+        if (hunger.curValue == 0f)
             hp.Subtract(noHungerHPDecay * Time.deltaTime);
 
         if (thirst.curValue == 0f)
@@ -47,7 +47,7 @@ public class PlayerCondition : MonoBehaviour, IDamageable
 
         //if() 물이라면
         thirst.Add(amount);
-    }    
+    }
 
     public void Die()
     {
