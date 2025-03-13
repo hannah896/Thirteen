@@ -9,7 +9,7 @@ public class Resource : MonoBehaviour
     public int maxAmount; //최대로 캘수있는 양
     public int currentChances; //현재 캘 수 있는 횟수
     public float second; //쿨타임 도는 시간
-    public GameObject resource;
+    public GameObject[] dropItems;
 
     public Collider Collider;
 
@@ -23,7 +23,8 @@ public class Resource : MonoBehaviour
     {
         if (currentChances <= 0) return;
         currentChances--;
-        Instantiate(resource, transform.position +  new Vector3(
+        // TODO : 리스트 추가했을때의 처리 필요
+        Instantiate(dropItems[0], transform.position +  new Vector3(
             0.3f * Collider.bounds.size.x,
             0.1f * Collider.bounds.size.y,
             0
