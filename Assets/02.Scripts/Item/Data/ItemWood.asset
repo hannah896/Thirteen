@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6e9a8c7433a0624d83fba986ef58660, type: 3}
-  m_Name: ItemBase
+  m_Name: ItemWood
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: "\uB098\uBB34"
   itemDescription: 
   Icon: {fileID: 0}
   canStack: 0
