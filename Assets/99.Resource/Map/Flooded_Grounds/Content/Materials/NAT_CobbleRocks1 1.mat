@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NAT_CobbleRocks1
+  m_Name: NAT_CobbleRocks1 1
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -94,9 +94,9 @@ Material:
     - _DetailTiling: 5
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 1
     - _GlossyReflections: 1
-    - _Metallic: 0
+    - _Metallic: 0.47
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -108,10 +108,10 @@ Material:
     - _UVSec: 0
     - _VMask: 0
     - _ZWrite: 1
-    - _layer1BreakupAmnt: 0.5
-    - _layer1Metal: 0
+    - _layer1BreakupAmnt: 0.576
+    - _layer1Metal: 0.53
     - _layer1Tiling: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 0.86007965, b: 0.4764151, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

@@ -6,9 +6,9 @@ using UnityEngine.UIElements;
 
 public class Resource : MonoBehaviour
 {
-    public int maxAmount; //ÃÖ´ë·Î Ä¶¼öÀÖ´Â ¾ç
-    public int currentChances; //ÇöÀç Ä¶ ¼ö ÀÖ´Â È½¼ö
-    public float second; //ÄğÅ¸ÀÓ µµ´Â ½Ã°£
+    public int maxAmount; //ìµœëŒ€ë¡œ ìº˜ìˆ˜ìˆëŠ” ì–‘
+    public int currentChances; //í˜„ì¬ ìº˜ ìˆ˜ ìˆëŠ” íšŸìˆ˜
+    public float second; //ì¿¨íƒ€ì„ ë„ëŠ” ì‹œê°„
     public GameObject[] dropItems;
 
     public Collider Collider;
@@ -18,28 +18,28 @@ public class Resource : MonoBehaviour
         Collider = GetComponentInChildren<Collider>();
     }
 
-    //ÀÚ¿øÀ» »ı¼ºÇÏ´Â °ÍÀ» ¹İÈ¯
+    //ìì›ì„ ìƒì„±í•˜ëŠ” ê²ƒì„ ë°˜í™˜
     public void MakingResource()
     {
         if (currentChances <= 0) return;
         currentChances--;
-        // TODO : ¸®½ºÆ® Ãß°¡ÇßÀ»¶§ÀÇ Ã³¸® ÇÊ¿ä
+        // TODO : ë¦¬ìŠ¤íŠ¸ ì¶”ê°€í–ˆì„ë•Œì˜ ì²˜ë¦¬ í•„ìš”
         Instantiate(dropItems[0], transform.position +  new Vector3(
             0.3f * Collider.bounds.size.x,
             0.1f * Collider.bounds.size.y,
             0
             ), Quaternion.identity);
-        Debug.Log("Ä³´Ù");
+        Debug.Log("ìºë‹¤");
         if (currentChances == 0)
         {
             StartCoroutine(ResetMaxinum());
         }
     }
 
-    //ÀÚ¿ø ÃÊ±âÈ­½Ã°£
+    //ìì› ì´ˆê¸°í™”ì‹œê°„
     private IEnumerator ResetMaxinum()
     {
-        Debug.Log("ÃÊ±âÈ­Áß");
+        Debug.Log("ì´ˆê¸°í™”ì¤‘");
         yield return new WaitForSeconds(second);
         currentChances = maxAmount; 
         yield break;
