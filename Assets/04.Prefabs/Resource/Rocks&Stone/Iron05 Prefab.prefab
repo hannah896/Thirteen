@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6777035584326852477}
   - component: {fileID: 1028611749970190281}
   - component: {fileID: 7538906280017570056}
+  - component: {fileID: 344381113751171353}
   m_Layer: 8
   m_Name: Iron05 Prefab
   m_TagString: Untagged
@@ -77,6 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: 4cdee82070bf05f4f925df3bfa8a804d, type: 2}
+  Collider: {fileID: 0}
 --- !u!54 &7538906280017570056
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -104,6 +106,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &344381113751171353
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4592661137120205136}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &5165156958043669495
 GameObject:
   m_ObjectHideFlags: 0

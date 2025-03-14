@@ -5,6 +5,10 @@ using UnityEngine;
 public class ItemObject : MonoBehaviour
 {
     public ItemData ItemData;
-
+    public Collider Collider;
+    private void OnVaildate()
+    {
+        GetComponentInChildren<Collider>();
+    }
     // TODO: 인벤토리 만들어졌을때 넣는 기능 필요.
 }

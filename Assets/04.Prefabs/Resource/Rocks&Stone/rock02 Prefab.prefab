@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3362259697101472582
 Transform:
   m_ObjectHideFlags: 0
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 264566043168558306}
   - component: {fileID: 2084690499314501749}
   m_Layer: 7
-  m_Name: Rock02 Prefab
+  m_Name: rock02 Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -221,7 +221,7 @@ MonoBehaviour:
   - {fileID: 3692934630505276992, guid: 322bfb0b20d817245a6d35fc4ec4da9b, type: 3}
   - {fileID: 5777748071300617248, guid: 8279db6e81fdcc9438e28cd73b42761b, type: 3}
   - {fileID: 6336047283459569065, guid: 82d1c2276215bff4f90ee763517fb9d2, type: 3}
-  Collider: {fileID: 3232818533210308934}
+  Collider: {fileID: 5879409924902988656}
 --- !u!1 &3719692518439586413
 GameObject:
   m_ObjectHideFlags: 0

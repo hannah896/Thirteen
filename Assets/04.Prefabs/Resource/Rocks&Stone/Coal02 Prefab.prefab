@@ -330,6 +330,7 @@ GameObject:
   - component: {fileID: 8203298450063886612}
   - component: {fileID: 3210248101916542314}
   - component: {fileID: 1531683794296099678}
+  - component: {fileID: 7769080209234209792}
   m_Layer: 8
   m_Name: Coal02 Prefab
   m_TagString: Untagged
@@ -427,6 +428,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: a5aef42d92bc2684085b70cc2d1bf668, type: 2}
+  Collider: {fileID: 0}
+--- !u!64 &7769080209234209792
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6336047283459569065}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &8631705680576680403
 GameObject:
   m_ObjectHideFlags: 0

@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: 19b7ce2e167db874e990283ab5c031fb, type: 2}
+  Collider: {fileID: 0}
 --- !u!54 &2787259938561340662
 Rigidbody:
   m_ObjectHideFlags: 0

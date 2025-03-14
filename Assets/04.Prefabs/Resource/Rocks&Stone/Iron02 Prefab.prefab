@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 7494775970317775229}
   - component: {fileID: 1273756117830240374}
   - component: {fileID: 4279626104116047884}
-  - component: {fileID: 1213238362380759176}
+  - component: {fileID: 3836813957143393324}
   m_Layer: 8
   m_Name: Iron02 Prefab
   m_TagString: Untagged
@@ -327,6 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: 4cdee82070bf05f4f925df3bfa8a804d, type: 2}
+  Collider: {fileID: 0}
 --- !u!54 &4279626104116047884
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -354,7 +355,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &1213238362380759176
+--- !u!64 &3836813957143393324
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -375,4 +376,4 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4300008, guid: 89bf544328b22bc4da0d56896518402a, type: 3}
+  m_Mesh: {fileID: 0}

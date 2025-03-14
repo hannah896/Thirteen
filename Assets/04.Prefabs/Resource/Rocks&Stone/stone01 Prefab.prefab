@@ -427,6 +427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: cde2a3c7b5179c04e991d651e9a50d79, type: 2}
+  Collider: {fileID: 0}
 --- !u!1 &6876083718306416560
 GameObject:
   m_ObjectHideFlags: 0
