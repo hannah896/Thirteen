@@ -15,7 +15,8 @@ public class Interaction : MonoBehaviour
     private float interactionDelay = 0.05f;  // 감지 딜레이 (프레임 별 감지하는 걸 방지하기 위해)
     private float lastInteractionTime;      // 마지막으로 감지한 시간
 
-    [SerializeField] float rayDistance = 5f;
+    [SerializeField] float resourceRayDistance = 1f;    // 자원을 감지하는 Ray의 길이
+    [SerializeField] float itemRayDistance = 5f;        // 아이템을 감지하는 Ray의 길이
     [SerializeField] LayerMask resourceMask;        // 캘 수 있는 자원의 마스크
     [SerializeField] LayerMask interactableMask;    // 획득 할 수 있는 아이템의 마스크
 
@@ -46,8 +47,8 @@ public class Interaction : MonoBehaviour
         Vector3 rayOrigin = CharacterTr.position + Vector3.up * 0.5f;
         Ray ray = new Ray(rayOrigin, new Vector3(CharacterTr.forward.x, 0, CharacterTr.forward.z));
 
-        Debug.DrawRay(ray.origin, CharacterTr.forward * rayDistance, Color.red);
-        if (Physics.Raycast(ray, out RaycastHit hit, rayDistance, resourceMask))
+        Debug.DrawRay(ray.origin, CharacterTr.forward * resourceRayDistance, Color.red);
+        if (Physics.Raycast(ray, out RaycastHit hit, resourceRayDistance, resourceMask))
         {
             if (hit.transform.TryGetComponent(out Resource resource))
             {
@@ -65,25 +66,18 @@ public class Interaction : MonoBehaviour
     {
         // 화면의 중앙에서 ray를 발사하여 감지
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-        Debug.DrawRay(ray.origin, ray.direction * rayDistance, Color.red);
-        if (Physics.Raycast(ray, out RaycastHit hit, rayDistance, interactableMask))
+        Debug.DrawRay(ray.origin, ray.direction * itemRayDistance, Color.red);
+        if (Physics.Raycast(ray, out RaycastHit hit, itemRayDistance, interactableMask))
         {
-            if (hit.transform.TryGetComponent(out ItemData itemData))
+            if (hit.transform.TryGetComponent(out ItemObject item))
             {
-                CharacterManager.Instance.Player.itemData = itemData;
+                CharacterManager.Instance.Player.itemData = item.ItemData;
             }
         }
         else
         {
             CharacterManager.Instance.Player.itemData = null;
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-        ray.direction *= rayDistance;
-        Gizmos.DrawRay(ray);
     }
 
     public void OnInteraction(InputAction.CallbackContext context)
