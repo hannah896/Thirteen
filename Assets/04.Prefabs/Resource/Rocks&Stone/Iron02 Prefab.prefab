@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 113935387468853683}
   - component: {fileID: 486298802531439749}
   - component: {fileID: 1485049441836199760}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: lo_CobbleRock_B_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1925924336625840789}
   - component: {fileID: 4163073781008531876}
   - component: {fileID: 5349332526466842143}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: lo_CobbleRock_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 7521267281864899819}
   - component: {fileID: 8188851756653715239}
   - component: {fileID: 2767369287422078967}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: lo_CobbleRock_B_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,8 +261,8 @@ GameObject:
   - component: {fileID: 7494775970317775229}
   - component: {fileID: 1273756117830240374}
   - component: {fileID: 4279626104116047884}
-  - component: {fileID: 1213238362380759176}
-  m_Layer: 0
+  - component: {fileID: 3836813957143393324}
+  m_Layer: 8
   m_Name: Iron02 Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,6 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: 4cdee82070bf05f4f925df3bfa8a804d, type: 2}
+  Collider: {fileID: 0}
 --- !u!54 &4279626104116047884
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -354,7 +355,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &1213238362380759176
+--- !u!64 &3836813957143393324
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -375,4 +376,4 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4300008, guid: 89bf544328b22bc4da0d56896518402a, type: 3}
+  m_Mesh: {fileID: 0}

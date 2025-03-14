@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 1071682108698891233}
   - component: {fileID: 6169803955976662885}
   - component: {fileID: 4389542435213277553}
-  m_Layer: 0
+  - component: {fileID: 2009501388808826916}
+  m_Layer: 8
   m_Name: Iron03 Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,6 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: 4cdee82070bf05f4f925df3bfa8a804d, type: 2}
+  Collider: {fileID: 0}
 --- !u!54 &4389542435213277553
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -104,6 +106,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &2009501388808826916
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2600627569730134049}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &5117698854063413567
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,7 +139,7 @@ GameObject:
   - component: {fileID: 4929181047121184408}
   - component: {fileID: 680016359856443701}
   - component: {fileID: 4138402099970856123}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: lo_CobbleRock_C_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +222,7 @@ GameObject:
   - component: {fileID: 6238772803708880952}
   - component: {fileID: 6488879386382937733}
   - component: {fileID: 7909804558076358302}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: lo_CobbleRock_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +305,7 @@ GameObject:
   - component: {fileID: 2884044840456517824}
   - component: {fileID: 3602178542840575037}
   - component: {fileID: 3920581813360638230}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: lo_CobbleRock_C_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

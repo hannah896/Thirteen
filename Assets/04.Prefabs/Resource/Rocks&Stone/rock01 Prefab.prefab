@@ -113,6 +113,8 @@ MonoBehaviour:
   second: 20
   dropItems:
   - {fileID: 5853784363298607412, guid: 12727f0e9bd24d743ab8323b05dea86a, type: 3}
+  - {fileID: 1060941849186686680, guid: 2c4b9d11cb8c62a4a91534325291d716, type: 3}
+  - {fileID: 4408166310197002463, guid: 96de0af98f9383242bc54b664db8f2b9, type: 3}
   Collider: {fileID: 7629259498354361238}
 --- !u!1 &3996861152847027200
 GameObject:

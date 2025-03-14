@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6822802819329666592}
   - component: {fileID: 1759142789105042650}
   - component: {fileID: 8681153443479083662}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wood-5tier log_i
   m_TagString: Untagged
   m_Icon: {fileID: 0}
