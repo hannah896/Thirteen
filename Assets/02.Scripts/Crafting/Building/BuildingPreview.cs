@@ -7,8 +7,8 @@ public class BuildingPreview : MonoBehaviour
     private BuildingData buildingData;
     private BuildingObject buildingObject;
     private GameObject previewInstance;     //미리보기 인스턴스
-    public Color validColor = Color.green;  //설치 가능 색상
-    public Color invalidColor = Color.red;  //설치 불가능 색상
+    private Color validColor = Color.green;  //설치 가능 색상
+    private Color invalidColor = Color.red;  //설치 불가능 색상
     public LayerMask groundLayer;
 
     public float maxDistance;               //설치 거리
