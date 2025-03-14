@@ -19,5 +19,5 @@ public class Equipment : MonoBehaviour
     [Header("Weapon")]
     public float AttackPower;
 
-
+    [Header("Armor")]
 }
