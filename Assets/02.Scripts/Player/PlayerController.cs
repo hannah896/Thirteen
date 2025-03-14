@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Security;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -36,8 +38,11 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private LayerMask groundMask;  // 땅을 표시하는 Layer
 
-    private bool isAttack;                      // 공격 상태 확인
+    [SerializeField]private bool isAttack;                      // 공격 상태 확인
     private float attackStemina = 10;                // 공격 스태미나
+    [SerializeField] Transform attackTr;
+    [SerializeField] float attackRange = 2f;
+    [SerializeField] private LayerMask enemyMask;
 
     private void Start()
     {
@@ -124,22 +129,6 @@ public class PlayerController : MonoBehaviour
             }
         }
         return false;
-    }
-
-    private void OnDrawGizmos()
-    {
-        float rayDistance = 0.2f;
-        Ray[] rays = new Ray[4] {
-            new Ray(transform.position + (transform.forward * 0.3f) + (Vector3.up * 0.01f), Vector3.down * rayDistance),
-            new Ray(transform.position + (-transform.forward * 0.3f) + (Vector3.up * 0.01f), Vector3.down * rayDistance),
-            new Ray(transform.position + (transform.right * 0.3f) + (Vector3.up * 0.01f), Vector3.down * rayDistance),
-            new Ray(transform.position + (-transform.right * 0.3f) + (Vector3.up * 0.01f), Vector3.down * rayDistance),
-        };
-
-        for (int i = 0; i < rays.Length; i++)
-        {
-            Gizmos.DrawRay(rays[i]);
-        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -265,11 +254,39 @@ public class PlayerController : MonoBehaviour
 
     public void OnEnemyHit()
     {
-        //Collider[] colliders = Physics.OverlapSphere(attackPos, attackRange, monsterLayer);
+        Collider[] colliders = Physics.OverlapSphere(attackTr.position, attackRange, enemyMask);
+
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].TryGetComponent(out IDamageable enemy))
+            {
+                Debug.Log("몬스터 Hit");
+                enemy.TakeDamage(CharacterManager.Instance.Player.condition.AttackDamage);
+            }
+        }
     }
 
     private void OnAnimatorMove()
     {
-        
+
+    }
+
+    private void OnDrawGizmos()
+    {
+        float rayDistance = 0.2f;
+        Ray[] rays = new Ray[4] {
+            new Ray(transform.position + (transform.forward * 0.3f) + (Vector3.up * 0.01f), Vector3.down * rayDistance),
+            new Ray(transform.position + (-transform.forward * 0.3f) + (Vector3.up * 0.01f), Vector3.down * rayDistance),
+            new Ray(transform.position + (transform.right * 0.3f) + (Vector3.up * 0.01f), Vector3.down * rayDistance),
+            new Ray(transform.position + (-transform.right * 0.3f) + (Vector3.up * 0.01f), Vector3.down * rayDistance),
+        };
+
+        for (int i = 0; i < rays.Length; i++)
+        {
+            Gizmos.DrawRay(rays[i]);
+        }
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackTr.position, attackRange);
     }
 }
