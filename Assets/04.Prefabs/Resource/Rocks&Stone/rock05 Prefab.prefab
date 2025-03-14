@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 4236761116743289482}
   - component: {fileID: 2633000808215101353}
   m_Layer: 7
-  m_Name: rock05 Prefab
+  m_Name: Rock05 Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -535,4 +535,8 @@ MonoBehaviour:
   maxAmount: 5
   currentChances: 5
   second: 20
-  resource: {fileID: 925778412704847060, guid: 59e5e0c68b7d95f45b4b7c289da625fc, type: 3}
+  dropItems:
+  - {fileID: 925778412704847060, guid: 59e5e0c68b7d95f45b4b7c289da625fc, type: 3}
+  - {fileID: 4592661137120205136, guid: 7c288421793182d428fa3dd9145ef507, type: 3}
+  - {fileID: 4232167527613553172, guid: 1f78a636bc671b64db0037a038aef797, type: 3}
+  Collider: {fileID: 4540520336306932038}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2493553203378439342}
   - component: {fileID: 5380790497385331379}
   - component: {fileID: 3032956341859599841}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: lo_CobbleRock_D_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 40384dfc2f13b0c4fb9d81c7f30e0e8e, type: 2}
+  - {fileID: 2100000, guid: d62555001318f1c48846d8f050045246, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4836991443015161823}
   - component: {fileID: 6520147212705827990}
   - component: {fileID: 28708631532202661}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: lo_CobbleRock_D_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 40384dfc2f13b0c4fb9d81c7f30e0e8e, type: 2}
+  - {fileID: 2100000, guid: d62555001318f1c48846d8f050045246, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 6317599802725649991}
   - component: {fileID: 2776590901454777287}
   - component: {fileID: 876112087332953337}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Iron04 Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 6623350671304064217}
   - component: {fileID: 4715309141128344396}
   - component: {fileID: 6200900466152747698}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: lo_CobbleRock_D_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 40384dfc2f13b0c4fb9d81c7f30e0e8e, type: 2}
+  - {fileID: 2100000, guid: d62555001318f1c48846d8f050045246, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1071682108698891233}
   - component: {fileID: 6169803955976662885}
   - component: {fileID: 4389542435213277553}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Iron03 Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 4929181047121184408}
   - component: {fileID: 680016359856443701}
   - component: {fileID: 4138402099970856123}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: lo_CobbleRock_C_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 6238772803708880952}
   - component: {fileID: 6488879386382937733}
   - component: {fileID: 7909804558076358302}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: lo_CobbleRock_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 2884044840456517824}
   - component: {fileID: 3602178542840575037}
   - component: {fileID: 3920581813360638230}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: lo_CobbleRock_C_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
