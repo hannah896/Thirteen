@@ -11,11 +11,12 @@ public class UIBuilding : MonoBehaviour
     public Transform contentParent;         //ScrollView List가 들어갈 부모 Object
 
     [Header("Select Item")]
-    public Image icon;
+    public Sprite icon;
     public TextMeshProUGUI selectedBuildingName;        //건축물 이름
     public TextMeshProUGUI selectedBuildingDescription; //건축물 설명
     public TextMeshProUGUI selectedRequiredName;        //필요 재료
     public TextMeshProUGUI selectedRequiredAmount;      //필요 수량
+    public Button buildButton;
 
     private BuildingManager buildingManager;
     private BuildingData selectedBuilding;
@@ -32,7 +33,7 @@ public class UIBuilding : MonoBehaviour
     void CreateBuildingList()
     {
 
-        foreach(var data in buildingManager.buildingList)
+        foreach (var data in buildingManager.buildingList)
         {
             GameObject newList = Instantiate(buildingListPrefab, contentParent);
             newList.GetComponentInChildren<TextMeshProUGUI>().text = data.displayName;
@@ -83,6 +84,17 @@ public class UIBuilding : MonoBehaviour
         {
             selectedRequiredName.text += selectedBuilding.requiredResources[i].resource + "\n";
             selectedRequiredAmount.text += selectedBuilding.requiredResources[i].amount.ToString() + "\n";
+        }
+
+        if (buildingManager.CanBuild(selectedBuilding))
+        {
+            buildButton.enabled = true;
+            buildButton.image.color = Color.white;
+        }
+        else
+        {
+            buildButton.enabled = false;
+            buildButton.image.color = Color.gray;
         }
     }
 

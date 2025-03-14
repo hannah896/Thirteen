@@ -10,7 +10,7 @@ public class BuildingData : ScriptableObject
     [Header("Info")]
     public string displayName;      //이름
     public string description;      //설명
-    public Image icon;             //아이콘
+    public Sprite icon;             //아이콘
     public GameObject buildPrefab;  //건물
 
     [Header("Construction Requirements")]
