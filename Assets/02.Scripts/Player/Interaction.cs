@@ -20,6 +20,8 @@ public class Interaction : MonoBehaviour
     [SerializeField] LayerMask resourceMask;        // 캘 수 있는 자원의 마스크
     [SerializeField] LayerMask interactableMask;    // 획득 할 수 있는 아이템의 마스크
 
+    public ItemData itemData;                              // 감지한 아이템
+
     Animator animator;
     private void Start()
     {
@@ -71,23 +73,25 @@ public class Interaction : MonoBehaviour
         {
             if (hit.transform.TryGetComponent(out ItemObject item))
             {
-                CharacterManager.Instance.Player.itemData = item.ItemData;
+                itemData = item.ItemData;
             }
         }
         else
         {
-            CharacterManager.Instance.Player.itemData = null;
+            itemData = null;
         }
     }
 
     public void OnInteraction(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && CharacterManager.Instance.Player.itemData != null)
+        if (context.phase == InputActionPhase.Started && itemData != null)
         {
             // 인벤토리에 저장
-            //item.OnInteraction();
-            //item = null;
-            //Destroy(item.gameObject);
+
+            CharacterManager.Instance.Player.itemData = itemData;
+            CharacterManager.Instance.Player.addItem();
+            Destroy(itemData.GameObject());
+            itemData = null;
         }
     }
 }
