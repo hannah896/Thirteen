@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BuildingPreview : MonoBehaviour
@@ -15,6 +14,7 @@ public class BuildingPreview : MonoBehaviour
     private Quaternion previewRotation = Quaternion.identity;   //미리보기 회전값
 
     private bool canBuild = false;
+    public float maxSlopeAngle = 10f;
 
     //테스트
     public Camera cam;
@@ -65,7 +65,7 @@ public class BuildingPreview : MonoBehaviour
         Vector3 targetPosition = GetTargetPosition();
         previewInstance.transform.position = targetPosition;
 
-        canBuild = CheckBuildable(targetPosition);
+        canBuild = CheckBuildable(targetPosition) && CheckSlope();
         SetPreviewColor(canBuild);
 
         //테스트용 > InputSystem으로 변경 예정
@@ -130,7 +130,30 @@ public class BuildingPreview : MonoBehaviour
     //바닥 경사면 체크
     private bool CheckSlope()
     {
-        return true;
+        Vector3[] checkPoint = new Vector3[4];
+        Bounds bounds = previewInstance.GetComponent<Renderer>().bounds;
+
+        checkPoint[0] = new Vector3(bounds.min.x, bounds.center.y, bounds.min.z);
+        checkPoint[1] = new Vector3(bounds.min.x, bounds.center.y, bounds.max.z);
+        checkPoint[2] = new Vector3(bounds.max.x, bounds.center.y, bounds.min.z);
+        checkPoint[3] = new Vector3(bounds.max.x, bounds.center.y, bounds.max.z);
+
+        float minY = float.MaxValue;
+        float maxY = float.MinValue;
+
+        foreach(Vector3 point in checkPoint)
+        {
+            if(Physics.Raycast(point + Vector3.up, Vector3.down, out RaycastHit hit, 10f, groundLayer))
+            {
+                minY = Mathf.Min(minY, hit.point.y);
+                maxY = Mathf.Max(maxY, hit.point.y);
+            }
+        }
+
+        float heightDifference = maxY - minY;
+        float slopAngle = Mathf.Atan(heightDifference / bounds.size.x) * Mathf.Rad2Deg;
+
+        return slopAngle <= maxSlopeAngle;
     }
 
     //설치 후 미리보기 삭제
