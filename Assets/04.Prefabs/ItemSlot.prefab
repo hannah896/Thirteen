@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8166526249572468136}
   - component: {fileID: 6434591349228763160}
   - component: {fileID: 8806413852306540744}
+  - component: {fileID: -2514904857960655754}
   m_Layer: 5
   m_Name: ItemSlot
   m_TagString: Untagged
@@ -122,7 +123,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5485912799296509265}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -2514904857960655754}
+        m_TargetAssemblyTypeName: ItemSlot, Assembly-CSharp
+        m_MethodName: OnClickButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6434591349228763160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +164,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 0}
+--- !u!114 &-2514904857960655754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715358316749328623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9696c5db41809d842b2e263d2acee029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  button: {fileID: 8166526249572468136}
+  icon: {fileID: 5736404778874892044}
+  quantityText: {fileID: 7288307715752266094}
+  inventory: {fileID: 0}
+  index: 0
+  equipped: 0
+  quantity: 0
 --- !u!1 &2754105642262776791
 GameObject:
   m_ObjectHideFlags: 0

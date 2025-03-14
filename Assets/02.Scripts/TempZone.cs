@@ -20,7 +20,7 @@ public class TempZone : MonoBehaviour
     [SerializeField]
     private ZoneType zoneType;
 
-    // ºÒÀÌ³ª ¾óÀ½ µ¥¿´À» ¶§ ¹Ù·Î µ¥¹ÌÁö ÀÔ°Ô ÇÏ°í ½ÍÀ¸¸é È°¼ºÈ­
+    // ë¶ˆì´ë‚˜ ì–¼ìŒ ë°ì˜€ì„ ë•Œ ë°”ë¡œ ë°ë¯¸ì§€ ì…ê²Œ í•˜ê³  ì‹¶ìœ¼ë©´ í™œì„±í™”
     //private void Start()
     //{
     //    InvokeRepeating("DealDamage", 0, damageRate);
@@ -57,7 +57,7 @@ public class TempZone : MonoBehaviour
         }
     }
 
-    // ºÒÀÌ³ª ¾óÀ½ µ¥¿´À» ¶§ ¹Ù·Î µ¥¹ÌÁö ÀÔ°Ô ÇÏ°í ½ÍÀ¸¸é È°¼ºÈ­
+    // ë¶ˆì´ë‚˜ ì–¼ìŒ ë°ì˜€ì„ ë•Œ ë°”ë¡œ ë°ë¯¸ì§€ ì…ê²Œ í•˜ê³  ì‹¶ìœ¼ë©´ í™œì„±í™”
     //private void OnTriggerEnter(Collider other)
     //{
     //    if(other.TryGetComponent(out IDamageable damageable))
@@ -66,7 +66,7 @@ public class TempZone : MonoBehaviour
     //    }
     //}
 
-    // ºÒÀÌ³ª ¾óÀ½ µ¥¿´À» ¶§ ¹Ù·Î µ¥¹ÌÁö ÀÔ°Ô ÇÏ°í ½ÍÀ¸¸é È°¼ºÈ­
+    // ë¶ˆì´ë‚˜ ì–¼ìŒ ë°ì˜€ì„ ë•Œ ë°”ë¡œ ë°ë¯¸ì§€ ì…ê²Œ í•˜ê³  ì‹¶ìœ¼ë©´ í™œì„±í™”
     //private void OnTriggerExit(Collider other)
     //{
     //    if(other.TryGetComponent(out IDamageable damageable))

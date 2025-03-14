@@ -15,12 +15,12 @@ public class Interaction : MonoBehaviour
     private float interactionDelay = 0.05f;  // 감지 딜레이 (프레임 별 감지하는 걸 방지하기 위해)
     private float lastInteractionTime;      // 마지막으로 감지한 시간
 
-    [SerializeField] float rayDistance = 5f;
+    [SerializeField] float resourceRayDistance = 1f;    // 자원을 감지하는 Ray의 길이
+    [SerializeField] float itemRayDistance = 5f;        // 아이템을 감지하는 Ray의 길이
     [SerializeField] LayerMask resourceMask;        // 캘 수 있는 자원의 마스크
     [SerializeField] LayerMask interactableMask;    // 획득 할 수 있는 아이템의 마스크
 
-    public GameObject rock;
-    public GameObject tree;
+    public ItemData itemData;                              // 감지한 아이템
 
     Animator animator;
     private void Start()
@@ -35,68 +35,63 @@ public class Interaction : MonoBehaviour
         {
             // 마지막 감지한 시간을 현재로 설정
             lastInteractionTime = Time.time;
-
-            Vector3 rayOrigin = transform.GetChild(0).position + Vector3.up * 0.5f;
-            Ray resourceRay = new Ray(rayOrigin, new Vector3(transform.GetChild(0).forward.x, 0, transform.GetChild(0).forward.z));
-
-            Debug.DrawRay(resourceRay.origin, transform.GetChild(0).forward * rayDistance, Color.red);
-            if (Physics.Raycast(resourceRay, out RaycastHit hit, rayDistance, resourceMask))
-            {
-                if(hit.transform.TryGetComponent(out Resource resource))
-                {
-                    CharacterManager.Instance.Player.resource = resource;
-                }
-
-                if(hit.transform.name == "Rock")
-                {
-                    tree = null;
-                    rock = hit.transform.gameObject;
-                }
-                else if(hit.transform.name == "Tree")
-                {
-                    rock = null;
-                    tree = hit.transform.gameObject;
-                }
-            }
-            else
-            {
-                rock = null;
-                tree = null;
-                CharacterManager.Instance.Player.resource = null;
-            }
-
-            // 주울 수 있는 아이템 감지
-            Ray interactableRay = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-            Debug.DrawRay(interactableRay.origin, interactableRay.direction * rayDistance, Color.red);
-            if (Physics.Raycast(interactableRay, out RaycastHit interactableHit, rayDistance, interactableMask))
-            {
-                if (hit.transform.TryGetComponent(out ItemData itemData))
-                {
-                    CharacterManager.Instance.Player.itemData = itemData;
-                }
-            }
-            else
-            {
-                CharacterManager.Instance.Player.itemData = null;
-            }
+            RayCastResource();
+            RayCastItem();
         }
     }
 
-    private void OnDrawGizmos()
+    // 자원을 캐스팅 하는지 확인
+    private void RayCastResource()
     {
+        // 캐릭터의 발 쪽에서 ray를 쏘기위해 transform을 가져온다.
+        Transform CharacterTr = transform.GetChild(0);
+        // 캐릭터의 발쪽에서 ray 위치 설정
+        Vector3 rayOrigin = CharacterTr.position + Vector3.up * 0.5f;
+        Ray ray = new Ray(rayOrigin, new Vector3(CharacterTr.forward.x, 0, CharacterTr.forward.z));
+
+        Debug.DrawRay(ray.origin, CharacterTr.forward * resourceRayDistance, Color.red);
+        if (Physics.Raycast(ray, out RaycastHit hit, resourceRayDistance, resourceMask))
+        {
+            if (hit.transform.TryGetComponent(out Resource resource))
+            {
+                CharacterManager.Instance.Player.resource = resource;
+            }
+        }
+        else
+        {
+            CharacterManager.Instance.Player.resource = null;
+        }
+    }
+
+    // 아이템을 캐스팅 하는지 확인
+    private void RayCastItem()
+    {
+        // 화면의 중앙에서 ray를 발사하여 감지
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-        ray.direction *= rayDistance;
-        Gizmos.DrawRay(ray);
+        Debug.DrawRay(ray.origin, ray.direction * itemRayDistance, Color.red);
+        if (Physics.Raycast(ray, out RaycastHit hit, itemRayDistance, interactableMask))
+        {
+            if (hit.transform.TryGetComponent(out ItemObject item))
+            {
+                itemData = item.ItemData;
+            }
+        }
+        else
+        {
+            itemData = null;
+        }
     }
 
     public void OnInteraction(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && CharacterManager.Instance.Player.itemData != null)
+        if (context.phase == InputActionPhase.Started && itemData != null)
         {
             // 인벤토리에 저장
-            //item.OnInteraction();
-            //item = null;
-            //Destroy(item.gameObject);
+
+            CharacterManager.Instance.Player.itemData = itemData;
+            CharacterManager.Instance.Player.addItem();
+            Destroy(itemData.GameObject());
+            itemData = null;
         }
     }
 }

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Security;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -36,8 +38,11 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private LayerMask groundMask;  // 땅을 표시하는 Layer
 
-    private bool isAttack;                      // 공격 상태 확인
+    [SerializeField]private bool isAttack;                      // 공격 상태 확인
     private float attackStemina = 10;                // 공격 스태미나
+    [SerializeField] Transform attackTr;
+    [SerializeField] float attackRange = 2f;
+    [SerializeField] private LayerMask enemyMask;
 
     private void Start()
     {
@@ -126,22 +131,6 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    private void OnDrawGizmos()
-    {
-        float rayDistance = 0.2f;
-        Ray[] rays = new Ray[4] {
-            new Ray(transform.position + (transform.forward * 0.3f) + (Vector3.up * 0.01f), Vector3.down * rayDistance),
-            new Ray(transform.position + (-transform.forward * 0.3f) + (Vector3.up * 0.01f), Vector3.down * rayDistance),
-            new Ray(transform.position + (transform.right * 0.3f) + (Vector3.up * 0.01f), Vector3.down * rayDistance),
-            new Ray(transform.position + (-transform.right * 0.3f) + (Vector3.up * 0.01f), Vector3.down * rayDistance),
-        };
-
-        for (int i = 0; i < rays.Length; i++)
-        {
-            Gizmos.DrawRay(rays[i]);
-        }
-    }
-
     public void OnMove(InputAction.CallbackContext context)
     {
         inputDir = context.ReadValue<Vector2>();
@@ -191,25 +180,46 @@ public class PlayerController : MonoBehaviour
     {
         isAttack = true;
 
-        Interaction interaction = GetComponent<Interaction>();
+        Resource resource = CharacterManager.Instance.Player.resource;
 
-        if (interaction.rock != null)
+        // 캐릭터가 자원을 가리키고 있다면 자원을 캐자
+        if(resource != null)
         {
-            // 곡괭이가 있고 Rock을 가리키고 있을 땐 RockAttack
-            animator.SetTrigger("RockAttack");
-        }
-        else if(interaction.tree != null)
-        {
-            // 도끼가 있고 Tree를 가리키고 있을 땐 TreeAttack
-            animator.SetTrigger("TreeAttack");
+            HitResource(resource);
         }
         else
         {
-            CharacterManager.Instance.Player.condition.UseStamina(attackStemina);
-            // 무기가 없을 땐 기본 Attack
-            animator.SetTrigger("Attack");
+            // 스태미너가 적절하게 남아있는가?
+            if(CharacterManager.Instance.Player.condition.UseStamina(attackStemina))
+            {
+                // 무기가 없을 땐 기본 Attack
+                //if(CharacterManager.Instance.Player.equip == null)
+                animator.SetTrigger("Attack");
 
-            // 무기가 있을 땐 EquipAttack
+                //if(CharacterManager.Instance.Player.equip != null)
+                // 무기가 있을 땐 EquipAttack
+                //animator.SetTrigger("EquipAttack");
+            }
+        }
+    }
+
+    // 자원을 캐는 함수
+    private void HitResource(Resource resource)
+    {
+        switch (resource.resourceType)
+        {
+            case ResourceType.Mine:
+                // 곡괭이가 있고 Rock을 가리키고 있을 땐 RockAttack
+                animator.SetTrigger("RockAttack");
+                break;
+            case ResourceType.Lumber:
+                // 도끼가 있고 Tree를 가리키고 있을 땐 TreeAttack
+                animator.SetTrigger("TreeAttack");
+                break;
+            case ResourceType.Gathering:
+                break;
+            default:
+                break;
         }
     }
 
@@ -233,6 +243,8 @@ public class PlayerController : MonoBehaviour
         Debug.Log("End Attack");
     }
 
+    // 캐는 애니메이션에서 적절한 프레임에 발생시키는 이벤트
+    // 리소스가 있다면 자원 아이템을 생성시킨다.
     public void OnResourceHit()
     {
         if (CharacterManager.Instance.Player.resource == null) return;
@@ -240,8 +252,41 @@ public class PlayerController : MonoBehaviour
         CharacterManager.Instance.Player.resource.MakingResource();
     }
 
+    public void OnEnemyHit()
+    {
+        Collider[] colliders = Physics.OverlapSphere(attackTr.position, attackRange, enemyMask);
+
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].TryGetComponent(out IDamageable enemy))
+            {
+                Debug.Log("몬스터 Hit");
+                enemy.TakeDamage(CharacterManager.Instance.Player.condition.AttackDamage);
+            }
+        }
+    }
+
     private void OnAnimatorMove()
     {
-        
+
+    }
+
+    private void OnDrawGizmos()
+    {
+        float rayDistance = 0.2f;
+        Ray[] rays = new Ray[4] {
+            new Ray(transform.position + (transform.forward * 0.3f) + (Vector3.up * 0.01f), Vector3.down * rayDistance),
+            new Ray(transform.position + (-transform.forward * 0.3f) + (Vector3.up * 0.01f), Vector3.down * rayDistance),
+            new Ray(transform.position + (transform.right * 0.3f) + (Vector3.up * 0.01f), Vector3.down * rayDistance),
+            new Ray(transform.position + (-transform.right * 0.3f) + (Vector3.up * 0.01f), Vector3.down * rayDistance),
+        };
+
+        for (int i = 0; i < rays.Length; i++)
+        {
+            Gizmos.DrawRay(rays[i]);
+        }
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackTr.position, attackRange);
     }
 }

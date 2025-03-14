@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4543585362460058641}
   - component: {fileID: 3063987799175164564}
   - component: {fileID: 2504152526665652497}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: stone05 Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 7839726615259534932}
   - component: {fileID: 2844121226992909862}
   - component: {fileID: 7467817090042160197}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: granite rock05_lod0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 765509815500030805}
   - component: {fileID: 1563969024601619943}
   - component: {fileID: 5793658002720111347}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: granite rock05_lod1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 7763663191653108226}
   - component: {fileID: 2709491932110966176}
   - component: {fileID: 2050181819033579094}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: granite rock05_lod2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -439,7 +439,7 @@ GameObject:
   - component: {fileID: 4945942699389259522}
   - component: {fileID: 3941465069349016946}
   - component: {fileID: 5906160905815491502}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: granite rock05_lod3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,10 +9,10 @@ public class testing : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
 
-        // Vertical: À§¾Æ·¡ ¹æÇâ ÀÔ·Â (W/S ¶Ç´Â À§ÂÊ/¾Æ·¡ÂÊ È­»ìÇ¥)
+        // Vertical: ìœ„ì•„ë˜ ë°©í–¥ ì…ë ¥ (W/S ë˜ëŠ” ìœ„ìª½/ì•„ë˜ìª½ í™”ì‚´í‘œ)
         float vertical = Input.GetAxis("Vertical");
 
-        // Ä³¸¯ÅÍ ÀÌµ¿ Ã³¸®
+        // ìºë¦­í„° ì´ë™ ì²˜ë¦¬
         Vector3 movement = new Vector3(horizontal, 0, vertical) * Time.deltaTime;
         transform.Translate(movement);
 

@@ -2106,6 +2106,7 @@ GameObject:
   - component: {fileID: 546512709}
   - component: {fileID: 546512711}
   - component: {fileID: 546512710}
+  - component: {fileID: 546512712}
   m_Layer: 5
   m_Name: ConsumablePanel
   m_TagString: Untagged
@@ -2126,7 +2127,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1464768997}
-  m_Father: {fileID: 1397374308}
+  - {fileID: 683996301}
+  m_Father: {fileID: 639867509}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.09337038}
   m_AnchorMax: {x: 1, y: 0.90700006}
@@ -2171,6 +2173,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 546512708}
   m_CullTransparentMesh: 1
+--- !u!114 &546512712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546512708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dad2f8777e1ca4b4ab76efeede4a0c0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryType: 1
+  slots: []
+  inventoryWindow: {fileID: 0}
+  slotPanel: {fileID: 683996301}
+  dropPosition: {fileID: 0}
+  selectedItemName: {fileID: 928518548}
+  selectedItemDescription: {fileID: 1144155158}
+  selectedStatName: {fileID: 47613243}
+  selectedStatValue: {fileID: 202789188}
+  equipButton: {fileID: 0}
+  unequipButton: {fileID: 0}
+  useButton: {fileID: 719780405}
+  dropButton: {fileID: 110169058}
 --- !u!1 &567341251
 GameObject:
   m_ObjectHideFlags: 0
@@ -2451,7 +2478,6 @@ GameObject:
   - component: {fileID: 639867512}
   - component: {fileID: 639867511}
   - component: {fileID: 639867510}
-  - component: {fileID: 639867513}
   m_Layer: 5
   m_Name: UIInventory
   m_TagString: Untagged
@@ -2471,7 +2497,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1397374308}
+  - {fileID: 1796957820}
+  - {fileID: 546512709}
   m_Father: {fileID: 953315927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2542,29 +2569,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &639867513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 639867508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dad2f8777e1ca4b4ab76efeede4a0c0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slots: []
-  inventoryWindow: {fileID: 0}
-  slotPanel: {fileID: 2636214456830534132, guid: 3b9744db4fb7254438c7e97ec9c318ad, type: 3}
-  selectedItemName: {fileID: 962607534}
-  selectedItemDescription: {fileID: 1984430806}
-  selectedStatName: {fileID: 1743258177}
-  selectedStatValue: {fileID: 1745349417}
-  equipButton: {fileID: 1832147571}
-  unequipButton: {fileID: 478747246}
-  useButton: {fileID: 719780405}
-  dropButton: {fileID: 871666326}
 --- !u!1 &662763034
 GameObject:
   m_ObjectHideFlags: 0
@@ -2677,11 +2681,11 @@ RectTransform:
   - {fileID: 422755265}
   - {fileID: 835371158}
   - {fileID: 1324766936}
-  m_Father: {fileID: 1464768997}
+  m_Father: {fileID: 546512709}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 65, y: 418.08}
+  m_AnchoredPosition: {x: 65, y: 129.9198}
   m_SizeDelta: {x: 900, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &683996302
@@ -4714,109 +4718,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1377330475}
   m_CullTransparentMesh: 1
---- !u!1 &1397374307
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1397374308}
-  - component: {fileID: 1397374311}
-  - component: {fileID: 1397374310}
-  - component: {fileID: 1397374309}
-  m_Layer: 5
-  m_Name: InventoryPanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1397374308
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1397374307}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1796957820}
-  - {fileID: 546512709}
-  m_Father: {fileID: 639867509}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 960, y: 540}
-  m_SizeDelta: {x: 1920, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1397374309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1397374307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &1397374310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1397374307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
---- !u!223 &1397374311
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1397374307}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
-  m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
 --- !u!1 &1450589082
 GameObject:
   m_ObjectHideFlags: 0
@@ -5045,7 +4946,6 @@ RectTransform:
   - {fileID: 1144155157}
   - {fileID: 47613242}
   - {fileID: 202789187}
-  - {fileID: 683996301}
   - {fileID: 719780406}
   - {fileID: 110169059}
   m_Father: {fileID: 546512709}
@@ -5857,6 +5757,7 @@ GameObject:
   - component: {fileID: 1796957820}
   - component: {fileID: 1796957822}
   - component: {fileID: 1796957821}
+  - component: {fileID: 1796957823}
   m_Layer: 5
   m_Name: EquipPanel
   m_TagString: Untagged
@@ -5871,14 +5772,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1796957819}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1220106034}
   - {fileID: 1666370000}
-  m_Father: {fileID: 1397374308}
+  m_Father: {fileID: 639867509}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -5923,6 +5824,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1796957819}
   m_CullTransparentMesh: 1
+--- !u!114 &1796957823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796957819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dad2f8777e1ca4b4ab76efeede4a0c0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryType: 0
+  slots: []
+  inventoryWindow: {fileID: 639867508}
+  slotPanel: {fileID: 1666370000}
+  dropPosition: {fileID: 0}
+  selectedItemName: {fileID: 962607534}
+  selectedItemDescription: {fileID: 1984430806}
+  selectedStatName: {fileID: 1743258177}
+  selectedStatValue: {fileID: 1745349417}
+  equipButton: {fileID: 1832147571}
+  unequipButton: {fileID: 478747246}
+  useButton: {fileID: 719780405}
+  dropButton: {fileID: 871666326}
 --- !u!1 &1797935640
 GameObject:
   m_ObjectHideFlags: 0
