@@ -4,6 +4,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+public enum resourceType
+{
+    Mine, //채광
+    Lumber, //벌목
+    Gathering //채집
+}
+
 public class Resource : MonoBehaviour
 {
     public int maxAmount; //최대로 캘수있는 양
@@ -12,13 +19,6 @@ public class Resource : MonoBehaviour
     public GameObject[] dropItems;
 
     public Collider Collider;
-
-    public enum resourceType
-    {
-        Mine, //채광
-        Lumber, //벌목
-        Gathering //채집
-    }
 
     private void OnValidate()
     {
