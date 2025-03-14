@@ -6,6 +6,7 @@ public enum AIState
 {
     Idle,
     Wandering,
+    Running,
     Attacking
 }
 
@@ -65,6 +66,9 @@ public class Monster : MonoBehaviour, IDamageable
             case AIState.Wandering:
                 PassiveUpdate();
                 break;
+            case AIState.Running:
+                RunningUpdate();
+                break;
             case AIState.Attacking:
                 AttackingUpdate();
                 break;
@@ -85,9 +89,13 @@ public class Monster : MonoBehaviour, IDamageable
                 agent.speed = walkSpeed;
                 agent.isStopped = false;
                 break;
-            case AIState.Attacking:
+            case AIState.Running:
                 agent.speed = runSpeed;
                 agent.isStopped = false;
+                break ;
+            case AIState.Attacking:
+                agent.speed = runSpeed;
+                agent.isStopped = true;
                 break;
         }
 
@@ -138,6 +146,22 @@ public class Monster : MonoBehaviour, IDamageable
         return hit.position;
     }
 
+    void RunningUpdate()
+    {
+        if (playerDistance < detectDistance)
+        {
+            agent.isStopped = false;            
+            agent.SetDestination(CharacterManager.Instance.Player.transform.position);
+            animator.SetBool("Running", true);
+        }
+        else
+        {
+            agent.isStopped = true;
+            animator.SetBool("Running",false);
+            SetState(AIState.Wandering);
+        }
+    }
+
     void AttackingUpdate()
     {
         if (playerDistance < attackDistance && IsPlayerFieldOfView())
@@ -160,6 +184,7 @@ public class Monster : MonoBehaviour, IDamageable
                 if (agent.CalculatePath(CharacterManager.Instance.Player.transform.position, path))
                 {
                     agent.SetDestination(CharacterManager.Instance.Player.transform.position);
+                    animator.SetBool("Running", true);
                 }
                 else
                 {
@@ -189,20 +214,20 @@ public class Monster : MonoBehaviour, IDamageable
         health -= damage;
         if (health <= 0)
         {
-            //Die();
+            Die();
         }
 
         StartCoroutine(DamageFlash());
     }
 
-    //void Die()
-    //{
-    //    for (int i = 0; i < dropOnDeath.Length; i++)
-    //    {
-    //        Instantiate(dropOnDeath[i].dropPrefab, transform.position + Vector3.up * 2, Quaternion.identity);
-    //    }
-    //    Destroy(gameObject);
-    //}
+    void Die()
+    {
+        //for (int i = 0; i < dropondeath.length; i++)
+        //{
+        //    instantiate(dropondeath[i].dropprefab, transform.position + vector3.up * 2, quaternion.identity);
+        //}
+        Destroy(gameObject);
+    }
 
     IEnumerator DamageFlash()
     {
@@ -217,5 +242,5 @@ public class Monster : MonoBehaviour, IDamageable
         {
             meshRenderers[i].material.color = Color.white;
         }
-    }    
+    }
 }
