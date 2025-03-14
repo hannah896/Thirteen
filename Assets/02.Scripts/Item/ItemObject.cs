@@ -6,5 +6,5 @@ public class ItemObject : MonoBehaviour
 {
     public ItemData ItemData;
 
-    // TODO: ÀÎº¥Åä¸® ¸¸µé¾îÁ³À»¶§ ³Ö´Â ±â´É ÇÊ¿ä.
+    // TODO: ì¸ë²¤í† ë¦¬ ë§Œë“¤ì–´ì¡Œì„ë•Œ ë„£ëŠ” ê¸°ëŠ¥ í•„ìš”.
 }

@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e9a8c7433a0624d83fba986ef58660, type: 3}
   m_Name: ItemHerb
   m_EditorClassIdentifier: 
-  itemName: 
-  itemDescription: 
+  itemName: "\uC57D\uCD08"
+  itemDescription: "\uC601\uC5B4\uB85C \uD5C8\uBE0C"
   Icon: {fileID: 0}
-  canStack: 0
-  maxStackAmount: 0
+  canStack: 1
+  maxStackAmount: 99
   equipPrefab: {fileID: 0}
+  consumePrefab: {fileID: 0}
+  healAmount: 0
