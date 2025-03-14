@@ -8,18 +8,18 @@ using UnityEngine.UI;
 public class BuildingData : ScriptableObject
 {
     [Header("Info")]
-    public string displayName;      //ÀÌ¸§
-    public string description;      //¼³¸í
-    public Image icon;             //¾ÆÀÌÄÜ
-    public GameObject buildPrefab;  //°Ç¹°
+    public string displayName;      //ì´ë¦„
+    public string description;      //ì„¤ëª…
+    public Image icon;             //ì•„ì´ì½˜
+    public GameObject buildPrefab;  //ê±´ë¬¼
 
     [Header("Construction Requirements")]
-    public List<ResourceCost> requiredResources;    //ÀÚ¿ø Á¤º¸
+    public List<ResourceCost> requiredResources;    //ìì› ì •ë³´
 }
 
 [Serializable]
 public class ResourceCost
 {
-    public ItemData resource;   //Àç·á ¾ÆÀÌÅÛ
-    public int amount;          //ÇÊ¿ä ¼ö·®
+    public ItemData resource;   //ì¬ë£Œ ì•„ì´í…œ
+    public int amount;          //í•„ìš” ìˆ˜ëŸ‰
 }

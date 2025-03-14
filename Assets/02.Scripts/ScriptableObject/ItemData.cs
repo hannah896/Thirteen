@@ -39,4 +39,7 @@ public class ItemData : ScriptableObject
     [Header("Consume")]
     public GameObject consumePrefab;
     public int healAmount;
+
+    [Header("Cost")]
+    public List<ResourceCost> cost;
 }
