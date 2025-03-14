@@ -13,6 +13,13 @@ public class Resource : MonoBehaviour
 
     public Collider Collider;
 
+    public enum resourceType
+    {
+        Mine, //채광
+        Lumber, //벌목
+        Gathering //채집
+    }
+
     private void OnValidate()
     {
         Collider = GetComponentInChildren<Collider>();

@@ -25,19 +25,19 @@ public class ItemData : ScriptableObject
     public string itemName;
     public string itemDescription;
     public Sprite Icon;
+    public ItemType itemType;
 
     [Header("Stacking")]
     public bool canStack;
     public int maxStackAmount;
 
-    //[Header("Effect"), ShowInInspector]
-   // public Dictionary<ConsumableType, float> Effects;
+    [Header("Effect")]
+    public Dictionary<ConsumableType, float> Effects;
 
     [Header("Equip")]
     public GameObject equipPrefab;
 
     [Header("Consume")]
-    public GameObject consumePrefab;
     public int healAmount;
 
     [Header("Cost")]

@@ -178,7 +178,6 @@ GameObject:
   - component: {fileID: 6317599802725649991}
   - component: {fileID: 2776590901454777287}
   - component: {fileID: 876112087332953337}
-  - component: {fileID: 5868253041236620790}
   m_Layer: 0
   m_Name: Iron04 Prefab
   m_TagString: Untagged
@@ -271,28 +270,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &5868253041236620790
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5008626451337453678}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300008, guid: 8be2de3a24cb4d64ba4fb1bbdd89c6e8, type: 3}
 --- !u!1 &9221659687274032754
 GameObject:
   m_ObjectHideFlags: 0
