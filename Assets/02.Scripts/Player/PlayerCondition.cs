@@ -9,6 +9,9 @@ public class PlayerCondition : MonoBehaviour, IDamageable
 {
     public UICondition uiCondition;
 
+    public int AttackDamage { get; set; }       // ê³µê²©ë ¥
+    public int Defence { get; set; }            // ë°©ì–´ë ¥
+
     Condition hp { get { return uiCondition.hp; } }
     Condition hunger { get { return uiCondition.hunger; } }
     Condition stamina { get { return uiCondition.stamina; } }
@@ -42,10 +45,10 @@ public class PlayerCondition : MonoBehaviour, IDamageable
 
     public void Eat(float amount)
     {
-        //if() À½½ÄÀÌ¶ó¸é
+        //if() ìŒì‹ì´ë¼ë©´
         hunger.Add(amount);
 
-        //if() ¹°ÀÌ¶ó¸é
+        //if() ë¬¼ì´ë¼ë©´
         thirst.Add(amount);
     }
 

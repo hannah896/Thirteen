@@ -263,6 +263,11 @@ public class PlayerController : MonoBehaviour
         CharacterManager.Instance.Player.resource.MakingResource();
     }
 
+    public void OnEnemyHit()
+    {
+        //Collider[] colliders = Physics.OverlapSphere(attackPos, attackRange, monsterLayer);
+    }
+
     private void OnAnimatorMove()
     {
         
