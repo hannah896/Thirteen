@@ -8,20 +8,20 @@ public class BuildingManager : MonoBehaviour
     
     public bool CanBuild(BuildingData building)
     {
-        //ÀÎº¥Åä¸®¿¡ ÇÊ¿äÇÑ ¾ÆÀÌÅÛÀÇ °¹¼ö°¡ ÃæºĞÇÑÁö Ã¼Å©ÇÏ°í return ÇÏ´Â ¸Ş¼­µå
-        //ÇÊ¿ä ¸Å°³º¯¼ö´Â building.requiredResources
+        //ì¸ë²¤í† ë¦¬ì— í•„ìš”í•œ ì•„ì´í…œì˜ ê°¯ìˆ˜ê°€ ì¶©ë¶„í•œì§€ ì²´í¬í•˜ê³  return í•˜ëŠ” ë©”ì„œë“œ
+        //í•„ìš” ë§¤ê°œë³€ìˆ˜ëŠ” building.requiredResources
         return true;
     }
 
     public void BuildBuilding(BuildingData building, Vector3 position, Quaternion rotation)
     {
-        //ÀÎº¥Åä¸®¿¡¼­ Àç·á »èÁ¦ ÈÄ °Ç¹° Áş±â
+        //ì¸ë²¤í† ë¦¬ì—ì„œ ì¬ë£Œ ì‚­ì œ í›„ ê±´ë¬¼ ì§“ê¸°
         Instantiate(building.buildPrefab, position, rotation);
     }
 
     public void OnSelectBuilding(BuildingData building)
     {
-        //¹Ì¸®º¸±â È£Ãâ
+        //ë¯¸ë¦¬ë³´ê¸° í˜¸ì¶œ
         buildingPreview.StartPreview(building);
     }
 }

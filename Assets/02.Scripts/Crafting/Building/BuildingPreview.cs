@@ -6,17 +6,17 @@ public class BuildingPreview : MonoBehaviour
     private BuildingManager buildingManager;
     private BuildingData buildingData;
     private BuildingObject buildingObject;
-    private GameObject previewInstance;     //¹Ì¸®º¸±â ÀÎ½ºÅÏ½º
-    public Color validColor = Color.green;  //¼³Ä¡ °¡´É »ö»ó
-    public Color invalidColor = Color.red;  //¼³Ä¡ ºÒ°¡´É »ö»ó
+    private GameObject previewInstance;     //ë¯¸ë¦¬ë³´ê¸° ì¸ìŠ¤í„´ìŠ¤
+    public Color validColor = Color.green;  //ì„¤ì¹˜ ê°€ëŠ¥ ìƒ‰ìƒ
+    public Color invalidColor = Color.red;  //ì„¤ì¹˜ ë¶ˆê°€ëŠ¥ ìƒ‰ìƒ
     public LayerMask groundLayer;
 
-    public float maxDistance;               //¼³Ä¡ °Å¸®
-    private Quaternion previewRotation = Quaternion.identity;
+    public float maxDistance;               //ì„¤ì¹˜ ê±°ë¦¬
+    private Quaternion previewRotation = Quaternion.identity;   //ë¯¸ë¦¬ë³´ê¸° íšŒì „ê°’
 
     private bool canBuild = false;
 
-    //Å×½ºÆ®
+    //í…ŒìŠ¤íŠ¸
     public Camera cam;
     
     void Start()
@@ -26,7 +26,7 @@ public class BuildingPreview : MonoBehaviour
 
     public void StartPreview(BuildingData building)
     {
-        //¹Ì¸®º¸±â ¿ÀºêÁ§Æ® ¼ÂÆÃ
+        //ë¯¸ë¦¬ë³´ê¸° ì˜¤ë¸Œì íŠ¸ ì…‹íŒ…
         if (previewInstance != null)
         {
             buildingData = null;
@@ -37,6 +37,7 @@ public class BuildingPreview : MonoBehaviour
         previewInstance = Instantiate(buildingData.buildPrefab);
         buildingObject = previewInstance.GetComponent<BuildingObject>();
 
+        //ë¯¸ë¦¬ë³´ê¸° isTrigger ì„¸íŒ…
         Collider[] previewCollider = previewInstance.GetComponentsInChildren<Collider>();
         if (previewCollider != null)
         {
@@ -58,7 +59,7 @@ public class BuildingPreview : MonoBehaviour
 
     void Update()
     {
-        //¹Ì¸®º¸±â À§Ä¡ Ç¥½Ã
+        //ë¯¸ë¦¬ë³´ê¸° ìœ„ì¹˜ í‘œì‹œ
         if (previewInstance == null) return;
 
         Vector3 targetPosition = GetTargetPosition();
@@ -67,7 +68,8 @@ public class BuildingPreview : MonoBehaviour
         canBuild = CheckBuildable(targetPosition);
         SetPreviewColor(canBuild);
 
-        //InputSystemÀ¸·Î º¯°æ ¿¹Á¤
+        //í…ŒìŠ¤íŠ¸ìš© > InputSystemìœ¼ë¡œ ë³€ê²½ ì˜ˆì •
+        //R: ì„¤ì¹˜, Q,E: 90ë„ íšŒì „, ESC: ì·¨ì†Œ
         if (Input.GetKeyDown(KeyCode.R) && canBuild)
         {
             InstallBuilding(targetPosition);
@@ -88,7 +90,7 @@ public class BuildingPreview : MonoBehaviour
         }
     }
 
-    //¼³Ä¡ À§Ä¡ ¹İÈ¯
+    //ì„¤ì¹˜ ìœ„ì¹˜ ë°˜í™˜
     private Vector3 GetTargetPosition()
     {
         Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
@@ -104,7 +106,7 @@ public class BuildingPreview : MonoBehaviour
         return Vector3.zero;
     }
 
-    //¼³Ä¡ °¡´É ¿©ºÎ È®ÀÎ
+    //ì„¤ì¹˜ ê°€ëŠ¥ ì—¬ë¶€ í™•ì¸
     private bool CheckBuildable(Vector3 targetPosition)
     {
         if (buildingObject.colliderList.Count > 0)
@@ -119,19 +121,19 @@ public class BuildingPreview : MonoBehaviour
         return canBuild;
     }
     
-    //¹Ì¸®º¸±â »ö»ó º¯°æ
+    //ë¯¸ë¦¬ë³´ê¸° ìƒ‰ìƒ ë³€ê²½
     private void SetPreviewColor(bool canBuild)
     {
         previewInstance.GetComponent<Renderer>().material.color = canBuild ? validColor : invalidColor;
     }
 
-    //¹Ù´Ú °æ»ç¸é Ã¼Å©
+    //ë°”ë‹¥ ê²½ì‚¬ë©´ ì²´í¬
     private bool CheckSlope()
     {
         return true;
     }
 
-    //¼³Ä¡ ÈÄ ¹Ì¸®º¸±â »èÁ¦
+    //ì„¤ì¹˜ í›„ ë¯¸ë¦¬ë³´ê¸° ì‚­ì œ
     private void InstallBuilding(Vector3 targetPosition)
     {
         buildingManager.BuildBuilding(buildingData, targetPosition, previewRotation);

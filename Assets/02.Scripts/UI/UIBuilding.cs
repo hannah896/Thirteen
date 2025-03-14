@@ -6,20 +6,19 @@ public class UIBuilding : MonoBehaviour
 {
     public BuildingSlot[] slots;
 
-    public GameObject buildingWindow;
-    public GameObject buildingListPrefab;
-    public Transform contentParent;
+    public GameObject buildingWindow;       //건축 UI 윈도우
+    public GameObject buildingListPrefab;   //ScrollView List Prefab
+    public Transform contentParent;         //ScrollView List가 들어갈 부모 Object
 
     [Header("Select Item")]
     public Image icon;
-    public TextMeshProUGUI selectedBuildingName;
-    public TextMeshProUGUI selectedBuildingDescription;
-    public TextMeshProUGUI selectedRequiredName;
-    public TextMeshProUGUI selectedRequiredAmount;
+    public TextMeshProUGUI selectedBuildingName;        //건축물 이름
+    public TextMeshProUGUI selectedBuildingDescription; //건축물 설명
+    public TextMeshProUGUI selectedRequiredName;        //필요 재료
+    public TextMeshProUGUI selectedRequiredAmount;      //필요 수량
 
     private BuildingManager buildingManager;
     private BuildingData selectedBuilding;
-    private int selectedIndex;
 
     private void Start()
     {
@@ -29,6 +28,7 @@ public class UIBuilding : MonoBehaviour
         SelectBuilding(0);
     }
 
+    //건축 List 생성
     void CreateBuildingList()
     {
 
@@ -49,6 +49,7 @@ public class UIBuilding : MonoBehaviour
         }
     }
 
+    //List 초기화
     void ClearCraftList()
     {
         foreach (Transform child in contentParent)
@@ -57,6 +58,7 @@ public class UIBuilding : MonoBehaviour
         }
     }
 
+    //선택 화면 초기화
     void ClearSelectedBuildingWindow()
     {
         selectedBuildingName.text = string.Empty;
@@ -67,12 +69,12 @@ public class UIBuilding : MonoBehaviour
         ClearCraftList();
     }
 
+    //List 선택 세팅
     public void SelectBuilding(int index)
     {
         if (slots[index].building == null) return;
 
         selectedBuilding = slots[index].building;
-        selectedIndex = index;
 
         icon = selectedBuilding.icon;
         selectedBuildingName.text = selectedBuilding.displayName;
@@ -84,6 +86,7 @@ public class UIBuilding : MonoBehaviour
         }
     }
 
+    //건축 버튼
     public void OnBuildingButton()
     {
         if (selectedBuilding == null) return;
@@ -92,6 +95,7 @@ public class UIBuilding : MonoBehaviour
         buildingManager.OnSelectBuilding(selectedBuilding);
     }
 
+    //UI 종료 버튼
     public void OnExitButton()
     {
         buildingWindow.SetActive(false);

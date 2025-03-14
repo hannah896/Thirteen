@@ -6,7 +6,7 @@ public class BuildingObject : MonoBehaviour
     public List<Collider> colliderList = new List<Collider>();
     public LayerMask layerMask;
 
-    //°ãÄ¡´Â ¿ÀºêÁ§Æ® Ã¼Å©
+    //ê²¹ì¹˜ëŠ” ì˜¤ë¸Œì íŠ¸ ì²´í¬
     private void OnTriggerEnter(Collider other)
     {
         if ((layerMask.value == (1 << other.gameObject.layer)))
