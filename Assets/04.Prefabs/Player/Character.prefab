@@ -4160,7 +4160,7 @@ MonoBehaviour:
   attackRange: 0.5
   enemyMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
 --- !u!114 &644297023593230372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4270,6 +4270,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: e7a555e0-b294-4cc3-917e-7a4e7b66cfbf
     m_ActionName: Player/Interaction[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3d7f129b-875d-48dc-82fd-9ad8065998dd
+    m_ActionName: Player/Inventory[/Keyboard/tab]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -4312,6 +4316,7 @@ MonoBehaviour:
   interactableMask:
     serializedVersion: 2
     m_Bits: 256
+  itemData: {fileID: 0}
 --- !u!1 &8502397564781643858
 GameObject:
   m_ObjectHideFlags: 0
