@@ -646,6 +646,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   condition: {fileID: 0}
+  itemData: {fileID: 0}
+  resource: {fileID: 0}
   dropPosition: {fileID: 0}
 --- !u!114 &292286768
 MonoBehaviour:
@@ -660,12 +662,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayDistance: 1
-  InteractionMask:
+  resourceMask:
     serializedVersion: 2
     m_Bits: 128
-  rock: {fileID: 0}
-  tree: {fileID: 0}
-  resource: {fileID: 0}
+  interactableMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &294183527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,6 +1309,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1152107630764660055, guid: 5dc89ae759b6c344982722eb514ce3b2, type: 3}
+      propertyPath: resourceType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1783222927093283224, guid: 5dc89ae759b6c344982722eb514ce3b2, type: 3}
       propertyPath: m_Name
       value: Tree

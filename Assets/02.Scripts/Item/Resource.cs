@@ -4,21 +4,22 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+public enum ResourceType
+{
+    Mine, //채광
+    Lumber, //벌목
+    Gathering //채집
+}
+
 public class Resource : MonoBehaviour
 {
     public int maxAmount; //최대로 캘수있는 양
     public int currentChances; //현재 캘 수 있는 횟수
     public float second; //쿨타임 도는 시간
     public GameObject[] dropItems;
+    public ResourceType resourceType;
 
     public Collider Collider;
-
-    public enum resourceType
-    {
-        Mine, //채광
-        Lumber, //벌목
-        Gathering //채집
-    }
 
     private void OnValidate()
     {

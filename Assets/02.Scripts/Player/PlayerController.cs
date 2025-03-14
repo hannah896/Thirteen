@@ -191,25 +191,46 @@ public class PlayerController : MonoBehaviour
     {
         isAttack = true;
 
-        Interaction interaction = GetComponent<Interaction>();
+        Resource resource = CharacterManager.Instance.Player.resource;
 
-        if (interaction.rock != null)
+        // 캐릭터가 자원을 가리키고 있다면 자원을 캐자
+        if(resource != null)
         {
-            // 곡괭이가 있고 Rock을 가리키고 있을 땐 RockAttack
-            animator.SetTrigger("RockAttack");
-        }
-        else if(interaction.tree != null)
-        {
-            // 도끼가 있고 Tree를 가리키고 있을 땐 TreeAttack
-            animator.SetTrigger("TreeAttack");
+            HitResource(resource);
         }
         else
         {
-            CharacterManager.Instance.Player.condition.UseStamina(attackStemina);
-            // 무기가 없을 땐 기본 Attack
-            animator.SetTrigger("Attack");
+            // 스태미너가 적절하게 남아있는가?
+            if(CharacterManager.Instance.Player.condition.UseStamina(attackStemina))
+            {
+                // 무기가 없을 땐 기본 Attack
+                //if(CharacterManager.Instance.Player.equip == null)
+                animator.SetTrigger("Attack");
 
-            // 무기가 있을 땐 EquipAttack
+                //if(CharacterManager.Instance.Player.equip != null)
+                // 무기가 있을 땐 EquipAttack
+                //animator.SetTrigger("EquipAttack");
+            }
+        }
+    }
+
+    // 자원을 캐는 함수
+    private void HitResource(Resource resource)
+    {
+        switch (resource.resourceType)
+        {
+            case ResourceType.Mine:
+                // 곡괭이가 있고 Rock을 가리키고 있을 땐 RockAttack
+                animator.SetTrigger("RockAttack");
+                break;
+            case ResourceType.Lumber:
+                // 도끼가 있고 Tree를 가리키고 있을 땐 TreeAttack
+                animator.SetTrigger("TreeAttack");
+                break;
+            case ResourceType.Gathering:
+                break;
+            default:
+                break;
         }
     }
 
@@ -233,6 +254,8 @@ public class PlayerController : MonoBehaviour
         Debug.Log("End Attack");
     }
 
+    // 캐는 애니메이션에서 적절한 프레임에 발생시키는 이벤트
+    // 리소스가 있다면 자원 아이템을 생성시킨다.
     public void OnResourceHit()
     {
         if (CharacterManager.Instance.Player.resource == null) return;
