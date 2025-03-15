@@ -8,18 +8,20 @@ public enum ResourceType
 {
     Mine, //채광
     Lumber, //벌목
-    Gathering //채집
+    Gathering, //채집
+    Hunting //사냥
 }
 
 public class Resource : MonoBehaviour
 {
+    public ResourceType resourceType;
+
+    public GameObject[] dropItems;
+    public Collider Collider;
+
     public int maxAmount; //최대로 캘수있는 양
     public int currentChances; //현재 캘 수 있는 횟수
     public float second; //쿨타임 도는 시간
-    public GameObject[] dropItems;
-    public ResourceType resourceType;
-
-    public Collider Collider;
 
     private void OnValidate()
     {
@@ -37,6 +39,7 @@ public class Resource : MonoBehaviour
             0.1f * Collider.bounds.size.y,
             0
             ), Quaternion.identity);
+
         Debug.Log("캐다");
         if (currentChances == 0)
         {

@@ -1,17 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum EquipType 
-{
-    Weapon,
-    Tool,
-    Armor
-}
 
 public class Equipment : MonoBehaviour
 {
-    ItemData data;
-    public EquipType type;
+    public ItemData data;
 
     public float workspeed;
     public float hitDistance;
@@ -20,4 +13,5 @@ public class Equipment : MonoBehaviour
     public float AttackPower;
 
     [Header("Armor")]
+    public float DefeatPower;
 }
