@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5339092373582631886}
   - component: {fileID: 5771859949938717974}
   - component: {fileID: 3591347540524158936}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fire Axe_Cloth
   m_TagString: Cloth
   m_Icon: {fileID: 0}
@@ -94,11 +94,10 @@ GameObject:
   - component: {fileID: 5122394829041547337}
   - component: {fileID: 7235511846256455588}
   - component: {fileID: 2335901564216847788}
-  - component: {fileID: 2031541807692526255}
   - component: {fileID: 5157207089441128469}
   - component: {fileID: 416799733213942}
   - component: {fileID: 1687548406221855173}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fireaxe 01
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -113,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6153381912067022591}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 17.921, y: 2.5828001, z: -11.860001}
   m_LocalScale: {x: 0.32622513, y: 0.32622513, z: 0.32622513}
   m_ConstrainProportionsScale: 0
@@ -171,19 +170,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2031541807692526255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6153381912067022591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70fc9194066db764e8f709219c4cceae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 5c55224dc3f75a249ac829740720d108, type: 3}
 --- !u!54 &5157207089441128469
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -210,7 +196,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 3
+  m_CollisionDetection: 1
 --- !u!64 &416799733213942
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -249,4 +235,3 @@ MonoBehaviour:
   workspeed: 3
   hitDistance: 1
   AttackPower: 0
-  DefeatPower: 0
