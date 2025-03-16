@@ -204,7 +204,7 @@ public class PlayerController : MonoBehaviour
 
                 //if(CharacterManager.Instance.Player.equip != null)
                 // 무기가 있을 땐 EquipAttack
-                //animator.SetTrigger("WeaponAttack");
+                //CharacterManager.Instance.Player.animController.WeaponAttack();
             }
         }
     }
@@ -215,10 +215,14 @@ public class PlayerController : MonoBehaviour
         switch (resource.resourceType)
         {
             case ResourceType.Mine:
+                //if(CharacterManager.Instance.Player.equipment.curEquip != null 
+                //    && CharacterManager.Instance.Player.equipment.curEquip.type == Hammer)
                 // 곡괭이가 있고 Rock을 가리키고 있을 땐 RockAttack
                 CharacterManager.Instance.Player.animController.RockAttack();
                 break;
             case ResourceType.Lumber:
+                //if (CharacterManager.Instance.Player.equipment.curEquip != null
+                //    && CharacterManager.Instance.Player.equipment.curEquip.type == Axe)
                 // 도끼가 있고 Tree를 가리키고 있을 땐 TreeAttack
                 CharacterManager.Instance.Player.animController.TreeAttack();
                 break;

@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public PlayerController controller;
     public PlayerCondition condition;
     public AnimationController animController;
+    public EquipmentPlayer equipment;
     //public Equipment equip;
 
     public ItemData itemData;
@@ -17,12 +18,15 @@ public class Player : MonoBehaviour
 
     public Action inventory;
 
+    public bool isDie;
+
     private void Awake()
     {
         CharacterManager.Instance.Player = this;
         controller = GetComponent<PlayerController>();
         condition = GetComponent<PlayerCondition>();
         animController = GetComponent<AnimationController>();
+        equipment = GetComponent<EquipmentPlayer>();
         //equip = GetComponent<Equipment>();
     }
 

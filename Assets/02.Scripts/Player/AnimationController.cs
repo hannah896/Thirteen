@@ -55,4 +55,9 @@ public class AnimationController : MonoBehaviour
     {
         animator.SetTrigger("PlantAttack");
     }
+
+    public void DieAnimation()
+    {
+        animator.SetBool("IsDie", true);
+    }
 }
