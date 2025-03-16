@@ -145,10 +145,10 @@ public class UIInventory : MonoBehaviour
         selectedStatName.text = string.Empty;
         selectedStatValue.text = string.Empty;
 
-        foreach (var item in selectedItem.Effects)
+        foreach (var item in selectedItem.effect)
         {
-            selectedStatName.text += item.Key.ToString();
-            selectedStatValue.text += item.Value.ToString();
+            selectedStatName.text += item.consumableType.ToString();
+            selectedStatValue.text += item.value.ToString();
         }
 
         dropButton.SetActive(true);
