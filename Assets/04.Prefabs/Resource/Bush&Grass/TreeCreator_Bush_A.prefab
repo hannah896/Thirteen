@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aa41d17f4cc36743b866c66b8f0075b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceType: 0
+  resourceType: 2
   dropItems:
   - {fileID: 8343669378087031135, guid: 844ae35a48a17f64dbf3486b2e84e7b6, type: 3}
   - {fileID: 7345881810710953147, guid: db5294deb99145f44902df5c2977b471, type: 3}
@@ -134,7 +134,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
