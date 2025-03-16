@@ -226,6 +226,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetTrigger("TreeAttack");
                 break;
             case ResourceType.Gathering:
+                animator.SetTrigger("PlantAttack");
                 break;
             default:
                 break;
