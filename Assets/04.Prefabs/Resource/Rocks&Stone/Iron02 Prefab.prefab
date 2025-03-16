@@ -327,7 +327,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: 4cdee82070bf05f4f925df3bfa8a804d, type: 2}
-  Collider: {fileID: 0}
 --- !u!54 &4279626104116047884
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -374,7 +373,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.6
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Radius: 0.510098
+  m_Height: 1.2042812
+  m_Direction: 0
+  m_Center: {x: -0.085621774, y: 0.448627, z: -0.021405697}

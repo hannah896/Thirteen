@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2318355235259337570}
   - component: {fileID: 6881519461183093697}
   - component: {fileID: 3832806068659263184}
-  - component: {fileID: 2932259764527371036}
   m_Layer: 8
   m_Name: granite rock02_lod3
   m_TagString: Untagged
@@ -84,28 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2932259764527371036
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1962445185156002261}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1635574779107100734, guid: 2680cb5a208badb4b8a2e460f1dad94a, type: 3}
 --- !u!1 &2116659718881456364
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +94,6 @@ GameObject:
   - component: {fileID: 7945569419339500490}
   - component: {fileID: 8924942293163169277}
   - component: {fileID: 8969807790852588215}
-  - component: {fileID: 4624945818315999346}
   m_Layer: 8
   m_Name: granite rock02_lod2
   m_TagString: Untagged
@@ -190,28 +166,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4624945818315999346
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2116659718881456364}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2146105094513032034, guid: f83bf2fa323f6ae42870c35f1bc7c024, type: 3}
 --- !u!1 &2690285310997449733
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +177,6 @@ GameObject:
   - component: {fileID: 6948232534836623248}
   - component: {fileID: 6656418567166370438}
   - component: {fileID: 7207056687099655160}
-  - component: {fileID: 1177709201250930904}
   m_Layer: 8
   m_Name: granite rock02_lod1
   m_TagString: Untagged
@@ -296,28 +249,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1177709201250930904
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2690285310997449733}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -9014020385423795416, guid: 39b1b8511ee9855409de08b2e4dbbf1e, type: 3}
 --- !u!1 &6336047283459569065
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +261,7 @@ GameObject:
   - component: {fileID: 8203298450063886612}
   - component: {fileID: 3210248101916542314}
   - component: {fileID: 1531683794296099678}
-  - component: {fileID: 7769080209234209792}
+  - component: {fileID: 4266979110364845302}
   m_Layer: 8
   m_Name: Coal02 Prefab
   m_TagString: Untagged
@@ -428,9 +359,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: a5aef42d92bc2684085b70cc2d1bf668, type: 2}
-  Collider: {fileID: 0}
---- !u!64 &7769080209234209792
-MeshCollider:
+--- !u!136 &4266979110364845302
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -447,10 +377,11 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  serializedVersion: 2
+  m_Radius: 0.31688786
+  m_Height: 1
+  m_Direction: 2
+  m_Center: {x: 0.0030018091, y: -0.012007713, z: 0.029999971}
 --- !u!1 &8631705680576680403
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,7 +393,6 @@ GameObject:
   - component: {fileID: 7508967796392312598}
   - component: {fileID: 1002884795889225231}
   - component: {fileID: 5249445707926402573}
-  - component: {fileID: 6531655177650473706}
   m_Layer: 8
   m_Name: granite rock02_lod0
   m_TagString: Untagged
@@ -535,25 +465,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6531655177650473706
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8631705680576680403}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7363730606949358323, guid: d23e2c399fa8bac47908afbc009b48bd, type: 3}
