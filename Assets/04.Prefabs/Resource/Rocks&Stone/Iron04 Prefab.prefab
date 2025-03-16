@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 6317599802725649991}
   - component: {fileID: 2776590901454777287}
   - component: {fileID: 876112087332953337}
-  - component: {fileID: 4069679802536523352}
+  - component: {fileID: 3573636395359605516}
   m_Layer: 8
   m_Name: Iron04 Prefab
   m_TagString: Untagged
@@ -244,7 +244,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: 4cdee82070bf05f4f925df3bfa8a804d, type: 2}
-  Collider: {fileID: 0}
 --- !u!54 &876112087332953337
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -272,8 +271,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &4069679802536523352
-CapsuleCollider:
+--- !u!65 &3573636395359605516
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -290,11 +289,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 3
+  m_Size: {x: 0.84528255, y: 0.5805874, z: 0.85646725}
+  m_Center: {x: -0.0046601295, y: 0.30477333, z: -0.015843868}
 --- !u!1 &9221659687274032754
 GameObject:
   m_ObjectHideFlags: 0

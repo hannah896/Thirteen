@@ -88,7 +88,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -109,9 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aa41d17f4cc36743b866c66b8f0075b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmount: 5
-  currentChances: 5
-  second: 10
+  resourceType: 2
   dropItems:
   - {fileID: 8343669378087031135, guid: 844ae35a48a17f64dbf3486b2e84e7b6, type: 3}
   - {fileID: 7345881810710953147, guid: db5294deb99145f44902df5c2977b471, type: 3}
@@ -120,6 +118,9 @@ MonoBehaviour:
   - {fileID: 121864516674305737, guid: e15b44b5dfd5ce048835cb7884981353, type: 3}
   - {fileID: 4986161350174643699, guid: 20378c20ed36b1a4d9f6eab142bc04a3, type: 3}
   Collider: {fileID: 4571304210516848727}
+  maxAmount: 5
+  currentChances: 5
+  second: 10
 --- !u!65 &4571304210516848727
 BoxCollider:
   m_ObjectHideFlags: 0

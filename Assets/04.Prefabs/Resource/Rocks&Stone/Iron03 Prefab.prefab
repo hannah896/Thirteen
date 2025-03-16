@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1071682108698891233}
   - component: {fileID: 6169803955976662885}
   - component: {fileID: 4389542435213277553}
-  - component: {fileID: 654366717751497268}
+  - component: {fileID: 6434733968780607331}
   m_Layer: 8
   m_Name: Iron03 Prefab
   m_TagString: Untagged
@@ -78,7 +78,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: 4cdee82070bf05f4f925df3bfa8a804d, type: 2}
-  Collider: {fileID: 0}
 --- !u!54 &4389542435213277553
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -106,8 +105,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &654366717751497268
-CapsuleCollider:
+--- !u!65 &6434733968780607331
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -124,11 +123,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 3
+  m_Size: {x: 1.4529972, y: 0.40589142, z: 0.84976006}
+  m_Center: {x: 0.017075539, y: 0.1513853, z: 0.0022764206}
 --- !u!1 &5117698854063413567
 GameObject:
   m_ObjectHideFlags: 0
