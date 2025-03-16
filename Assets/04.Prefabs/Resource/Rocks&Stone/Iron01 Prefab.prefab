@@ -78,7 +78,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: 4cdee82070bf05f4f925df3bfa8a804d, type: 2}
-  Collider: {fileID: 0}
 --- !u!54 &3356263769961747164
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -125,10 +124,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.92
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.69, z: 0}
+  m_Radius: 0.8674859
+  m_Height: 1.7349718
+  m_Direction: 0
+  m_Center: {x: -0.052514195, y: 0.7769773, z: 0.034463048}
 --- !u!1 &3796835434602128751
 GameObject:
   m_ObjectHideFlags: 0

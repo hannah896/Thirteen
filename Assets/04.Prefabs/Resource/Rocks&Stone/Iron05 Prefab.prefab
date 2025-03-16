@@ -78,7 +78,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: 4cdee82070bf05f4f925df3bfa8a804d, type: 2}
-  Collider: {fileID: 0}
 --- !u!54 &7538906280017570056
 Rigidbody:
   m_ObjectHideFlags: 0
