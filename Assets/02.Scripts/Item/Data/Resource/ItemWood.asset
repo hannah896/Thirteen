@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: "\uB098\uBB34"
   itemDescription: "\uC601\uC5B4\uB85C \uC6B0\uB4DC"
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 5360815ca8cd7f248b5345011ef853d2, type: 3}
+  itemType: 0
   canStack: 1
   maxStackAmount: 99
+  effect:
+    consumableType: 0
+    value: 0
   equipPrefab: {fileID: 0}
+  cost: []

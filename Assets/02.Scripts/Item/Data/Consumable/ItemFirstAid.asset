@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6e9a8c7433a0624d83fba986ef58660, type: 3}
-  m_Name: ItemStone
+  m_Name: ItemFirstAid
   m_EditorClassIdentifier: 
-  itemName: "\uB3CC"
-  itemDescription: "\uC601\uC5B4\uB85Cstone"
-  Icon: {fileID: 21300000, guid: b332e2b88d1289b45af176f478738973, type: 3}
-  itemType: 0
+  itemName: "\uAD6C\uAE09\uC0C1\uC790"
+  itemDescription: "\uCCB4\uB825\uC744 \uD68C\uBCF5\uD574\uC90D\uB2C8\uB2E4"
+  Icon: {fileID: 0}
+  itemType: 1
   canStack: 1
   maxStackAmount: 99
   effect:
-    consumableType: 0
-    value: 0
+  - consumableType: 0
+    value: 40
   equipPrefab: {fileID: 0}
   cost: []

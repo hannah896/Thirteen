@@ -18,6 +18,13 @@ public enum ConsumableType
     Stemina
 }
 
+[System.Serializable]
+public struct Effect
+{
+    public ConsumableType consumableType;
+    public float value;
+}
+
 [CreateAssetMenu (fileName = "ItemBase", menuName = "New Item")]
 public class ItemData : ScriptableObject
 {
@@ -32,13 +39,10 @@ public class ItemData : ScriptableObject
     public int maxStackAmount;
 
     [Header("Effect")]
-    public Dictionary<ConsumableType, float> Effects;
+    public Effect[] effect;
 
     [Header("Equip")]
     public GameObject equipPrefab;
-
-    [Header("Consume")]
-    public int healAmount;
 
     [Header("Cost")]
     public List<ResourceCost> cost;

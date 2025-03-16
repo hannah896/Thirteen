@@ -34,6 +34,7 @@ public class Resource : MonoBehaviour
         if (currentChances <= 0) return;
         currentChances--;
         // TODO : 리스트 추가했을때의 처리 필요
+        //switch(Random.RandomRange())
         Instantiate(dropItems[0], transform.position +  new Vector3(
             0.3f * Collider.bounds.size.x,
             0.1f * Collider.bounds.size.y,
@@ -43,12 +44,12 @@ public class Resource : MonoBehaviour
         Debug.Log("캐다");
         if (currentChances == 0)
         {
-            StartCoroutine(ResetMaxinum());
+            StartCoroutine(ResetMaximum());
         }
     }
 
     //자원 초기화시간
-    private IEnumerator ResetMaxinum()
+    private IEnumerator ResetMaximum()
     {
         Debug.Log("초기화중");
         yield return new WaitForSeconds(second);
