@@ -30,8 +30,6 @@ public class PlayerController : MonoBehaviour
 
     private float runStemina = 0.1f;                // 달리기 스태미나
 
-    private Animator animator;
-
     private bool isJump;                        // 점프 상태 확인
     [SerializeField] private float jumpForce;   // 점프 파워
     private float jumpStemina = 10;                  // 점프 스태미나
@@ -49,7 +47,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rigid = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
         CursorVisible();
     }
 
@@ -68,7 +65,7 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         Look();
-        animator.SetBool("IsRun", isRun);
+        CharacterManager.Instance.Player.animController.RunAnimation(isRun);
     }
     
     private void Look()
@@ -112,7 +109,7 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         isJump = true;
-        animator.SetTrigger("Jump");
+        CharacterManager.Instance.Player.animController.JumpAnimation();
         CharacterManager.Instance.Player.condition.UseStamina(jumpStemina);
         rigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
@@ -143,7 +140,7 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         inputDir = context.ReadValue<Vector2>();
-        animator.SetFloat("InputDir", inputDir.magnitude);
+        CharacterManager.Instance.Player.animController.WalkAnimation(inputDir.magnitude);
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -203,11 +200,11 @@ public class PlayerController : MonoBehaviour
             {
                 // 무기가 없을 땐 기본 Attack
                 //if(CharacterManager.Instance.Player.equip == null)
-                animator.SetTrigger("Attack");
+                CharacterManager.Instance.Player.animController.BasicAttack();
 
                 //if(CharacterManager.Instance.Player.equip != null)
                 // 무기가 있을 땐 EquipAttack
-                //animator.SetTrigger("EquipAttack");
+                //animator.SetTrigger("WeaponAttack");
             }
         }
     }
@@ -219,14 +216,14 @@ public class PlayerController : MonoBehaviour
         {
             case ResourceType.Mine:
                 // 곡괭이가 있고 Rock을 가리키고 있을 땐 RockAttack
-                animator.SetTrigger("RockAttack");
+                CharacterManager.Instance.Player.animController.RockAttack();
                 break;
             case ResourceType.Lumber:
                 // 도끼가 있고 Tree를 가리키고 있을 땐 TreeAttack
-                animator.SetTrigger("TreeAttack");
+                CharacterManager.Instance.Player.animController.TreeAttack();
                 break;
             case ResourceType.Gathering:
-                animator.SetTrigger("PlantAttack");
+                CharacterManager.Instance.Player.animController.PlantAttack();
                 break;
             default:
                 break;

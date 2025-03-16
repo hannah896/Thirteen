@@ -1280,7 +1280,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7691059918466982876, guid: 5eacab592e418d94fb88d90d2a128d32, type: 3}
   m_PrefabInstance: {fileID: 7982807732150164602}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 814253219}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccb594dc4442f2f4183cb4d085b2eada, type: 3}
@@ -1291,7 +1291,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3065827811555338876, guid: 5eacab592e418d94fb88d90d2a128d32, type: 3}
   m_PrefabInstance: {fileID: 7982807732150164602}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 814253219}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1dd2e7ffe4ed0ba409cfaa62f457c658, type: 3}
@@ -3232,6 +3232,23 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2636214456830534132, guid: 3b9744db4fb7254438c7e97ec9c318ad, type: 3}
   m_PrefabInstance: {fileID: 800442728}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &814253219 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8347310752101170277, guid: 5eacab592e418d94fb88d90d2a128d32, type: 3}
+  m_PrefabInstance: {fileID: 7982807732150164602}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &814253227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814253219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0705b957da9040f46b3c1f64a8588a76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &831569892
 GameObject:
   m_ObjectHideFlags: 0
@@ -8983,6 +9000,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5700126623631609252, guid: 5eacab592e418d94fb88d90d2a128d32, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'root'\n\tTransform 'lowerarm_l'\n\tTransform
+        'root'\n\tTransform 'neck_01'\n\tTransform 'clavicle_l'\n\tTransform 'hand_l'\n\tTransform
+        'spine_02'\n\tTransform 'upperarm_r'\n\tTransform 'upperarm_l'\n\tTransform
+        'thigh_l'\n\tand more ...\n\tFrom animation clip 'Sword And Shield Slash'"
+      objectReference: {fileID: 0}
     - target: {fileID: 8347310752101170277, guid: 5eacab592e418d94fb88d90d2a128d32, type: 3}
       propertyPath: m_Name
       value: Character
@@ -9008,7 +9034,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2437298945587288554, guid: 5eacab592e418d94fb88d90d2a128d32, type: 3}
       insertIndex: -1
       addedObject: {fileID: 48726450}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8347310752101170277, guid: 5eacab592e418d94fb88d90d2a128d32, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 814253227}
   m_SourcePrefab: {fileID: 100100000, guid: 5eacab592e418d94fb88d90d2a128d32, type: 3}
 --- !u!205 &8097818951857703799
 LODGroup:
