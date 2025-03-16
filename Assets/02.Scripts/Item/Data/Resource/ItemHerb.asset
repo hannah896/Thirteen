@@ -15,8 +15,9 @@ MonoBehaviour:
   itemName: "\uC57D\uCD08"
   itemDescription: "\uC601\uC5B4\uB85C \uD5C8\uBE0C"
   Icon: {fileID: 0}
+  itemType: 2
   canStack: 1
   maxStackAmount: 99
+  effect: []
   equipPrefab: {fileID: 0}
-  consumePrefab: {fileID: 0}
-  healAmount: 0
+  cost: []

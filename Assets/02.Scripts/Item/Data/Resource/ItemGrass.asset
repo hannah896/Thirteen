@@ -15,11 +15,13 @@ MonoBehaviour:
   itemName: "\uD480"
   itemDescription: "Glue\uC544\uB2C8\uACE0 Grass"
   Icon: {fileID: 21300000, guid: 0247009b839bf8740becae7f2ec723b3, type: 3}
-  itemType: 0
+  itemType: 2
   canStack: 1
   maxStackAmount: 99
   effect:
-    consumableType: 0
+  - consumableType: 0
+    value: 0
+  - consumableType: 0
     value: 0
   equipPrefab: {fileID: 0}
   cost: []
