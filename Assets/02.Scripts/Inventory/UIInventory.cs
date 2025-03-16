@@ -69,7 +69,7 @@ public class UIInventory : MonoBehaviour
         for(int i = 0; i < slots.Length; i++)
         {
             slots[i] = slotPanel.GetChild(i).GetComponent<ItemSlot>();
-            slots[i].index = 1;
+            slots[i].index = i;
             slots[i].inventory = this;
         }
 

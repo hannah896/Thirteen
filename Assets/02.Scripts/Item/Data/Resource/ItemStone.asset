@@ -18,10 +18,6 @@ MonoBehaviour:
   itemType: 2
   canStack: 1
   maxStackAmount: 99
-  effect:
-  - consumableType: 0
-    value: 0
-  - consumableType: 0
-    value: 0
+  effect: []
   equipPrefab: {fileID: 0}
   cost: []

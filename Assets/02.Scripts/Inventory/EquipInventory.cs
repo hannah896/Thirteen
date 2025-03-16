@@ -18,6 +18,7 @@ public class EquipInventory : UIInventory
 
     public override void SelectItem(int index)
     {
+        if (slots[index].item == null) return;
         base.SelectItem(index);
 
         equipButton.SetActive(selectedItem.itemType == ItemType.Equipable && !slots[index].equipped);

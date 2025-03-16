@@ -16,6 +16,8 @@ public class ConsumeInventory : UIInventory
 
     public override void SelectItem(int index)
     {
+        if (slots[index].item == null) return;
+
         base.SelectItem(index);
 
         useButton.SetActive(selectedItem.itemType == ItemType.Consumable);
@@ -27,9 +29,13 @@ public class ConsumeInventory : UIInventory
         if (data.canStack)
         {
             ItemSlot slot = GetItemStack(data);
-            slot.quantity++;
-            UpdateUI();
-            CharacterManager.Instance.Player.itemData = null;
+            if(slot != null)
+            {
+                slot.quantity++;
+                UpdateUI();
+                CharacterManager.Instance.Player.itemData = null;
+                return;
+            }
         }
 
         ItemSlot emptySlot = GetEmptySlot();
