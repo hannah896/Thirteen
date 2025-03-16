@@ -1,4 +1,6 @@
 using System;
+using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -9,9 +11,10 @@ public class Player : MonoBehaviour
 
     public ItemData itemData;
     public Resource resource;
-    public Action addItem;
 
     public Transform dropPosition;
+
+    public Action inventory;
 
     private void Awake()
     {
@@ -19,5 +22,17 @@ public class Player : MonoBehaviour
         controller = GetComponent<PlayerController>();
         condition = GetComponent<PlayerCondition>();
         //equip = GetComponent<Equipment>();
+    }
+
+    public void AddItem()
+    {
+        if(itemData.itemType == ItemType.Equipable)
+        {
+            InventoryManager.Instance.equipInventory.AddItem();
+        }
+        else
+        {
+            InventoryManager.Instance.consumeInventory.AddItem();
+        }
     }
 }

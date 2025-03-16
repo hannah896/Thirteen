@@ -29,7 +29,8 @@ public class ItemSlot : MonoBehaviour
     {
         outline.enabled = equipped;
     }
-    void Start()
+
+    public void Set()
     {
         icon.gameObject.SetActive(true);
         icon.sprite = item.Icon;
@@ -39,17 +40,6 @@ public class ItemSlot : MonoBehaviour
         {
             outline.enabled = equipped;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void Set()
-    {
-
     }
 
     public void Clear()

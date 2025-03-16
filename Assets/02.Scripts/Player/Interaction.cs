@@ -1,6 +1,8 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
@@ -20,6 +22,7 @@ public class Interaction : MonoBehaviour
     [SerializeField] LayerMask resourceMask;        // 캘 수 있는 자원의 마스크
     [SerializeField] LayerMask interactableMask;    // 획득 할 수 있는 아이템의 마스크
 
+    public GameObject itemGO;
     public ItemData itemData;                              // 감지한 아이템
 
     Animator animator;
@@ -73,11 +76,13 @@ public class Interaction : MonoBehaviour
         {
             if (hit.transform.TryGetComponent(out ItemObject item))
             {
+                itemGO = hit.collider.gameObject;
                 itemData = item.ItemData;
             }
         }
         else
         {
+            itemGO = null;
             itemData = null;
         }
     }
@@ -89,8 +94,10 @@ public class Interaction : MonoBehaviour
             // 인벤토리에 저장
 
             CharacterManager.Instance.Player.itemData = itemData;
-            CharacterManager.Instance.Player.addItem();
-            Destroy(itemData.GameObject());
+
+            CharacterManager.Instance.Player.AddItem();
+            Destroy(itemGO);
+            itemGO = null;
             itemData = null;
         }
     }

@@ -44,13 +44,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float attackRange = 2f;
     [SerializeField] private LayerMask enemyMask;
 
+    private bool canLook = false;                           // 캐릭터가 카메라를 돌릴 수 있는 상태인지 확인
+
     private void Start()
     {
         rigid = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        CursorVisible();
+    }
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+    private void CursorVisible()
+    {
+        canLook = !canLook;
+        Cursor.visible = !Cursor.visible;
+        Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
     private void FixedUpdate()
@@ -66,6 +73,8 @@ public class PlayerController : MonoBehaviour
     
     private void Look()
     {
+        if (!canLook) return;
+
         camXRot += mouseDelta.y * mouseInsensity;
         camXRot = Mathf.Clamp(camXRot, minXRot, maxXRot);
 
@@ -229,6 +238,15 @@ public class PlayerController : MonoBehaviour
         if(context.phase == InputActionPhase.Started && !isAttack && !isJump)
         {
             Attack();
+        }
+    }
+
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Started)
+        {
+            CursorVisible();
+            CharacterManager.Instance.Player.inventory();
         }
     }
 
