@@ -6,17 +6,18 @@ public class UICrafting : MonoBehaviour
 {
     public CraftingSlot[] slots;
 
+    [Header("UI Elements")]
     public GameObject craftingWindow;
     public GameObject craftingListPrefab;
     public Transform contentParent;
+    public Button craftButton;
 
     [Header("Select Item")]
-    public Sprite icon;
     public TextMeshProUGUI selectedItemName;        //아이템 이름
     public TextMeshProUGUI selectedItemDescription; //아이템 설명
     public TextMeshProUGUI selectedRequiredName;        //필요 재료
     public TextMeshProUGUI selectedRequiredAmount;      //필요 수량
-    public Button buildButton;
+    public Image icon;
 
     private CraftingManager craftingManager;
     private ItemData selectedItem;
@@ -51,7 +52,7 @@ public class UICrafting : MonoBehaviour
     }
 
     //List 초기화
-    void ClearCraftList()
+    void ClearList()
     {
         foreach (Transform child in contentParent)
         {
@@ -67,34 +68,35 @@ public class UICrafting : MonoBehaviour
         selectedRequiredName.text = string.Empty;
         selectedRequiredAmount.text = string.Empty;
 
-        ClearCraftList();
+        ClearList();
     }
 
-    //List 선택 세팅
+    //선택 시 UI 업데이트
     public void SelectItem(int index)
     {
-        if (slots[index].Item == null) return;
+        if (slots[index].Item == null || slots[index].Item == selectedItem) return;
 
         selectedItem = slots[index].Item;
 
-        icon = selectedItem.Icon;
+        icon.sprite = selectedItem.Icon;
         selectedItemName.text = selectedItem.itemName;
         selectedItemDescription.text = selectedItem.itemDescription;
+        selectedRequiredName.text = string.Empty;
+        selectedRequiredAmount.text = string.Empty;
+
         //for (int i = 0; i < selectedItem.requiredResources.Count; i++)
         //{
-        //    selectedRequiredName.text += selectedItem.requiredResources[i].resource + "\n";
+        //    selectedRequiredName.text += selectedItem.requiredResources[i].resource.name + "\n";
         //    selectedRequiredAmount.text += selectedItem.requiredResources[i].amount.ToString() + "\n";
         //}
 
         if (craftingManager.CanCraft(selectedItem))
         {
-            buildButton.enabled = true;
-            buildButton.image.color = Color.white;
+            craftButton.interactable = true;
         }
         else
         {
-            buildButton.enabled = false;
-            buildButton.image.color = Color.gray;
+            craftButton.interactable = false;
         }
     }
 

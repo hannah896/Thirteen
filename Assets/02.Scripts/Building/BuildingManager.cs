@@ -10,7 +10,7 @@ public class BuildingManager : MonoBehaviour
     {
         //인벤토리에 필요한 아이템의 갯수가 충분한지 체크하고 return 하는 메서드
         //필요 매개변수는 building.requiredResources
-        return true;
+        return false;
     }
 
     public void BuildBuilding(BuildingData building, Vector3 position, Quaternion rotation)
