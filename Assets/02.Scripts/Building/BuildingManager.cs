@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class BuildingManager : MonoBehaviour
 {
@@ -8,15 +9,16 @@ public class BuildingManager : MonoBehaviour
     
     public bool CanBuild(BuildingData building)
     {
-        //인벤토리에 필요한 아이템의 갯수가 충분한지 체크하고 return 하는 메서드
-        //필요 매개변수는 building.requiredResources
-        return false;
+        return InventoryManager.Instance.consumeInventory.HasRequiredResources(building.requiredResources);
     }
 
     public void BuildBuilding(BuildingData building, Vector3 position, Quaternion rotation)
     {
-        //인벤토리에서 재료 삭제 후 건물 짓기
-        Instantiate(building.buildPrefab, position, rotation);
+        //인벤토리에서 재료 차감 후 건물 생성
+        if (InventoryManager.Instance.consumeInventory.ConsumeResources(building.requiredResources))
+        {
+            Instantiate(building.buildPrefab, position, rotation);
+        }
     }
 
     public void OnSelectBuilding(BuildingData building)

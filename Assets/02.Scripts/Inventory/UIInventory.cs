@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public enum InventoryType
@@ -172,5 +174,50 @@ public class UIInventory : MonoBehaviour
         }
 
         UpdateUI();
+    }
+
+    public bool HasRequiredResources(List<ResourceCost> data)
+    {
+        bool found = false;
+
+        //필요한 재료 인벤토리에 존재하는지 확인
+        foreach (ResourceCost cost in data)
+        {
+            for (int i = 0; i < slots.Length; i++)
+            {
+                if (slots[i].item == cost.resource & slots[i].quantity >= cost.amount)
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) return false;
+        }
+
+        return true;
+    }
+
+    public bool ConsumeResources(List<ResourceCost> data)
+    {
+        if (!HasRequiredResources(data)) return false;
+
+        foreach (ResourceCost cost in data)
+        {
+            for (int i = 0; i < slots.Length; i++)
+            {
+                if (slots[i].item == cost.resource)
+                {
+                    slots[i].quantity -= cost.amount;
+                    if (slots[i].quantity <= 0)
+                    {
+                        slots[i] = null;
+                    }
+                    break;
+                }
+            }
+        }
+
+        return true;
     }
 }

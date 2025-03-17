@@ -84,11 +84,11 @@ public class UICrafting : MonoBehaviour
         selectedRequiredName.text = string.Empty;
         selectedRequiredAmount.text = string.Empty;
 
-        //for (int i = 0; i < selectedItem.requiredResources.Count; i++)
-        //{
-        //    selectedRequiredName.text += selectedItem.requiredResources[i].resource.name + "\n";
-        //    selectedRequiredAmount.text += selectedItem.requiredResources[i].amount.ToString() + "\n";
-        //}
+        for (int i = 0; i < selectedItem.cost.Count; i++)
+        {
+            selectedRequiredName.text += selectedItem.cost[i].resource.name + "\n";
+            selectedRequiredAmount.text += selectedItem.cost[i].amount.ToString() + "\n";
+        }
 
         if (craftingManager.CanCraft(selectedItem))
         {
