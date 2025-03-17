@@ -16,7 +16,7 @@ public class Monster : MonoBehaviour, IDamageable
     public int health;
     public float walkSpeed;
     public float runSpeed;    
-    public ItemData[] dropOnDeath;
+    //public ItemData[] dropOnDeath;
     public GameObject[] dropPrefabs;
 
     [Header("AI")]
@@ -229,13 +229,13 @@ public class Monster : MonoBehaviour, IDamageable
 
     void DropItems()
     {
-        if (dropOnDeath == null || dropOnDeath.Length == 0) return;
+        if (dropPrefabs == null || dropPrefabs.Length == 0) return;
 
-        for (int i = 0; i < dropOnDeath.Length; i++)
+        for (int i = 0; i < dropPrefabs.Length; i++)
         {
-            if (dropOnDeath[i] != null && i < dropPrefabs.Length && dropPrefabs[i] != null)
+            if (dropPrefabs[i] != null && i < dropPrefabs.Length)
             {
-                Vector3 dropPosition = transform.position + Vector3.up * 2;
+                Vector3 dropPosition = transform.position + Vector3.up * 0.5f;
                 Instantiate(dropPrefabs[i], dropPosition, Quaternion.identity);
             }
         }
