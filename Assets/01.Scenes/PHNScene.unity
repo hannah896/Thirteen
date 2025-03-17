@@ -441,6 +441,7 @@ MonoBehaviour:
   bush:
   - {fileID: 3883923053485694314, guid: b07d48a13fba00540914a3a527795a9c, type: 3}
   resource: {fileID: 754099948}
+  box: []
 --- !u!4 &750685169
 Transform:
   m_ObjectHideFlags: 0
