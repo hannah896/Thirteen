@@ -44,8 +44,11 @@ public class PlayerController : MonoBehaviour
 
     private bool canLook = false;                           // 캐릭터가 카메라를 돌릴 수 있는 상태인지 확인
 
+    private PlayerCondition condition;
+
     private void Start()
     {
+        condition = GetComponent<PlayerCondition>();
         rigid = GetComponent<Rigidbody>();
         CursorVisible();
     }
@@ -59,12 +62,14 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (condition.isDie) return;
         Move();
     }
 
     private void LateUpdate()
     {
         Look();
+        if (condition.isDie) return;
         CharacterManager.Instance.Player.animController.RunAnimation(isRun);
     }
     

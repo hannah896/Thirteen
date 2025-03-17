@@ -58,6 +58,6 @@ public class AnimationController : MonoBehaviour
 
     public void DieAnimation()
     {
-        animator.SetBool("IsDie", true);
+        animator.SetTrigger("Die");
     }
 }

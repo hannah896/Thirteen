@@ -4018,6 +4018,8 @@ GameObject:
   - component: {fileID: 644297023593230372}
   - component: {fileID: 9172154121997261580}
   - component: {fileID: 7691059918466982876}
+  - component: {fileID: 1318329169319659606}
+  - component: {fileID: 6156659515737911842}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -4130,6 +4132,7 @@ MonoBehaviour:
   defense: 5
   noHungerHPDecay: 0
   noThirstHPDecay: 0
+  isDie: 0
 --- !u!114 &3065827811555338876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4267,11 +4270,35 @@ MonoBehaviour:
     m_ActionId: 58f63926-2a83-45e2-b6d5-5f6826726d7a
     m_ActionName: Player/Attack[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7691059918466982876}
+        m_TargetAssemblyTypeName: Interaction, Assembly-CSharp
+        m_MethodName: OnInteraction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e7a555e0-b294-4cc3-917e-7a4e7b66cfbf
     m_ActionName: Player/Interaction[/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3065827811555338876}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 3d7f129b-875d-48dc-82fd-9ad8065998dd
     m_ActionName: Player/Inventory[/Keyboard/tab]
   m_NeverAutoSwitchControlSchemes: 0
@@ -4293,9 +4320,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   condition: {fileID: 0}
+  animController: {fileID: 0}
+  equipment: {fileID: 0}
   itemData: {fileID: 0}
   resource: {fileID: 0}
   dropPosition: {fileID: 0}
+  isDie: 0
 --- !u!114 &7691059918466982876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4316,7 +4346,34 @@ MonoBehaviour:
   interactableMask:
     serializedVersion: 2
     m_Bits: 256
+  itemGO: {fileID: 0}
   itemData: {fileID: 0}
+--- !u!114 &1318329169319659606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8347310752101170277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0705b957da9040f46b3c1f64a8588a76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6156659515737911842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8347310752101170277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc9fbcdc2d9b814eb7b4b4e21301656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curEquip: {fileID: 0}
+  equipParent: {fileID: 2437298945587288554}
 --- !u!1 &8502397564781643858
 GameObject:
   m_ObjectHideFlags: 0
