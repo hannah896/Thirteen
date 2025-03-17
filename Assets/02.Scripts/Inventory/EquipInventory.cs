@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class EquipInventory : UIInventory
 
     public GameObject equipButton;      //장착 버튼
     public GameObject unequipButton;    //해제 버튼
+
+    public int equipIndex;              // 장착 중인 장비 슬롯 인덱스
 
     protected override void ClearSelectedItemWindow()
     {
@@ -22,6 +25,11 @@ public class EquipInventory : UIInventory
         if (slots[index].item == null) return;
         base.SelectItem(index);
 
+        UpdateEquipButton(index);
+    }
+
+    public void UpdateEquipButton(int index)
+    {
         equipButton.SetActive(selectedItem.itemType == ItemType.Equipable && !slots[index].equipped);
         unequipButton.SetActive(selectedItem.itemType == ItemType.Equipable && slots[index].equipped);
     }
@@ -46,16 +54,25 @@ public class EquipInventory : UIInventory
     public void OnEquipButton()
     {
         // 선택한 아이템이 장비가 아니면 반환
-        if (selectedItem == null || selectedItem.itemType != ItemType.Equipable) return;       
+        if (selectedItem == null || selectedItem.itemType != ItemType.Equipable) return;
 
+        slots[selectedItemIndex].equipped = true;
+        // 장착 시 equipIndex 할당
+        equipIndex = selectedItemIndex;
         CharacterManager.Instance.Player.equipment.Equip(selectedItem);
+        UpdateEquipButton(selectedItemIndex);
         UpdateUI();
     }
 
     public void OnUnEquipButton()
     {
         if (selectedItem == null || selectedItem.itemType != ItemType.Equipable) return;
+
+        slots[equipIndex].equipped = false;
+        // 해제 시 equipIndex -1 할당
+        equipIndex = -1;
         CharacterManager.Instance.Player.equipment.UnEquip();
+        UpdateEquipButton(selectedItemIndex);
         UpdateUI();
     }
 }

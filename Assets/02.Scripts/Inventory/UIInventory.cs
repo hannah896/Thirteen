@@ -129,7 +129,20 @@ public class UIInventory : MonoBehaviour
     // 아이템 버리기
     protected void ThrowItem(ItemData data)
     {
-        Instantiate(data.equipPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
+        GameObject dropItem = Instantiate(data.equipPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
+        if(dropItem.TryGetComponent(out Collider collider))
+        {
+            collider.enabled = true;
+        }
+        else
+        {
+            dropItem.AddComponent<BoxCollider>();
+        }
+
+        if(!dropItem.TryGetComponent(out Rigidbody rigid))
+        {
+            dropItem.AddComponent<Rigidbody>();
+        }
     }
 
     public virtual void SelectItem(int index)
@@ -167,6 +180,7 @@ public class UIInventory : MonoBehaviour
         if(slots[selectedItemIndex].quantity <= 0)
         {
             selectedItem = null;
+            slots[selectedItemIndex].item = null;
             selectedItemIndex = -1;
             ClearSelectedItemWindow();
         }
