@@ -226,21 +226,35 @@ public class PlayerController : MonoBehaviour
         switch (resource.resourceType)
         {
             case ResourceType.Mine:
-                //if(CharacterManager.Instance.Player.equipment.curEquip != null 
-                //    && CharacterManager.Instance.Player.equipment.curEquip.type == Hammer)
-                // 곡괭이가 있고 Rock을 가리키고 있을 땐 RockAttack
-                CharacterManager.Instance.Player.animController.RockAttack();
+                // 망치가 있고 Rock을 가리키고 있을 땐 RockAttack
+                if (CharacterManager.Instance.Player.equipment.curEquip != null
+                    && CharacterManager.Instance.Player.equipment.curEquip.equipType == EquipType.Hammer)
+                {
+                    CharacterManager.Instance.Player.animController.RockAttack();
+                }
+                else
+                {
+
+                    isAttack = false;
+                }
                 break;
             case ResourceType.Lumber:
-                //if (CharacterManager.Instance.Player.equipment.curEquip != null
-                //    && CharacterManager.Instance.Player.equipment.curEquip.type == Axe)
                 // 도끼가 있고 Tree를 가리키고 있을 땐 TreeAttack
-                CharacterManager.Instance.Player.animController.TreeAttack();
+                if (CharacterManager.Instance.Player.equipment.curEquip != null
+                    && CharacterManager.Instance.Player.equipment.curEquip.equipType == EquipType.Axe)
+                {
+                    CharacterManager.Instance.Player.animController.TreeAttack();
+                }
+                else
+                {
+                    isAttack = false;
+                }
                 break;
             case ResourceType.Gathering:
                 CharacterManager.Instance.Player.animController.PlantAttack();
                 break;
             default:
+                isAttack = false;
                 break;
         }
     }

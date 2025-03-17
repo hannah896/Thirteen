@@ -267,6 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 5f272d5de809b0447aec4a123ab7aac7, type: 2}
+  equipType: 4
   localPosition: {x: 0.007, y: -0.043, z: 0.022}
   localRotation: {x: 59.219387, y: 344.55264, z: 331.4132}
   localScale: {x: 0.33, y: 0.33, z: 0.33}

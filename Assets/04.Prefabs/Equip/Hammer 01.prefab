@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 2f4bbabf42813ab49b35e4dcaaf70417, type: 2}
+  equipType: 2
   localPosition: {x: 0.006, y: -0.033, z: 0.017}
   localRotation: {x: 68.739494, y: 19.764254, z: 0.46680465}
   localScale: {x: 0.33, y: 0.33, z: 0.33}
