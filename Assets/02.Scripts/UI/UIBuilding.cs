@@ -21,13 +21,37 @@ public class UIBuilding : MonoBehaviour
 
     private BuildingManager buildingManager;
     private BuildingData selectedBuilding;
+    private PlayerController controller;
 
     private void Start()
     {
+        controller = CharacterManager.Instance.Player.controller;
+
+        controller.building += Toggle;
+
+        buildingWindow.SetActive(false);
+
         buildingManager = GetComponent<BuildingManager>();
         ClearSelectedBuildingWindow();
         CreateBuildingList();
         SelectBuilding(0);
+    }
+
+    public void Toggle()
+    {
+        if (IsOpen())
+        {
+            buildingWindow.SetActive(false);
+        }
+        else
+        {
+            buildingWindow.SetActive(true);
+        }
+    }
+
+    public bool IsOpen()
+    {
+        return buildingWindow.activeInHierarchy;
     }
 
     //건축 List 생성
@@ -105,6 +129,9 @@ public class UIBuilding : MonoBehaviour
     {
         if (selectedBuilding == null) return;
 
+        controller.isBuildMode = true;
+        controller.CursorVisible();
+
         buildingWindow.SetActive(false);
         buildingManager.OnSelectBuilding(selectedBuilding);
     }
@@ -112,6 +139,7 @@ public class UIBuilding : MonoBehaviour
     //UI 종료 버튼
     public void OnExitButton()
     {
+        controller.CursorVisible();
         buildingWindow.SetActive(false);
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BuildingPreview : MonoBehaviour
 {
-    private BuildingManager buildingManager;
+    public BuildingManager buildingManager;
     private BuildingData buildingData;
     private BuildingObject buildingObject;
     private GameObject previewInstance;     //미리보기 인스턴스
@@ -21,7 +21,7 @@ public class BuildingPreview : MonoBehaviour
     
     void Start()
     {
-        buildingManager = FindObjectOfType<BuildingManager>();
+        //buildingManager = FindObjectOfType<BuildingManager>();
     }
 
     public void StartPreview(BuildingData building)
@@ -53,25 +53,9 @@ public class BuildingPreview : MonoBehaviour
         canBuild = CheckBuildable(targetPosition) && CheckSlope();
         SetPreviewColor(canBuild);
 
-        //테스트용 > InputSystem으로 변경 예정
-        //R: 설치, Q,E: 90도 회전, ESC: 취소
-        if (Input.GetKeyDown(KeyCode.R) && canBuild)
-        {
-            InstallBuilding(targetPosition);
-        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Destroy(previewInstance);
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            previewRotation *= Quaternion.Euler(0, -90f, 0);
-            previewInstance.transform.rotation = previewRotation;
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            previewRotation *= Quaternion.Euler(0, 90f, 0);
-            previewInstance.transform.rotation = previewRotation;
         }
     }
 
@@ -146,9 +130,32 @@ public class BuildingPreview : MonoBehaviour
         return slopAngle <= maxSlopeAngle;
     }
 
+    public void PreviewRotate(Vector2 scroll)
+    {
+        if (scroll.y > 0)
+        {
+            previewRotation *= Quaternion.Euler(0, -90f, 0);
+            previewInstance.transform.rotation = previewRotation;
+        }
+        else
+        {
+            previewRotation *= Quaternion.Euler(0, 90f, 0);
+            previewInstance.transform.rotation = previewRotation;
+        }
+    }
+
+    public void ConfirmBuild()
+    {
+        if (canBuild)
+        {
+            InstallBuilding(previewInstance.transform.position);
+        }
+    }
+
     //설치 후 미리보기 삭제
     private void InstallBuilding(Vector3 targetPosition)
     {
+        CharacterManager.Instance.Player.controller.isBuildMode = false;
         buildingManager.BuildBuilding(buildingData, targetPosition, previewRotation);
         Destroy(previewInstance);
     }

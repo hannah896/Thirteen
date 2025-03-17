@@ -21,13 +21,37 @@ public class UICrafting : MonoBehaviour
 
     private CraftingManager craftingManager;
     private ItemData selectedItem;
+    private PlayerController controller;
 
     private void Start()
     {
+        controller = CharacterManager.Instance.Player.controller;
+
+        controller.crafting += Toggle;
+
+        craftingWindow.SetActive(false);
+
         craftingManager = GetComponent<CraftingManager>();
         ClearSelectedCraftingWindow();
         CreateItemList();
         SelectItem(0);
+    }
+
+    public void Toggle()
+    {
+        if (IsOpen())
+        {
+            craftingWindow.SetActive(false);
+        }
+        else
+        {
+            craftingWindow.SetActive(true);
+        }
+    }
+
+    public bool IsOpen()
+    {
+        return craftingWindow.activeInHierarchy;
     }
 
     //건축 List 생성
@@ -105,6 +129,8 @@ public class UICrafting : MonoBehaviour
     {
         if (selectedItem == null) return;
 
+        controller.CursorVisible();
+
         craftingWindow.SetActive(false);
         craftingManager.CraftItem(selectedItem);
     }
@@ -112,6 +138,7 @@ public class UICrafting : MonoBehaviour
     //UI 종료 버튼
     public void OnExitButton()
     {
+        controller.CursorVisible();
         craftingWindow.SetActive(false);
     }
 }
