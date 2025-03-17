@@ -15,8 +15,9 @@ public class Monster : MonoBehaviour, IDamageable
     [Header("Stats")]
     public int health;
     public float walkSpeed;
-    public float runSpeed;
-    public ItemData[] dropOnDeath;
+    public float runSpeed;    
+    //public ItemData[] dropOnDeath;
+    public GameObject[] dropPrefabs;
 
     [Header("AI")]
     private NavMeshAgent agent;
@@ -92,7 +93,7 @@ public class Monster : MonoBehaviour, IDamageable
             case AIState.Running:
                 agent.speed = runSpeed;
                 agent.isStopped = false;
-                break ;
+                break;
             case AIState.Attacking:
                 agent.speed = runSpeed;
                 agent.isStopped = true;
@@ -150,14 +151,14 @@ public class Monster : MonoBehaviour, IDamageable
     {
         if (playerDistance < detectDistance)
         {
-            agent.isStopped = false;            
+            agent.isStopped = false;
             agent.SetDestination(CharacterManager.Instance.Player.transform.position);
             animator.SetBool("Running", true);
         }
         else
         {
             agent.isStopped = true;
-            animator.SetBool("Running",false);
+            animator.SetBool("Running", false);
             SetState(AIState.Wandering);
         }
     }
@@ -222,11 +223,22 @@ public class Monster : MonoBehaviour, IDamageable
 
     void Die()
     {
-        //for (int i = 0; i < dropondeath.length; i++)
-        //{
-        //    instantiate(dropondeath[i].dropprefab, transform.position + vector3.up * 2, quaternion.identity);
-        //}
+        DropItems();        
         Destroy(gameObject);
+    }
+
+    void DropItems()
+    {
+        if (dropPrefabs == null || dropPrefabs.Length == 0) return;
+
+        for (int i = 0; i < dropPrefabs.Length; i++)
+        {
+            if (dropPrefabs[i] != null && i < dropPrefabs.Length)
+            {
+                Vector3 dropPosition = transform.position + Vector3.up * 0.5f;
+                Instantiate(dropPrefabs[i], dropPosition, Quaternion.identity);
+            }
+        }
     }
 
     IEnumerator DamageFlash()
