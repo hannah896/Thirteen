@@ -24,6 +24,8 @@ public class PlayerCondition : MonoBehaviour, IDamageable
 
     public event Action onTakeDamage;
 
+    public bool isDie;
+
     private void Update()
     {
         hunger.Subtract(hunger.passiveValue * Time.deltaTime);
@@ -71,13 +73,28 @@ public class PlayerCondition : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        Debug.Log("Player Die");
+        if (!isDie)
+        {
+            Debug.Log("Player Die");
+            isDie = true;
+
+            CharacterManager.Instance.Player.animController.DieAnimation();
+        }
     }
 
     public void TakeDamage(int damage)
     {
-        hp.Subtract(damage);
-        onTakeDamage?.Invoke();
+        if(!isDie)
+        {
+            hp.Subtract(damage);
+            onTakeDamage?.Invoke();
+        }
+
+    }
+
+    public void SetAttackDamage(int value)
+    {
+        attackDamage += value;
     }
 
     public bool UseStamina(float amount)

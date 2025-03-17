@@ -74,17 +74,23 @@ public class Interaction : MonoBehaviour
         Debug.DrawRay(ray.origin, ray.direction * itemRayDistance, Color.red);
         if (Physics.Raycast(ray, out RaycastHit hit, itemRayDistance, interactableMask))
         {
-            if (hit.transform.TryGetComponent(out ItemObject item))
+            if (hit.transform.TryGetComponent(out IInteractable item))
             {
+                item.OnInteraction();
                 itemGO = hit.collider.gameObject;
-                itemData = item.ItemData;
             }
         }
         else
         {
+            CharacterManager.Instance.Player.interactionUI.SetActive(false);
             itemGO = null;
             itemData = null;
         }
+    }
+
+    public void SetItemData(ItemData itemData)
+    {
+        this.itemData = itemData;
     }
 
     public void OnInteraction(InputAction.CallbackContext context)

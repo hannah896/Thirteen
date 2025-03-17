@@ -19,6 +19,14 @@ public class EquipmentPlayer : MonoBehaviour
             curEquip.gameObject.transform.localRotation = Quaternion.Euler(curEquip.localRotation);
             curEquip.gameObject.transform.localScale = curEquip.localScale;
         }
+
+        // 콜라이더가 활성화 되어있다면 꺼주기
+        if(curEquip.TryGetComponent(out Collider collider))
+        {
+            collider.enabled = false;
+        }
+
+        CharacterManager.Instance.Player.condition.SetAttackDamage((int)curEquip.GetComponent<Equipment>().AttackPower);
     }
 
     public void UnEquip()

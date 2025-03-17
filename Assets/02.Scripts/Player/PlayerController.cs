@@ -39,15 +39,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private bool isAttack;                      // 공격 상태 확인
     private float attackStemina = 10;                // 공격 스태미나
     [SerializeField] Transform attackTr;
-    [SerializeField] float attackRange = 2f;
+    private float attackRange;
+    [SerializeField] private float basicAttackRange = 0.5f;    // 무기가 없을 때 공격 범위
+    [SerializeField] private float weaponAttackRange = 1.5f;    // 무기가 있을 때 공격 범위
     [SerializeField] private LayerMask enemyMask;
 
     private bool canLook = false;                           // 캐릭터가 카메라를 돌릴 수 있는 상태인지 확인
 
+    private PlayerCondition condition;
+
     private void Start()
     {
+        condition = GetComponent<PlayerCondition>();
         rigid = GetComponent<Rigidbody>();
         CursorVisible();
+        SetAttackRange();
     }
 
     private void CursorVisible()
@@ -59,12 +65,14 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (condition.isDie) return;
         Move();
     }
 
     private void LateUpdate()
     {
         Look();
+        if (condition.isDie) return;
         CharacterManager.Instance.Player.animController.RunAnimation(isRun);
     }
     
@@ -82,9 +90,11 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (isJump) return;
+        if (isJump || !canLook) return;
 
-        if(isAttack)
+        CharacterManager.Instance.Player.animController.WalkAnimation(inputDir.magnitude);
+
+        if (isAttack)
         {
             // 공격 시 rigid의 Velocity를 0으로 만들어 줌
             rigid.velocity = Vector3.zero;
@@ -108,6 +118,8 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        if (isAttack || !canLook) return;
+
         isJump = true;
         CharacterManager.Instance.Player.animController.JumpAnimation();
         CharacterManager.Instance.Player.condition.UseStamina(jumpStemina);
@@ -140,7 +152,6 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         inputDir = context.ReadValue<Vector2>();
-        CharacterManager.Instance.Player.animController.WalkAnimation(inputDir.magnitude);
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -184,6 +195,8 @@ public class PlayerController : MonoBehaviour
 
     private void Attack()
     {
+        if (!canLook) return;
+
         isAttack = true;
 
         Resource resource = CharacterManager.Instance.Player.resource;
@@ -199,12 +212,10 @@ public class PlayerController : MonoBehaviour
             if(CharacterManager.Instance.Player.condition.UseStamina(attackStemina))
             {
                 // 무기가 없을 땐 기본 Attack
-                //if(CharacterManager.Instance.Player.equip == null)
-                CharacterManager.Instance.Player.animController.BasicAttack();
-
-                //if(CharacterManager.Instance.Player.equip != null)
-                // 무기가 있을 땐 EquipAttack
-                //CharacterManager.Instance.Player.animController.WeaponAttack();
+                if (CharacterManager.Instance.Player.equipment.curEquip == null)
+                    CharacterManager.Instance.Player.animController.BasicAttack();
+                else // 무기가 있을 땐 EquipAttack
+                    CharacterManager.Instance.Player.animController.WeaponAttack();
             }
         }
     }
@@ -215,25 +226,44 @@ public class PlayerController : MonoBehaviour
         switch (resource.resourceType)
         {
             case ResourceType.Mine:
-                //if(CharacterManager.Instance.Player.equipment.curEquip != null 
-                //    && CharacterManager.Instance.Player.equipment.curEquip.type == Hammer)
-                // 곡괭이가 있고 Rock을 가리키고 있을 땐 RockAttack
-                CharacterManager.Instance.Player.animController.RockAttack();
+                // 망치가 있고 Rock을 가리키고 있을 땐 RockAttack
+                if (CharacterManager.Instance.Player.equipment.curEquip != null
+                    && CharacterManager.Instance.Player.equipment.curEquip.equipType == EquipType.Hammer)
+                {
+                    CharacterManager.Instance.Player.animController.RockAttack();
+                }
+                else
+                {
+
+                    isAttack = false;
+                }
                 break;
             case ResourceType.Lumber:
-                //if (CharacterManager.Instance.Player.equipment.curEquip != null
-                //    && CharacterManager.Instance.Player.equipment.curEquip.type == Axe)
                 // 도끼가 있고 Tree를 가리키고 있을 땐 TreeAttack
-                CharacterManager.Instance.Player.animController.TreeAttack();
+                if (CharacterManager.Instance.Player.equipment.curEquip != null
+                    && CharacterManager.Instance.Player.equipment.curEquip.equipType == EquipType.Axe)
+                {
+                    CharacterManager.Instance.Player.animController.TreeAttack();
+                }
+                else
+                {
+                    isAttack = false;
+                }
                 break;
             case ResourceType.Gathering:
                 CharacterManager.Instance.Player.animController.PlantAttack();
                 break;
             default:
+                isAttack = false;
                 break;
         }
     }
 
+    public float SetAttackRange()
+    {
+        attackRange= CharacterManager.Instance.Player.equipment.curEquip == null ? basicAttackRange : weaponAttackRange;
+        return attackRange;
+    }
     public void OnAttack(InputAction.CallbackContext context)
     {
         // 스태미너 확인 필요
@@ -274,7 +304,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnEnemyHit()
     {
-        Collider[] colliders = Physics.OverlapSphere(attackTr.position, attackRange, enemyMask);
+        Collider[] colliders = Physics.OverlapSphere(attackTr.position, SetAttackRange(), enemyMask);
 
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -307,6 +337,7 @@ public class PlayerController : MonoBehaviour
         }
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackTr.position, attackRange);
+        Gizmos.DrawWireSphere(attackTr.position, basicAttackRange);
+        Gizmos.DrawWireSphere(attackTr.position, weaponAttackRange);
     }
 }

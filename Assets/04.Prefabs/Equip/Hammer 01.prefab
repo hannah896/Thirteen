@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6093241100140125913}
   - component: {fileID: 2632518006357328897}
   - component: {fileID: 1729901260428091732}
+  - component: {fileID: 6332981558141463837}
   m_Layer: 10
   m_Name: Hammer 01
   m_TagString: Weapon
@@ -98,12 +99,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 2f4bbabf42813ab49b35e4dcaaf70417, type: 2}
+  equipType: 2
   localPosition: {x: 0.006, y: -0.033, z: 0.017}
   localRotation: {x: 68.739494, y: 19.764254, z: 0.46680465}
   localScale: {x: 0.33, y: 0.33, z: 0.33}
   workspeed: 3
   hitDistance: 1
   AttackPower: 0
+--- !u!65 &6332981558141463837
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7668990291685850131}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1415734, y: 2.369143, z: 0.25864598}
+  m_Center: {x: -0.05185921, y: 0.65339214, z: 0.000008919892}
 --- !u!1 &8520061371513546887
 GameObject:
   m_ObjectHideFlags: 0
