@@ -90,9 +90,11 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (isJump) return;
+        if (isJump || !canLook) return;
 
-        if(isAttack)
+        CharacterManager.Instance.Player.animController.WalkAnimation(inputDir.magnitude);
+
+        if (isAttack)
         {
             // 공격 시 rigid의 Velocity를 0으로 만들어 줌
             rigid.velocity = Vector3.zero;
@@ -116,6 +118,8 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        if (isAttack || !canLook) return;
+
         isJump = true;
         CharacterManager.Instance.Player.animController.JumpAnimation();
         CharacterManager.Instance.Player.condition.UseStamina(jumpStemina);
@@ -148,7 +152,6 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         inputDir = context.ReadValue<Vector2>();
-        CharacterManager.Instance.Player.animController.WalkAnimation(inputDir.magnitude);
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -192,6 +195,8 @@ public class PlayerController : MonoBehaviour
 
     private void Attack()
     {
+        if (!canLook) return;
+
         isAttack = true;
 
         Resource resource = CharacterManager.Instance.Player.resource;
