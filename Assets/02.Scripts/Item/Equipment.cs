@@ -17,9 +17,16 @@ public class Equipment : MonoBehaviour, IInteractable
     [Header("Weapon")]
     public float AttackPower;
 
+    private Interaction interaction;
+
+    private void Start()
+    {
+        interaction = CharacterManager.Instance.Player.GetComponent<Interaction>();
+    }
     public void OnInteraction()
     {
         CharacterManager.Instance.Player.interactionUI.SetActive(true);
         CharacterManager.Instance.Player.interactionUI.Set(data);
+        interaction.SetItemData(data);
     }
 }
