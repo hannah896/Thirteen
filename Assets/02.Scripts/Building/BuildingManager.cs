@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class BuildingManager : MonoBehaviour
 {
@@ -14,8 +13,15 @@ public class BuildingManager : MonoBehaviour
 
     public void BuildBuilding(BuildingData building, Vector3 position, Quaternion rotation)
     {
+        bool isBuild = true;
+
         //인벤토리에서 재료 차감 후 건물 생성
-        if (InventoryManager.Instance.consumeInventory.ConsumeResources(building.requiredResources))
+        if (building.requiredResources.Count > 0)
+        {
+            isBuild = InventoryManager.Instance.consumeInventory.ConsumeResources(building.requiredResources);
+        }
+
+        if (isBuild)
         {
             Instantiate(building.buildPrefab, position, rotation);
         }

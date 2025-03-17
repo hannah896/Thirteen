@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,8 +13,15 @@ public class CraftingManager : MonoBehaviour
 
     public void CraftItem(ItemData item)
     {
+        bool isCraft = true;
+
         //인벤토리에서 재료 차감 후 생산 아이템 추가
-        if (InventoryManager.Instance.consumeInventory.ConsumeResources(item.cost))
+        if (item.cost.Count > 0)
+        {
+            isCraft = InventoryManager.Instance.consumeInventory.ConsumeResources(item.cost);
+        }
+
+        if (isCraft)
         {
             CharacterManager.Instance.Player.itemData = item;
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -45,18 +46,24 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask enemyMask;
 
     private bool canLook = false;                           // 캐릭터가 카메라를 돌릴 수 있는 상태인지 확인
+    public bool isBuildMode = false;                       // 건물 설치 미리보기 상태 확인
+
+    public Action crafting;
+    public Action building;
 
     private PlayerCondition condition;
+    private BuildingPreview buildingPreview;
 
     private void Start()
     {
+        buildingPreview = FindObjectOfType<BuildingPreview>();
         condition = GetComponent<PlayerCondition>();
         rigid = GetComponent<Rigidbody>();
         CursorVisible();
         SetAttackRange();
     }
 
-    private void CursorVisible()
+    public void CursorVisible()
     {
         canLook = !canLook;
         Cursor.visible = !Cursor.visible;
@@ -264,6 +271,7 @@ public class PlayerController : MonoBehaviour
         attackRange= CharacterManager.Instance.Player.equipment.curEquip == null ? basicAttackRange : weaponAttackRange;
         return attackRange;
     }
+
     public void OnAttack(InputAction.CallbackContext context)
     {
         // 스태미너 확인 필요
@@ -279,6 +287,45 @@ public class PlayerController : MonoBehaviour
         {
             CursorVisible();
             CharacterManager.Instance.Player.inventory();
+        }
+    }
+
+    public void OnCraft(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Started)
+        {
+            crafting?.Invoke();
+            CursorVisible();
+        }
+    }
+
+    public void OnBuild(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            building?.Invoke();
+            CursorVisible();
+        }
+    }
+
+    public void OnRotate(InputAction.CallbackContext context)
+    {
+        if (isBuildMode)
+        {
+            Vector2 scrollInput = context.ReadValue<Vector2>();
+
+            buildingPreview.PreviewRotate(scrollInput);
+        }
+    }
+
+    public void OnConfirmBuild(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started && isBuildMode)
+        {
+            if (buildingPreview != null)
+            {
+                buildingPreview.ConfirmBuild();
+            }
         }
     }
 
