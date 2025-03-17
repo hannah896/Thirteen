@@ -163,8 +163,6 @@ public class UIInventory : MonoBehaviour
             selectedStatName.text += item.consumableType.ToString();
             selectedStatValue.text += item.value.ToString();
         }
-
-        dropButton.SetActive(true);
     }
 
     public void OnDropButton()

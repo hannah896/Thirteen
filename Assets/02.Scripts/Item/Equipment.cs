@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Equipment : MonoBehaviour
+public class Equipment : MonoBehaviour, IInteractable
 {
     public ItemData data;
 
@@ -16,4 +16,10 @@ public class Equipment : MonoBehaviour
 
     [Header("Weapon")]
     public float AttackPower;
+
+    public void OnInteraction()
+    {
+        CharacterManager.Instance.Player.interactionUI.SetActive(true);
+        CharacterManager.Instance.Player.interactionUI.Set(data);
+    }
 }

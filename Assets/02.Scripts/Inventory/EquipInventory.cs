@@ -26,12 +26,19 @@ public class EquipInventory : UIInventory
         base.SelectItem(index);
 
         UpdateEquipButton(index);
+
+        UpdateDropButton(slots[selectedItemIndex].equipped);
     }
 
     public void UpdateEquipButton(int index)
     {
         equipButton.SetActive(selectedItem.itemType == ItemType.Equipable && !slots[index].equipped);
         unequipButton.SetActive(selectedItem.itemType == ItemType.Equipable && slots[index].equipped);
+    }
+
+    public void UpdateDropButton(bool isEquipped)
+    {
+        dropButton.SetActive(!isEquipped);
     }
 
     public void AddItem()
@@ -56,11 +63,17 @@ public class EquipInventory : UIInventory
         // 선택한 아이템이 장비가 아니면 반환
         if (selectedItem == null || selectedItem.itemType != ItemType.Equipable) return;
 
+        // 이전에 장착한 아이템이 있다면 해제 해주기
+        if (equipIndex > -1)
+        {
+            slots[equipIndex].equipped = false;
+        }
         slots[selectedItemIndex].equipped = true;
         // 장착 시 equipIndex 할당
         equipIndex = selectedItemIndex;
         CharacterManager.Instance.Player.equipment.Equip(selectedItem);
         UpdateEquipButton(selectedItemIndex);
+        UpdateDropButton(slots[selectedItemIndex].equipped);
         UpdateUI();
     }
 
@@ -69,10 +82,10 @@ public class EquipInventory : UIInventory
         if (selectedItem == null || selectedItem.itemType != ItemType.Equipable) return;
 
         slots[equipIndex].equipped = false;
+        UpdateEquipButton(equipIndex);
         // 해제 시 equipIndex -1 할당
         equipIndex = -1;
         CharacterManager.Instance.Player.equipment.UnEquip();
-        UpdateEquipButton(selectedItemIndex);
         UpdateUI();
     }
 }

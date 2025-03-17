@@ -77,6 +77,11 @@ public class PlayerCondition : MonoBehaviour, IDamageable
 
     }
 
+    public void SetAttackDamage(int value)
+    {
+        attackDamage += value;
+    }
+
     public bool UseStamina(float amount)
     {
         if (stamina.curValue - amount < 0f)
