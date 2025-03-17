@@ -6,17 +6,18 @@ public class UIBuilding : MonoBehaviour
 {
     public BuildingSlot[] slots;
 
+    [Header("UI Elements")]
     public GameObject buildingWindow;       //건축 UI 윈도우
     public GameObject buildingListPrefab;   //ScrollView List Prefab
     public Transform contentParent;         //ScrollView List가 들어갈 부모 Object
+    public Button buildButton;
 
-    [Header("Select Item")]
-    public Sprite icon;
+    [Header("Select Building Info")]
     public TextMeshProUGUI selectedBuildingName;        //건축물 이름
     public TextMeshProUGUI selectedBuildingDescription; //건축물 설명
     public TextMeshProUGUI selectedRequiredName;        //필요 재료
     public TextMeshProUGUI selectedRequiredAmount;      //필요 수량
-    public Button buildButton;
+    public Image icon;
 
     private BuildingManager buildingManager;
     private BuildingData selectedBuilding;
@@ -51,7 +52,7 @@ public class UIBuilding : MonoBehaviour
     }
 
     //List 초기화
-    void ClearCraftList()
+    void ClearList()
     {
         foreach (Transform child in contentParent)
         {
@@ -67,34 +68,35 @@ public class UIBuilding : MonoBehaviour
         selectedRequiredName.text = string.Empty;
         selectedRequiredAmount.text = string.Empty;
 
-        ClearCraftList();
+        ClearList();
     }
 
-    //List 선택 세팅
+    //선택 시 UI 업데이트
     public void SelectBuilding(int index)
     {
-        if (slots[index].building == null) return;
+        if (slots[index].building == null || slots[index].building == selectedBuilding) return;
 
         selectedBuilding = slots[index].building;
 
-        icon = selectedBuilding.icon;
+        icon.sprite = selectedBuilding.icon;
         selectedBuildingName.text = selectedBuilding.displayName;
         selectedBuildingDescription.text = selectedBuilding.description;
+        selectedRequiredName.text = string.Empty;
+        selectedRequiredAmount.text = string.Empty;
+
         for (int i = 0; i < selectedBuilding.requiredResources.Count; i++)
         {
-            selectedRequiredName.text += selectedBuilding.requiredResources[i].resource + "\n";
+            selectedRequiredName.text += selectedBuilding.requiredResources[i].resource.name + "\n";
             selectedRequiredAmount.text += selectedBuilding.requiredResources[i].amount.ToString() + "\n";
         }
 
         if (buildingManager.CanBuild(selectedBuilding))
         {
-            buildButton.enabled = true;
-            buildButton.image.color = Color.white;
+            buildButton.interactable = true;
         }
         else
         {
-            buildButton.enabled = false;
-            buildButton.image.color = Color.gray;
+            buildButton.interactable = false;
         }
     }
 

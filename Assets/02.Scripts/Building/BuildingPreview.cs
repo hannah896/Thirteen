@@ -8,13 +8,13 @@ public class BuildingPreview : MonoBehaviour
     private GameObject previewInstance;     //미리보기 인스턴스
     private Color validColor = Color.green;  //설치 가능 색상
     private Color invalidColor = Color.red;  //설치 불가능 색상
+
     public LayerMask groundLayer;
-
     public float maxDistance;               //설치 거리
-    private Quaternion previewRotation = Quaternion.identity;   //미리보기 회전값
+    public float maxSlopeAngle = 10f;       //설치 가능 경사
 
+    private Quaternion previewRotation;   //미리보기 회전값
     private bool canBuild = false;
-    public float maxSlopeAngle = 10f;
 
     //테스트
     public Camera cam;
@@ -29,7 +29,6 @@ public class BuildingPreview : MonoBehaviour
         //미리보기 오브젝트 셋팅
         if (previewInstance != null)
         {
-            buildingData = null;
             Destroy(previewInstance);
         }
 
@@ -37,23 +36,9 @@ public class BuildingPreview : MonoBehaviour
         previewInstance = Instantiate(buildingData.buildPrefab);
         buildingObject = previewInstance.GetComponent<BuildingObject>();
 
-        //미리보기 isTrigger 세팅
-        Collider[] previewCollider = previewInstance.GetComponentsInChildren<Collider>();
-        if (previewCollider != null)
-        {
-            for (int i = 0; i < previewCollider.Length; i++)
-            {
+        previewRotation = previewInstance.transform.rotation;
 
-                if (previewCollider[i] is MeshCollider mesh)
-                {
-                    mesh.convex = true;
-                    mesh.isTrigger = true;
-                }
-                else
-                    previewCollider[i].isTrigger = true;
-            }
-        }
-
+        SetupPreviewColliders();
         previewInstance.SetActive(true);
     }
 
@@ -90,13 +75,26 @@ public class BuildingPreview : MonoBehaviour
         }
     }
 
+    //미리보기 isTrigger 세팅
+    private void SetupPreviewColliders()
+    {
+        Collider[] colliders = previewInstance.GetComponentsInChildren<Collider>();
+        foreach(Collider collider in colliders)
+        {
+            if (collider is MeshCollider mesh)
+            {
+                mesh.convex = true;
+            }
+            collider.isTrigger = true;
+        }
+    }
+
     //설치 위치 반환
     private Vector3 GetTargetPosition()
     {
         Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
-        RaycastHit hit;
 
-        if(Physics.Raycast(ray, out hit, maxDistance, groundLayer))
+        if(Physics.Raycast(ray, out RaycastHit hit, maxDistance, groundLayer))
         {
             Vector3 hitPoint = hit.point;
 
@@ -109,16 +107,8 @@ public class BuildingPreview : MonoBehaviour
     //설치 가능 여부 확인
     private bool CheckBuildable(Vector3 targetPosition)
     {
-        if (buildingObject.colliderList.Count > 0)
-        {
-            canBuild = false;
-        }
-        else
-        {
-            canBuild = true;
-        }
-
-        return canBuild;
+        if (buildingObject.colliderList.Count == 0) return true;
+        else return false;
     }
     
     //미리보기 색상 변경
