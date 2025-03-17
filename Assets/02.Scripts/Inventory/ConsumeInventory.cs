@@ -66,7 +66,7 @@ public class ConsumeInventory : UIInventory
                         condition.Eat(selectedItem.effect[i].value);
                         break;
                     case ConsumableType.Thirsty:
-                        condition.Eat(selectedItem.effect[i].value);
+                        condition.Drink(selectedItem.effect[i].value);
                         break;
                 }
             }

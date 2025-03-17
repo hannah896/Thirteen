@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 5860127409641641881}
   - component: {fileID: 1856557421311663873}
   - component: {fileID: 3002753487680565840}
-  m_Layer: 0
+  - component: {fileID: 6518868648353421595}
+  m_Layer: 8
   m_Name: waterbottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,3 +121,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: a42460f6d1bc27e4da3fdf92e084aaf4, type: 2}
+--- !u!65 &6518868648353421595
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7191999886358183138}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.35075733, y: 0.85118955, z: 0.35075733}
+  m_Center: {x: 0, y: -0.21044275, z: 0}

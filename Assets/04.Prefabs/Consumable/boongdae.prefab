@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7124222438321336886}
   - component: {fileID: 845045188483135022}
   - component: {fileID: 3957206523678377396}
-  m_Layer: 0
+  - component: {fileID: -8981255690287068278}
+  m_Layer: 8
   m_Name: boongdae
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,3 +120,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: 89f5fa70d7718dd45b2ced603747c717, type: 2}
+--- !u!65 &-8981255690287068278
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2802410814351102829}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.43206167, y: 0.111, z: 0.42549768}
+  m_Center: {x: 0, y: 0, z: 0}

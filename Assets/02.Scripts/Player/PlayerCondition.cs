@@ -49,10 +49,11 @@ public class PlayerCondition : MonoBehaviour, IDamageable
 
     public void Eat(float amount)
     {
-        //if() 음식이라면
         hunger.Add(amount);
+    }
 
-        //if() 물이라면
+    public void Drink(float amount)
+    {
         thirst.Add(amount);
     }
 
