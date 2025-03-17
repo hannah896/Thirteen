@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ConsumeInventory : UIInventory
 {
-    // consume
+    //consume
     public GameObject useButton;
 
     protected override void ClearSelectedItemWindow()
@@ -29,7 +29,7 @@ public class ConsumeInventory : UIInventory
         if (data.canStack)
         {
             ItemSlot slot = GetItemStack(data);
-            if(slot != null)
+            if (slot != null)
             {
                 slot.quantity++;
                 UpdateUI();
@@ -51,11 +51,32 @@ public class ConsumeInventory : UIInventory
         CharacterManager.Instance.Player.itemData = null;
     }
 
-    /* public void OnUseButton()
-     {
-         if(selectedItem.itemType == ItemType.Consumable)
-         {
-             for(int i = 0; i < 
-         }
-     }*/
+    public void OnUseButton()
+    {
+        if (selectedItem.itemType == ItemType.Consumable)
+        {
+            for (int i = 0; i < selectedItem.effect.Length; i++)
+            {
+                switch (selectedItem.effect[i].consumableType)
+                {
+                    case ConsumableType.Health:
+                        condition.Heal(selectedItem.effect[i].value);
+                        break;
+                    case ConsumableType.Hunger:
+                        condition.Eat(selectedItem.effect[i].value);
+                        break;
+                    case ConsumableType.Thirsty:
+                        condition.Eat(selectedItem.effect[i].value);
+                        break;
+                }
+            }
+            RemoveSelectedItem();
+        }
+    }
+
+    public void OnDropButton()
+    {
+        ThrowItem(selectedItem);
+        RemoveSelectedItem();
+    }
 }
