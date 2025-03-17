@@ -76,12 +76,14 @@ public class Interaction : MonoBehaviour
         {
             if (hit.transform.TryGetComponent(out ItemObject item))
             {
+                item.OnInteraction();
                 itemGO = hit.collider.gameObject;
                 itemData = item.ItemData;
             }
         }
         else
         {
+            CharacterManager.Instance.Player.interactionUI.SetActive(false);
             itemGO = null;
             itemData = null;
         }

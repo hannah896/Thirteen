@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public InteractionUI interactionUI;
+
     public PlayerController controller;
     public PlayerCondition condition;
     public AnimationController animController;
     public EquipmentPlayer equipment;
-    //public Equipment equip;
 
     public ItemData itemData;
     public Resource resource;
@@ -27,7 +28,8 @@ public class Player : MonoBehaviour
         condition = GetComponent<PlayerCondition>();
         animController = GetComponent<AnimationController>();
         equipment = GetComponent<EquipmentPlayer>();
-        //equip = GetComponent<Equipment>();
+
+        interactionUI = FindObjectOfType<InteractionUI>();
     }
 
     public void AddItem()
