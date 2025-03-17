@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public enum InventoryType
@@ -129,7 +131,20 @@ public class UIInventory : MonoBehaviour
     // 아이템 버리기
     protected void ThrowItem(ItemData data)
     {
-        Instantiate(data.equipPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
+        GameObject dropItem = Instantiate(data.equipPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
+        if(dropItem.TryGetComponent(out Collider collider))
+        {
+            collider.enabled = true;
+        }
+        else
+        {
+            dropItem.AddComponent<BoxCollider>();
+        }
+
+        if(!dropItem.TryGetComponent(out Rigidbody rigid))
+        {
+            dropItem.AddComponent<Rigidbody>();
+        }
     }
 
     public virtual void SelectItem(int index)
@@ -150,8 +165,6 @@ public class UIInventory : MonoBehaviour
             selectedStatName.text += item.consumableType.ToString();
             selectedStatValue.text += item.value.ToString();
         }
-
-        dropButton.SetActive(true);
     }
 
     public void OnDropButton()
@@ -167,10 +180,56 @@ public class UIInventory : MonoBehaviour
         if(slots[selectedItemIndex].quantity <= 0)
         {
             selectedItem = null;
+            slots[selectedItemIndex].item = null;
             selectedItemIndex = -1;
             ClearSelectedItemWindow();
         }
 
         UpdateUI();
+    }
+
+    public bool HasRequiredResources(List<ResourceCost> data)
+    {
+        bool found = false;
+
+        //필요한 재료 인벤토리에 존재하는지 확인
+        foreach (ResourceCost cost in data)
+        {
+            for (int i = 0; i < slots.Length; i++)
+            {
+                if (slots[i].item == cost.resource & slots[i].quantity >= cost.amount)
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) return false;
+        }
+
+        return true;
+    }
+
+    public bool ConsumeResources(List<ResourceCost> data)
+    {
+        if (!HasRequiredResources(data)) return false;
+
+        foreach (ResourceCost cost in data)
+        {
+            for (int i = 0; i < slots.Length; i++)
+            {
+                if (slots[i].item == cost.resource)
+                {
+                    slots[i].quantity -= cost.amount;
+                    if (slots[i].quantity <= 0)
+                    {
+                        slots[i] = null;
+                    }
+                    break;
+                }
+            }
+        }
+
+        return true;
     }
 }

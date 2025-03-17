@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 1131174363241902024}
   - component: {fileID: 4161011571067487182}
   - component: {fileID: 8112919656992434057}
+  - component: {fileID: 2360549337391273795}
   m_Layer: 10
   m_Name: Shovel 01
   m_TagString: Weapon
@@ -266,12 +267,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 5f272d5de809b0447aec4a123ab7aac7, type: 2}
+  equipType: 4
   localPosition: {x: 0.007, y: -0.043, z: 0.022}
   localRotation: {x: 59.219387, y: 344.55264, z: 331.4132}
   localScale: {x: 0.33, y: 0.33, z: 0.33}
   workspeed: 5
   hitDistance: 7
   AttackPower: 5
+--- !u!65 &2360549337391273795
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5411819576587982300}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.80381566, y: 3.2338083, z: 0.18095395}
+  m_Center: {x: 0, y: 0.95199597, z: 0.023036819}
 --- !u!1 &5714018800015809323
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 70bb7127d1f284542afbeec1a7101b9c
+guid: 70d6b4609ba0a5b41aa7718b35a7f7c3
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Sword And Shield Slash
+      name: Standing Melee Attack Downward
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 45
+      lastFrame: 68
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -57,8 +57,15 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.88372093
+      - time: 0.883721
         functionName: EndAttack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.3604651
+        functionName: OnEnemyHit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

@@ -10,7 +10,7 @@ public class PlayerCondition : MonoBehaviour, IDamageable
     public UICondition uiCondition;
 
     [SerializeField] private int attackDamage = 5;
-    public int AttackDamage { get { return attackDamage; } set { attackDamage = value; }}       // 공격력
+    public int AttackDamage { get { return attackDamage; } set { attackDamage = value; } }       // 공격력
     [SerializeField] private int defense = 5;
     public int Defense { get { return defense; } set { defense = value; } }            // 방어력
 
@@ -23,6 +23,8 @@ public class PlayerCondition : MonoBehaviour, IDamageable
     public float noThirstHPDecay;
 
     public event Action onTakeDamage;
+
+    public bool isDie;
 
     private void Update()
     {
@@ -45,24 +47,54 @@ public class PlayerCondition : MonoBehaviour, IDamageable
         hp.Add(amount);
     }
 
-    public void Eat(float amount)
+    public void Eat(ItemData item)
     {
-        //if() 음식이라면
-        hunger.Add(amount);
+        if (item.itemType != ItemType.Consumable) return;
 
-        //if() 물이라면
-        thirst.Add(amount);
+        foreach (Effect effect in item.effect)
+        {
+            switch (effect.consumableType)
+            {
+                case ConsumableType.Health:
+                    hp.Add(effect.value);
+                    break;
+                case ConsumableType.Hunger:
+                    hunger.Add(effect.value);
+                    break;
+                case ConsumableType.Thirsty:
+                    thirst.Add(effect.value);
+                    break;
+                case ConsumableType.Stemina:
+                    stamina.Add(effect.value);
+                    break;
+            }
+        }
     }
 
     public void Die()
     {
-        Debug.Log("Player Die");
+        if (!isDie)
+        {
+            Debug.Log("Player Die");
+            isDie = true;
+
+            CharacterManager.Instance.Player.animController.DieAnimation();
+        }
     }
 
     public void TakeDamage(int damage)
     {
-        hp.Subtract(damage);
-        onTakeDamage?.Invoke();
+        if(!isDie)
+        {
+            hp.Subtract(damage);
+            onTakeDamage?.Invoke();
+        }
+
+    }
+
+    public void SetAttackDamage(int value)
+    {
+        attackDamage += value;
     }
 
     public bool UseStamina(float amount)
