@@ -4054,7 +4054,7 @@ GameObject:
   - component: {fileID: 6156659515737911842}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4162,8 +4162,8 @@ MonoBehaviour:
   uiCondition: {fileID: 0}
   attackDamage: 5
   defense: 5
-  noHungerHPDecay: 0
-  noThirstHPDecay: 0
+  noHungerHPDecay: 5
+  noThirstHPDecay: 5
   isDie: 0
 --- !u!114 &3065827811555338876
 MonoBehaviour:
@@ -4197,6 +4197,7 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 512
+  isBuildMode: 0
 --- !u!114 &644297023593230372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4334,6 +4335,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3d7f129b-875d-48dc-82fd-9ad8065998dd
     m_ActionName: Player/Inventory[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 666edf12-2393-4736-a995-0544af48ad09
+    m_ActionName: Player/Craft[/Keyboard/t]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0273ecdf-eca7-4f51-ad65-2bb29735c5ab
+    m_ActionName: Player/Build[/Keyboard/y]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2f6dbb08-8d23-4c2c-a696-819fc80bcc6f
+    m_ActionName: Player/ConfirmBuild[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e54111e7-f862-4182-aaa0-b256604940bc
+    m_ActionName: Player/Rotate[/Mouse/scroll]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -4379,7 +4396,7 @@ MonoBehaviour:
     m_Bits: 128
   interactableMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1280
   itemGO: {fileID: 0}
   itemData: {fileID: 0}
 --- !u!114 &1318329169319659606
