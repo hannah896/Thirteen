@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemHammer
   m_EditorClassIdentifier: 
   itemName: "\uB9DD\uCE58"
-  itemDescription: "\uB599\uD050 \uBCA0\uB9AC \uB9DD\uCE58"
+  itemDescription: "\uB561\uD050 \uBCA0\uB9AC \uB9DD\uCE58"
   Icon: {fileID: 21300000, guid: 38869380ceaa102479be7728347829e9, type: 3}
   itemType: 0
   canStack: 0

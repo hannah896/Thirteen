@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 6500691954743504841}
   - component: {fileID: 4591110891587161587}
   - component: {fileID: 2498358735849158496}
-  - component: {fileID: 103292796939589343}
   m_Layer: 7
   m_Name: Tree1
   m_TagString: Untagged
@@ -161,33 +160,6 @@ MonoBehaviour:
   maxAmount: 10
   currentChances: 10
   second: 40
---- !u!205 &103292796939589343
-LODGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196434}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
-  m_Size: 1
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
-  m_LastLODIsBillboard: 0
-  m_LODs:
-  - screenRelativeHeight: 0.6
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 2393040}
-  - screenRelativeHeight: 0.3
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 2393040}
-  - screenRelativeHeight: 0.1
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 2393040}
-  m_Enabled: 1
 --- !u!21 &2179674
 Material:
   serializedVersion: 8

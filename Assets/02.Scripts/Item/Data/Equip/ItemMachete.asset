@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e9a8c7433a0624d83fba986ef58660, type: 3}
   m_Name: ItemMachete
   m_EditorClassIdentifier: 
-  itemName: 
-  itemDescription: 
+  itemName: "\uB9C8\uCCB4\uD14C"
+  itemDescription: "\uB9C8\uD14C\uCCB4 \uC544\uB2D9\uB2C8\uB2E4"
   Icon: {fileID: 0}
   itemType: 0
   canStack: 0

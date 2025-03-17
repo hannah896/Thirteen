@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemHerb
   m_EditorClassIdentifier: 
   itemName: "\uC57D\uCD08"
-  itemDescription: "\uC601\uC5B4\uB85C \uD5C8\uBE0C"
+  itemDescription: "\uC57D\uCD08, \uC911\uCD08, \uAC15\uCD08 \uC911 \uCD5C\uC57D\uCCB4\uC785\uB2C8\uB2E4"
   Icon: {fileID: 0}
   itemType: 2
   canStack: 1

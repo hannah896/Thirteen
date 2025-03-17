@@ -19,6 +19,9 @@ public class ResourceAutoMaker : MonoBehaviour
     float PosY;
     float minZ;
     float maxZ;
+
+    [Header("BoxInfo")]
+    public List<GameObject> box = new List<GameObject>();
     
     private void OnValidate()
     {
@@ -66,6 +69,21 @@ public class ResourceAutoMaker : MonoBehaviour
                     Quaternion.identity,
                     resource.transform
                 );
+        }
+
+        for (int i = 0; i < 33; i++)
+        {
+            foreach(GameObject bx in box)
+            {
+                //상자 생성
+                Instantiate
+                    (
+                        bx,
+                        RandomPosition(),
+                        Quaternion.identity,
+                        resource.transform
+                    );
+            }
         }
     }
 
