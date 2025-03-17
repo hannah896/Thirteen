@@ -556,14 +556,33 @@ PrefabInstance:
       propertyPath: enemyMask.m_Bits
       value: 512
       objectReference: {fileID: 0}
+    - target: {fileID: 5700126623631609252, guid: 5eacab592e418d94fb88d90d2a128d32, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'root'\n\tTransform 'lowerarm_l'\n\tTransform
+        'root'\n\tTransform 'neck_01'\n\tTransform 'clavicle_l'\n\tTransform 'hand_l'\n\tTransform
+        'spine_02'\n\tTransform 'upperarm_r'\n\tTransform 'upperarm_l'\n\tTransform
+        'thigh_l'\n\tand more ...\n\tFrom animation clip 'Sword And Shield Slash'"
+      objectReference: {fileID: 0}
     - target: {fileID: 8347310752101170277, guid: 5eacab592e418d94fb88d90d2a128d32, type: 3}
       propertyPath: m_Name
       value: Character (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8347310752101170277, guid: 5eacab592e418d94fb88d90d2a128d32, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8347310752101170277, guid: 5eacab592e418d94fb88d90d2a128d32, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1716941240}
+    - targetCorrespondingSourceObject: {fileID: 8347310752101170277, guid: 5eacab592e418d94fb88d90d2a128d32, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1716941241}
   m_SourcePrefab: {fileID: 100100000, guid: 5eacab592e418d94fb88d90d2a128d32, type: 3}
 --- !u!1 &151638812
 GameObject:
@@ -2915,7 +2934,7 @@ GameObject:
   - component: {fileID: 869799669}
   m_Layer: 0
   m_Name: HotZone
-  m_TagString: Finish
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3701,6 +3720,8 @@ MonoBehaviour:
   interactableMask:
     serializedVersion: 2
     m_Bits: 0
+  itemGO: {fileID: 0}
+  itemData: {fileID: 0}
 --- !u!114 &1139473829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3715,9 +3736,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   condition: {fileID: 0}
+  animController: {fileID: 0}
+  equipment: {fileID: 0}
   itemData: {fileID: 0}
   resource: {fileID: 0}
   dropPosition: {fileID: 0}
+  isDie: 0
 --- !u!114 &1139473830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3857,6 +3881,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  isAttack: 0
   attackTr: {fileID: 0}
   attackRange: 2
   enemyMask:
@@ -5608,6 +5633,37 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.004407674, y: 0.037526935, z: 1.283328}
     m_Extent: {x: 0.36818472, y: 0.29108435, z: 0.38185248}
   m_DirtyAABB: 0
+--- !u!1 &1716941230 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8347310752101170277, guid: 5eacab592e418d94fb88d90d2a128d32, type: 3}
+  m_PrefabInstance: {fileID: 85181676}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1716941240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716941230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0705b957da9040f46b3c1f64a8588a76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1716941241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716941230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc9fbcdc2d9b814eb7b4b4e21301656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curEquip: {fileID: 0}
+  equipParent: {fileID: 0}
 --- !u!1 &1718167111
 GameObject:
   m_ObjectHideFlags: 0
@@ -15026,8 +15082,9 @@ MonoBehaviour:
   walkSpeed: 2.5
   runSpeed: 7
   dropOnDeath:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 89f5fa70d7718dd45b2ced603747c717, type: 2}
+  dropPrefabs:
+  - {fileID: 2802410814351102829, guid: 20ef1ebb3ba817c4e8db401c1cbcb8e4, type: 3}
   detectDistance: 5
   minWanderDistance: 5
   maxWanderDistance: 10
@@ -15944,8 +16001,9 @@ MonoBehaviour:
   walkSpeed: 2
   runSpeed: 5
   dropOnDeath:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: a42460f6d1bc27e4da3fdf92e084aaf4, type: 2}
+  dropPrefabs:
+  - {fileID: 7191999886358183138, guid: 753160efc0406614c90bc4f73c76727b, type: 3}
   detectDistance: 5
   minWanderDistance: 5
   maxWanderDistance: 10
