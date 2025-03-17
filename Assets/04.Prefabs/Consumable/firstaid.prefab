@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 1774951976655538873}
   - component: {fileID: 6608067775634231073}
   - component: {fileID: 1585100749616661311}
-  m_Layer: 0
+  - component: {fileID: 1411271354805420677}
+  m_Layer: 8
   m_Name: firstaid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,3 +120,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: e4c58234da8cd684691c213fffb5301a, type: 2}
+--- !u!65 &1411271354805420677
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5623074924240832671}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8154834, y: 0.3475596, z: 0.62949526}
+  m_Center: {x: -0.0068259835, y: 0.1600316, z: 0.0025842488}

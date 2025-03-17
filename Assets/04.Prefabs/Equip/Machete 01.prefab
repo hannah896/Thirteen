@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6037485038647718810}
   - component: {fileID: 3551403803275318546}
   - component: {fileID: 888951417568183986}
+  - component: {fileID: 8112352472451821899}
   m_Layer: 10
   m_Name: Machete 01
   m_TagString: Weapon
@@ -98,12 +99,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 616759968acff5d43bfbce9350107161, type: 2}
+  equipType: 3
   localPosition: {x: 0.103, y: 0.089, z: 0.229}
   localRotation: {x: 57.582523, y: 346.12918, z: 333.2966}
   localScale: {x: 0.33, y: 0.33, z: 0.33}
   workspeed: 5
   hitDistance: 3
   AttackPower: 4
+--- !u!65 &8112352472451821899
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4998815076108264287}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.50677437, y: 2.9329278, z: 0.10838723}
+  m_Center: {x: -0.07436051, y: 0.14422989, z: -0.000000022351742}
 --- !u!1 &5539092285880821279
 GameObject:
   m_ObjectHideFlags: 0

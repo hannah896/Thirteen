@@ -18,8 +18,8 @@ MonoBehaviour:
   itemType: 0
   canStack: 0
   maxStackAmount: 0
-  equipPrefab: {fileID: 0}
-  healAmount: 0
+  effect: []
+  equipPrefab: {fileID: 7668990291685850131, guid: dd4a44fdbdc609a47bec3c0360df7296, type: 3}
   cost:
   - resource: {fileID: 0}
     amount: 0
