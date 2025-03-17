@@ -17,7 +17,7 @@ public class Resource : MonoBehaviour
     public ResourceType resourceType;
 
     public GameObject[] dropItems;
-    public Collider Collider;
+    public Collider collider;
 
     public int maxAmount; //최대로 캘수있는 양
     public int currentChances; //현재 캘 수 있는 횟수
@@ -25,7 +25,7 @@ public class Resource : MonoBehaviour
 
     private void OnValidate()
     {
-        Collider = GetComponentInChildren<Collider>();
+        collider = GetComponentInChildren<Collider>();
     }
 
     //자원을 생성하는 것을 반환
@@ -33,11 +33,13 @@ public class Resource : MonoBehaviour
     {
         if (currentChances <= 0) return;
         currentChances--;
+
+
         Instantiate(dropItems[Random.Range(0, dropItems.Length)], 
-            transform.position + new Vector3
+            collider.transform.position + new Vector3
             (
-                0.3f * Collider.bounds.size.x,
-                0.1f * Collider.bounds.size.y,
+                0,
+                0.1f * collider.bounds.size.y,
                 0
             ), 
             Quaternion.identity);
