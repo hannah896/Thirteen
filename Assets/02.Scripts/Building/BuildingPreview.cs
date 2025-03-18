@@ -16,14 +16,6 @@ public class BuildingPreview : MonoBehaviour
     private Quaternion previewRotation;   //미리보기 회전값
     private bool canBuild = false;
 
-    //테스트
-    public Camera cam;
-
-    void Start()
-    {
-        //buildingManager = FindObjectOfType<BuildingManager>();
-    }
-
     public void StartPreview(BuildingData building)
     {
         //미리보기 오브젝트 셋팅
@@ -76,7 +68,7 @@ public class BuildingPreview : MonoBehaviour
     //설치 위치 반환
     private Vector3 GetTargetPosition()
     {
-        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
 
         if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, groundLayer))
         {
