@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e9a8c7433a0624d83fba986ef58660, type: 3}
+  m_Name: ItemBat
+  m_EditorClassIdentifier: 
+  itemName: "\uC57C\uAD6C\uBE60\uB530"
+  itemDescription: "\uBC29\uB9DD\uC774\uC785\uB2C8\uB2E4"
+  Icon: {fileID: 21300000, guid: fb66ba32e63773042b17894aa11df84c, type: 3}
+  itemType: 0
+  canStack: 0
+  maxStackAmount: 0
+  effect: []
+  equipPrefab: {fileID: 3034785673873220875, guid: c38c2496f1587c645be2c8fb3a8d261a, type: 3}
+  cost: []

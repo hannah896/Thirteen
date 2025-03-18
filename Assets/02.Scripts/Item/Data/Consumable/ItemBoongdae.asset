@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e9a8c7433a0624d83fba986ef58660, type: 3}
+  m_Name: ItemBoongdae
+  m_EditorClassIdentifier: 
+  itemName: "\uBD95\uB300"
+  itemDescription: "\uC601\uC5B4\uB85C boongdae"
+  Icon: {fileID: 21300000, guid: c64c3b83193290941996feb34630537a, type: 3}
+  itemType: 1
+  canStack: 1
+  maxStackAmount: 99
+  effect:
+  - consumableType: 0
+    value: 25
+  equipPrefab: {fileID: 0}
+  cost: []
