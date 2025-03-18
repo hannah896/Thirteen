@@ -32,9 +32,9 @@ public class UIBuilding : MonoBehaviour
         buildingWindow.SetActive(false);
 
         buildingManager = GetComponent<BuildingManager>();
+
         ClearSelectedBuildingWindow();
         CreateBuildingList();
-        SelectBuilding(0);
     }
 
     public void Toggle()
@@ -45,6 +45,7 @@ public class UIBuilding : MonoBehaviour
         }
         else
         {
+            SelectBuilding(0);
             buildingWindow.SetActive(true);
         }
     }
@@ -98,7 +99,7 @@ public class UIBuilding : MonoBehaviour
     //선택 시 UI 업데이트
     public void SelectBuilding(int index)
     {
-        if (slots[index].building == null || slots[index].building == selectedBuilding) return;
+        if (slots[index].building == null) return;
 
         selectedBuilding = slots[index].building;
 
@@ -110,8 +111,10 @@ public class UIBuilding : MonoBehaviour
 
         for (int i = 0; i < selectedBuilding.requiredResources.Count; i++)
         {
-            selectedRequiredName.text += selectedBuilding.requiredResources[i].resource.name + "\n";
-            selectedRequiredAmount.text += selectedBuilding.requiredResources[i].amount.ToString() + "\n";
+            int resourceQuantity = InventoryManager.Instance.consumeInventory.GetItemQuantity(selectedBuilding.requiredResources[i]);
+
+            selectedRequiredName.text += selectedBuilding.requiredResources[i].resource.itemName + "\n";
+            selectedRequiredAmount.text += $"({resourceQuantity} / {selectedBuilding.requiredResources[i].amount}) \n";
         }
 
         if (buildingManager.CanBuild(selectedBuilding))

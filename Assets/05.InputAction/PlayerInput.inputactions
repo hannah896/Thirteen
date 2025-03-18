@@ -97,9 +97,9 @@
                 },
                 {
                     "name": "Rotate",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "e54111e7-f862-4182-aaa0-b256604940bc",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -263,7 +263,7 @@
                 {
                     "name": "",
                     "id": "3e15183a-8045-4bf2-a16d-a1ffb31c8968",
-                    "path": "<Mouse>/scroll",
+                    "path": "<Mouse>/scroll/y",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

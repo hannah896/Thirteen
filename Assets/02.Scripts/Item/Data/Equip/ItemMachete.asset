@@ -20,4 +20,8 @@ MonoBehaviour:
   maxStackAmount: 0
   effect: []
   equipPrefab: {fileID: 4998815076108264287, guid: c4d1ef513cb93904f8cad58c1166945b, type: 3}
-  cost: []
+  cost:
+  - resource: {fileID: 11400000, guid: b005c0720024c8249bf7e1431484bac3, type: 2}
+    amount: 2
+  - resource: {fileID: 11400000, guid: 4cdee82070bf05f4f925df3bfa8a804d, type: 2}
+    amount: 5

@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02c2de53225e6b4abeaca2c0048e5aa, type: 3}
   m_Name: Bed
   m_EditorClassIdentifier: 
-  displayName: bed
-  description: 
-  icon: {fileID: 0}
+  displayName: "\uCE68\uB300"
+  description: "\uCE68\uB300\uC785\uB2C8\uB2E4"
+  icon: {fileID: 21300000, guid: 25caa658293610f449cfca242bf8021b, type: 3}
   buildPrefab: {fileID: 1972322738948892535, guid: 0c8741363ba0c7b4bae3c03b9fa9dcb2, type: 3}
-  requiredResources: []
+  requiredResources:
+  - resource: {fileID: 11400000, guid: b005c0720024c8249bf7e1431484bac3, type: 2}
+    amount: 5
+  - resource: {fileID: 11400000, guid: c4c39d3597269be48b1b35c1cd2b0571, type: 2}
+    amount: 5
