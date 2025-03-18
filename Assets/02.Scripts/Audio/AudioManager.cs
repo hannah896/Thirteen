@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -25,6 +26,20 @@ public class AudioManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name == "StartScene")
+        {
+            PlayMusic("StartBackground");
+        }
+        else if(scene.name == "MainScene")
+        {
+            PlayMusic("MainBackground");
         }
     }
 
@@ -105,5 +120,10 @@ public class AudioManager : MonoBehaviour
     public void SFXVolume(float volume)
     {
         sfxSource.volume = volume;
+    }
+
+    private void OnDestroy()
+    {       
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

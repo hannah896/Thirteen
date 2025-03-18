@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class Audio : MonoBehaviour
+[System.Serializable]
+public class Audio
 {
     public string name;
     public AudioClip clip;
