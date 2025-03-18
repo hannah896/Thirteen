@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: "\uC0DD\uC218"
   itemDescription: "\uB9C8\uC2E4\uC218 \uC788\uB294 \uBB3C\uC785\uB2C8\uB2E4"
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 067cf2ae79fd06c42b659f14199f6f69, type: 3}
   itemType: 1
   canStack: 1
   maxStackAmount: 99
