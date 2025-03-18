@@ -26,6 +26,12 @@ public class EquipmentPlayer : MonoBehaviour
             collider.enabled = false;
         }
 
+        if(curEquip.TryGetComponent(out Rigidbody rigid))
+        {
+            rigid.useGravity = false;
+            rigid.isKinematic = true;
+        }
+
         CharacterManager.Instance.Player.condition.SetAttackDamage((int)curEquip.GetComponent<Equipment>().AttackPower);
     }
 
