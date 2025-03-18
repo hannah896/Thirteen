@@ -26,6 +26,8 @@ public class PlayerCondition : MonoBehaviour, IDamageable
 
     public bool isDie;
 
+    public bool godMode;
+
     private void Update()
     {
         hunger.Subtract(hunger.passiveValue * Time.deltaTime);
@@ -73,6 +75,7 @@ public class PlayerCondition : MonoBehaviour, IDamageable
 
     public void Die()
     {
+        if (godMode) return;
         if (!isDie)
         {
             Debug.Log("Player Die");

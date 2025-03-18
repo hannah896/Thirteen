@@ -106,10 +106,8 @@ public class PlayerController : MonoBehaviour
 
         Vector3 moveDir = cameraContainer.forward * inputDir.y + cameraContainer.right * inputDir.x;
 
-        if(inputDir.magnitude > 0)
-        {
-            AudioManager.instance.PlayMoveSound(isRun);
-        }
+        Debug.Log(moveDir);
+
         // 달리기 키를 입력 받았다면 뛰는 속도로 적용
         float speed = isRun ? runSpeed : walkSpeed;
         moveDir *= speed;
@@ -118,6 +116,7 @@ public class PlayerController : MonoBehaviour
 
         if (inputDir.magnitude > 0)
         {
+            AudioManager.instance.PlayMoveSound(isRun);
             moveDir.Normalize();
             Vector3 lookDir = new Vector3(moveDir.x, 0, moveDir.z);
             character.forward = Vector3.Lerp(character.forward, lookDir, Time.deltaTime * lerpSpeed);
@@ -171,7 +170,7 @@ public class PlayerController : MonoBehaviour
             inputDir = Vector3.zero;
             CharacterManager.Instance.Player.animController.WalkAnimation(inputDir.magnitude);
 
-            isRun = false;
+            StopRun();
             return false;
         }
         return true;
@@ -191,14 +190,13 @@ public class PlayerController : MonoBehaviour
     private Coroutine RunCo = null;
     public void OnRun(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started)
+        if (context.phase == InputActionPhase.Started && !isAttack)
         {
             RunCo = StartCoroutine(Run());
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
-            StopCoroutine(RunCo);
-            isRun = false;
+            StopRun();
         }
     }
 
@@ -209,6 +207,13 @@ public class PlayerController : MonoBehaviour
         {
             yield return null;
         }
+        isRun = false;
+    }
+
+    private void StopRun()
+    {
+        if (RunCo != null)
+            StopCoroutine(RunCo);
         isRun = false;
     }
 
@@ -239,11 +244,17 @@ public class PlayerController : MonoBehaviour
             // 스태미너가 적절하게 남아있는가?
             if(CharacterManager.Instance.Player.condition.UseStamina(attackStemina))
             {
+                StopRun();
+
                 // 무기가 없을 땐 기본 Attack
                 if (CharacterManager.Instance.Player.equipment.curEquip == null)
                     CharacterManager.Instance.Player.animController.BasicAttack();
                 else // 무기가 있을 땐 EquipAttack
                     CharacterManager.Instance.Player.animController.WeaponAttack();
+            }
+            else
+            {
+                isAttack = false;
             }
         }
     }
