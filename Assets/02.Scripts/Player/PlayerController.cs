@@ -105,6 +105,11 @@ public class PlayerController : MonoBehaviour
         CharacterManager.Instance.Player.animController.WalkAnimation(inputDir.magnitude);
 
         Vector3 moveDir = cameraContainer.forward * inputDir.y + cameraContainer.right * inputDir.x;
+
+        if(inputDir.magnitude > 0)
+        {
+            AudioManager.instance.PlayMoveSound(isRun);
+        }
         // 달리기 키를 입력 받았다면 뛰는 속도로 적용
         float speed = isRun ? runSpeed : walkSpeed;
         moveDir *= speed;
@@ -124,6 +129,7 @@ public class PlayerController : MonoBehaviour
         if (isAttack || !canLook) return;
 
         isJump = true;
+        AudioManager.instance.PlaySFX("Jump");
         CharacterManager.Instance.Player.animController.JumpAnimation();
         CharacterManager.Instance.Player.condition.UseStamina(jumpStemina);
         rigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -301,6 +307,7 @@ public class PlayerController : MonoBehaviour
         if(context.phase == InputActionPhase.Started)
         {
             CursorVisible();
+            AudioManager.instance.PlaySFX("Inventory");
             CharacterManager.Instance.Player.inventory();
         }
     }
@@ -309,6 +316,7 @@ public class PlayerController : MonoBehaviour
     {
         if(context.phase == InputActionPhase.Started)
         {
+            AudioManager.instance.PlaySFX("Inventory");
             crafting?.Invoke();
             CursorVisible();
         }
@@ -318,6 +326,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
+            AudioManager.instance.PlaySFX("Inventory");
             building?.Invoke();
             CursorVisible();
         }

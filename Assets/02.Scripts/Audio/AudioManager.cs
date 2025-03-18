@@ -126,4 +126,18 @@ public class AudioManager : MonoBehaviour
     {       
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+
+    private float lastMoveSound; // 마지막으로 플레이된 시간
+    private float walkSoundRate = 0.5f;
+    private float runSoundRate = 0.35f;
+    public void PlayMoveSound(bool isRun)
+    {
+        float soundRate = isRun ? runSoundRate : walkSoundRate;
+        if(Time.time - lastMoveSound > soundRate)
+        {
+            lastMoveSound = Time.time;
+
+            PlaySFX("FootStep");
+        }
+    }
 }

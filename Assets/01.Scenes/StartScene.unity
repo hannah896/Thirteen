@@ -513,13 +513,13 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: f2c33622187ec4676b363720f8b84f46, type: 3}
   sfxAudios:
   - name: Button
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: f2b84cc7dd252464c98c4d6c2cd5c3bf, type: 3}
   - name: Inventory
     clip: {fileID: 8300000, guid: f2b84cc7dd252464c98c4d6c2cd5c3bf, type: 3}
   - name: Jump
-    clip: {fileID: 8300000, guid: f2b84cc7dd252464c98c4d6c2cd5c3bf, type: 3}
+    clip: {fileID: 8300000, guid: c025c43d1749af5469c7dd8af13e162f, type: 3}
   - name: FootStep
-    clip: {fileID: 8300000, guid: 0994dd3359b0cc248b04daca2b45cdfc, type: 3}
+    clip: {fileID: 8300000, guid: 0609acde86b59a2458aaf135531f8756, type: 3}
   myMixer: {fileID: 24100000, guid: 5b2051b1c5801d944a5057a5e2ac7b26, type: 2}
   bgmSource: {fileID: 157983754}
   sfxSource: {fileID: 1257715435}
