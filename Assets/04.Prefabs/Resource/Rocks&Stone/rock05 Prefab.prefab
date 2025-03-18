@@ -427,7 +427,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &2633000808215101353
 MonoBehaviour:
@@ -446,7 +446,7 @@ MonoBehaviour:
   - {fileID: 925778412704847060, guid: 59e5e0c68b7d95f45b4b7c289da625fc, type: 3}
   - {fileID: 4592661137120205136, guid: 7c288421793182d428fa3dd9145ef507, type: 3}
   - {fileID: 4232167527613553172, guid: 1f78a636bc671b64db0037a038aef797, type: 3}
-  Collider: {fileID: 7266848294795427621}
+  _collider: {fileID: 7266848294795427621}
   maxAmount: 5
   currentChances: 5
   second: 20

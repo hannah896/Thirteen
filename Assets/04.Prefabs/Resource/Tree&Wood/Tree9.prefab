@@ -112,7 +112,7 @@ MonoBehaviour:
   - {fileID: 8178698732841966147, guid: 7dc429ba39198e24a83387ab5ae0ff31, type: 3}
   - {fileID: 6731065094533296834, guid: aa1ca60487af9e64395a77f4c06ca29b, type: 3}
   - {fileID: 5611550521986568852, guid: 730aaf5ef7428f143a6c051985d0d3f7, type: 3}
-  collider: {fileID: 8076683874257112025}
+  _collider: {fileID: 8076683874257112025}
   maxAmount: 10
   currentChances: 10
   second: 40

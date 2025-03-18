@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 523844261662893029}
   - component: {fileID: 2431641175721092466}
   - component: {fileID: 4321168477636577093}
+  - component: {fileID: 4384213795280206469}
   m_Layer: 7
   m_Name: ConsumableBox
   m_TagString: Untagged
@@ -106,7 +107,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0.5, y: 0.5, z: 0.5}
 --- !u!114 &4321168477636577093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +128,33 @@ MonoBehaviour:
   - {fileID: 8854999124134132407, guid: 56f3d37f524c0a843b5e5049230c4d04, type: 3}
   - {fileID: 7191999886358183138, guid: 753160efc0406614c90bc4f73c76727b, type: 3}
   _collider: {fileID: 2431641175721092466}
-  maxAmount: 0
-  currentChances: 0
-  second: 0
+  maxAmount: 5
+  currentChances: 5
+  second: 20
+--- !u!54 &4384213795280206469
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8695517133425663011}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
