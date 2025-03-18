@@ -66,13 +66,17 @@ public class PlayerController : MonoBehaviour
     public void CursorVisible()
     {
         canLook = !canLook;
-        Cursor.visible = !Cursor.visible;
+        Cursor.visible = !canLook ;
         Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
     private void FixedUpdate()
     {
-        if (condition.isDie) return;
+        if (!canLook || isAttack || condition.isDie)
+        {
+            rigid.velocity = Vector3.zero;
+            return;
+        }
         Move();
     }
 
@@ -97,16 +101,9 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (isJump || !canLook) return;
+        if (isJump) return;
 
         CharacterManager.Instance.Player.animController.WalkAnimation(inputDir.magnitude);
-
-        if (isAttack)
-        {
-            // 공격 시 rigid의 Velocity를 0으로 만들어 줌
-            rigid.velocity = Vector3.zero;
-            return;
-        }
 
         Vector3 moveDir = cameraContainer.forward * inputDir.y + cameraContainer.right * inputDir.x;
         // 달리기 키를 입력 받았다면 뛰는 속도로 적용
