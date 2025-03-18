@@ -34,8 +34,11 @@
 - **엔진**: Unity 2022.3.17f1
 - **플랫폼**: PC (추후 확장 가능)
 
----
+## 📽 게임 플레이 영상
 
+[![Zombie Forest Gameplay](https://img.youtube.com/vi/9oaVI6uJz2I/maxresdefault.jpg)](https://www.youtube.com/watch?v=9oaVI6uJz2I)
+
+---
 ## 🛠 트러블슈팅 (Troubleshooting)
 
 ### ✅ Resource Auto Spawner 트러블슈팅  
