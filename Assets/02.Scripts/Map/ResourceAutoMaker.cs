@@ -93,8 +93,8 @@ public class ResourceAutoMaker : MonoBehaviour
     //땅의 위치중 랜덤 위치 지정
     private Vector3 RandomPosition()
     {
-        float x = Random.Range(minX, maxX);
-        float z = Random.Range(minZ, maxZ);
+        float x = Random.Range(minX + 5, maxX - 5);
+        float z = Random.Range(minZ + 5, maxZ - 5);
 
         Vector3 result = new Vector3(x, PosY, z);
         return result;

@@ -23,25 +23,28 @@ public class Resource : MonoBehaviour
     public int currentChances; //현재 캘 수 있는 횟수
     public float second; //쿨타임 도는 시간
 
+
     private void OnValidate()
     {
         _collider = GetComponentInChildren<Collider>();
     }
 
     //자원을 생성하는 것을 반환
-    public void MakingResource()
+    public void MakingResource(Vector3 position)
     {
+        GameObject item;
         if (currentChances <= 0) return;
         currentChances--;
 
 
-        Instantiate(dropItems[Random.Range(0, dropItems.Length)], 
-            _collider.transform.position + new Vector3
+        item = Instantiate(
+            dropItems[Random.Range(0, dropItems.Length)],
+            new Vector3
             (
-                0,
-                0.1f * _collider.bounds.size.y,
-                0
-            ), 
+                position.x,
+                position.y + 1.2f,
+                position.z + 1.0f
+            ),
             Quaternion.identity);
 
         Debug.Log("캐다");
