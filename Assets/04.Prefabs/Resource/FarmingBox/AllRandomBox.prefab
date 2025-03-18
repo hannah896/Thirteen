@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3892708875006204274}
-  m_Mesh: {fileID: 4300000, guid: 5f1305e3205aafb44a7d126966a46f48, type: 2}
+  m_Mesh: {fileID: -5495902117074765545, guid: 41a6d80f9d7130047b92b69642f61b60, type: 3}
 --- !u!23 &916858941479441661
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -158,6 +158,7 @@ MonoBehaviour:
   - {fileID: 5411819576587982300, guid: 7bf12b5eed696a54fa6605588fcba014, type: 3}
   - {fileID: 8757548551384869722, guid: d433f9ed0ec9f164facb4db9d9776c88, type: 3}
   - {fileID: 62798278026360101, guid: fba13fe1334d20f41b4f4ec19263fd40, type: 3}
+  _collider: {fileID: 7424894927294860593}
   maxAmount: 2
   currentChances: 2
   second: 10
