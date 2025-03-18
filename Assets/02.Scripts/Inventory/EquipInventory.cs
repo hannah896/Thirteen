@@ -60,6 +60,7 @@ public class EquipInventory : UIInventory
 
     public void OnEquipButton()
     {
+        AudioManager.instance.PlaySFX("Button");
         // 선택한 아이템이 장비가 아니면 반환
         if (selectedItem == null || selectedItem.itemType != ItemType.Equipable) return;
 
@@ -79,6 +80,7 @@ public class EquipInventory : UIInventory
 
     public void OnUnEquipButton()
     {
+        AudioManager.instance.PlaySFX("Button");
         if (selectedItem == null || selectedItem.itemType != ItemType.Equipable) return;
 
         slots[equipIndex].equipped = false;
