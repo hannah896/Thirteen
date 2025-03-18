@@ -101,9 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 130ec2c3ec381d34fbca36bae7ffa4f1, type: 2}
   equipType: 0
-  localPosition: {x: 0, y: 0, z: 0}
-  localRotation: {x: 0, y: 0, z: 0}
-  localScale: {x: 0, y: 0, z: 0}
+  localPosition: {x: 0.145, y: 0.241, z: 0.503}
+  localRotation: {x: 57.04406, y: 346.60547, z: 333.87335}
+  localScale: {x: 0.33, y: 0.33, z: 0.33}
   workspeed: 0
   hitDistance: 0
   AttackPower: 10

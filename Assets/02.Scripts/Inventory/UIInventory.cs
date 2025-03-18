@@ -145,6 +145,8 @@ public class UIInventory : MonoBehaviour
         {
             dropItem.AddComponent<Rigidbody>();
         }
+        rigid.useGravity = true;
+        rigid.isKinematic = false;
     }
 
     public virtual void SelectItem(int index)

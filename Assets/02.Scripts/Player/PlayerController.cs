@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 public class PlayerController : MonoBehaviour
 {
@@ -66,14 +67,16 @@ public class PlayerController : MonoBehaviour
     public void CursorVisible()
     {
         canLook = !canLook;
-        Cursor.visible = !Cursor.visible;
+        Cursor.visible = !canLook ;
         Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
     private void FixedUpdate()
     {
-        if (condition.isDie) return;
-        Move();
+        if (IsMove())
+        {
+            Move();
+        }
     }
 
     private void LateUpdate()
@@ -97,18 +100,16 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (isJump || !canLook) return;
+        if (isJump) return;
 
         CharacterManager.Instance.Player.animController.WalkAnimation(inputDir.magnitude);
 
-        if (isAttack)
-        {
-            // 공격 시 rigid의 Velocity를 0으로 만들어 줌
-            rigid.velocity = Vector3.zero;
-            return;
-        }
-
         Vector3 moveDir = cameraContainer.forward * inputDir.y + cameraContainer.right * inputDir.x;
+
+        if(inputDir.magnitude > 0)
+        {
+            AudioManager.instance.PlayMoveSound(isRun);
+        }
         // 달리기 키를 입력 받았다면 뛰는 속도로 적용
         float speed = isRun ? runSpeed : walkSpeed;
         moveDir *= speed;
@@ -128,6 +129,7 @@ public class PlayerController : MonoBehaviour
         if (isAttack || !canLook) return;
 
         isJump = true;
+        AudioManager.instance.PlaySFX("Jump");
         CharacterManager.Instance.Player.animController.JumpAnimation();
         CharacterManager.Instance.Player.condition.UseStamina(jumpStemina);
         rigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -154,6 +156,25 @@ public class PlayerController : MonoBehaviour
             }
         }
         return false;
+    }
+
+    // 움직일 수 있는 상태인가?
+    public bool IsMove()
+    {
+        // UI가 보이거나 공격을 하거나 죽은 상태이면 못움직임
+        if (!canLook || isAttack || condition.isDie)
+        {
+            // 점프 중일 때는 아직 속도를 유지시켜야 함
+            if(!isJump)
+                rigid.velocity = Vector3.zero;
+
+            inputDir = Vector3.zero;
+            CharacterManager.Instance.Player.animController.WalkAnimation(inputDir.magnitude);
+
+            isRun = false;
+            return false;
+        }
+        return true;
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -286,6 +307,7 @@ public class PlayerController : MonoBehaviour
         if(context.phase == InputActionPhase.Started)
         {
             CursorVisible();
+            AudioManager.instance.PlaySFX("Inventory");
             CharacterManager.Instance.Player.inventory();
         }
     }
@@ -294,6 +316,7 @@ public class PlayerController : MonoBehaviour
     {
         if(context.phase == InputActionPhase.Started)
         {
+            AudioManager.instance.PlaySFX("Inventory");
             crafting?.Invoke();
             CursorVisible();
         }
@@ -303,6 +326,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
+            AudioManager.instance.PlaySFX("Inventory");
             building?.Invoke();
             CursorVisible();
         }
