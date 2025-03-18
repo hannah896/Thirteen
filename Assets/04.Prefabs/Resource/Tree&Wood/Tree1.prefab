@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2393040}
   - component: {fileID: 6500691954743504841}
   - component: {fileID: 4591110891587161587}
-  - component: {fileID: 2498358735849158496}
   m_Layer: 7
   m_Name: Tree1
   m_TagString: Untagged
@@ -114,7 +113,6 @@ MonoBehaviour:
   - {fileID: 8178698732841966147, guid: 7dc429ba39198e24a83387ab5ae0ff31, type: 3}
   - {fileID: 6731065094533296834, guid: aa1ca60487af9e64395a77f4c06ca29b, type: 3}
   - {fileID: 5611550521986568852, guid: 730aaf5ef7428f143a6c051985d0d3f7, type: 3}
-  collider: {fileID: 4591110891587161587}
   maxAmount: 10
   currentChances: 10
   second: 40
@@ -139,27 +137,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5688839, y: 7.8910856, z: 1.6652718}
   m_Center: {x: 0.012061119, y: 3.9455428, z: 0.5014515}
---- !u!114 &2498358735849158496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aa41d17f4cc36743b866c66b8f0075b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resourceType: 1
-  dropItems:
-  - {fileID: 8178698732841966147, guid: 7dc429ba39198e24a83387ab5ae0ff31, type: 3}
-  - {fileID: 6731065094533296834, guid: aa1ca60487af9e64395a77f4c06ca29b, type: 3}
-  - {fileID: 5611550521986568852, guid: 730aaf5ef7428f143a6c051985d0d3f7, type: 3}
-  collider: {fileID: 4591110891587161587}
-  maxAmount: 10
-  currentChances: 10
-  second: 40
 --- !u!21 &2179674
 Material:
   serializedVersion: 8
