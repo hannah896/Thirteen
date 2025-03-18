@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class ResourceAutoMaker : MonoBehaviour
@@ -13,7 +14,7 @@ public class ResourceAutoMaker : MonoBehaviour
 
     [Header("GroundInfo")]
     GameObject terrain;
-    Collider collider;
+    Collider _collider;
     float minX;
     float maxX;
     float PosY;
@@ -25,18 +26,18 @@ public class ResourceAutoMaker : MonoBehaviour
     
     private void OnValidate()
     {
-        terrain = GameObject.Find("Terrain");
-        collider = terrain.GetComponent<Collider>();
+        if (terrain == null) terrain = GameObject.Find("Terrain");
+        if (_collider == null) _collider = terrain.GetComponent<Collider>();
     }
 
     private void Awake()
     {
         if (resource == null) resource = new GameObject("Resources");
-        minX = collider.bounds.min.x;
-        minZ = collider.bounds.min.z;
-        maxX = collider.bounds.max.x;
-        maxZ = collider.bounds.max.z;
-        PosY = collider.bounds.max.y;
+        minX = _collider.bounds.min.x;
+        minZ = _collider.bounds.min.z;
+        maxX = _collider.bounds.max.x;
+        maxZ = _collider.bounds.max.z;
+        PosY = _collider.bounds.max.y;
     }
 
     private void Start()
@@ -85,6 +86,8 @@ public class ResourceAutoMaker : MonoBehaviour
                     );
             }
         }
+
+        terrain.GetComponent<NavMeshSurface>().BuildNavMesh();
     }
 
     //땅의 위치중 랜덤 위치 지정
