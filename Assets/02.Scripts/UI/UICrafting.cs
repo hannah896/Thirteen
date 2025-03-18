@@ -130,6 +130,7 @@ public class UICrafting : MonoBehaviour
     //제작 버튼
     public void OnCraftingButton()
     {
+        AudioManager.instance.PlaySFX("Button");
         if (selectedItem == null) return;
 
         controller.CursorVisible();
@@ -141,6 +142,7 @@ public class UICrafting : MonoBehaviour
     //UI 종료 버튼
     public void OnExitButton()
     {
+        AudioManager.instance.PlaySFX("Button");
         controller.CursorVisible();
         craftingWindow.SetActive(false);
     }
