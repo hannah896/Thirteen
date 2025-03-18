@@ -18,7 +18,7 @@ public class BuildingPreview : MonoBehaviour
 
     //테스트
     public Camera cam;
-    
+
     void Start()
     {
         //buildingManager = FindObjectOfType<BuildingManager>();
@@ -63,7 +63,7 @@ public class BuildingPreview : MonoBehaviour
     private void SetupPreviewColliders()
     {
         Collider[] colliders = previewInstance.GetComponentsInChildren<Collider>();
-        foreach(Collider collider in colliders)
+        foreach (Collider collider in colliders)
         {
             if (collider is MeshCollider mesh)
             {
@@ -78,7 +78,7 @@ public class BuildingPreview : MonoBehaviour
     {
         Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
 
-        if(Physics.Raycast(ray, out RaycastHit hit, maxDistance, groundLayer))
+        if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, groundLayer))
         {
             Vector3 hitPoint = hit.point;
 
@@ -94,7 +94,7 @@ public class BuildingPreview : MonoBehaviour
         if (buildingObject.colliderList.Count == 0) return true;
         else return false;
     }
-    
+
     //미리보기 색상 변경
     private void SetPreviewColor(bool canBuild)
     {
@@ -115,9 +115,9 @@ public class BuildingPreview : MonoBehaviour
         float minY = float.MaxValue;
         float maxY = float.MinValue;
 
-        foreach(Vector3 point in checkPoint)
+        foreach (Vector3 point in checkPoint)
         {
-            if(Physics.Raycast(point + Vector3.up, Vector3.down, out RaycastHit hit, 10f, groundLayer))
+            if (Physics.Raycast(point + Vector3.up, Vector3.down, out RaycastHit hit, 10f, groundLayer))
             {
                 minY = Mathf.Min(minY, hit.point.y);
                 maxY = Mathf.Max(maxY, hit.point.y);
@@ -130,9 +130,9 @@ public class BuildingPreview : MonoBehaviour
         return slopAngle <= maxSlopeAngle;
     }
 
-    public void PreviewRotate(Vector2 scroll)
+    public void PreviewRotate(float scroll)
     {
-        if (scroll.y > 0)
+        if (scroll > 0)
         {
             previewRotation *= Quaternion.Euler(0, -90f, 0);
             previewInstance.transform.rotation = previewRotation;

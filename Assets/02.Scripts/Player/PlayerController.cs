@@ -312,9 +312,9 @@ public class PlayerController : MonoBehaviour
     {
         if (isBuildMode)
         {
-            Vector2 scrollInput = context.ReadValue<Vector2>();
+            float scrollInput = context.ReadValue<float>();
 
-            buildingPreview.PreviewRotate(scrollInput);
+            if (scrollInput != 0) buildingPreview.PreviewRotate(scrollInput);
         }
     }
 
@@ -346,7 +346,7 @@ public class PlayerController : MonoBehaviour
     {
         if (CharacterManager.Instance.Player.resource == null) return;
 
-        CharacterManager.Instance.Player.resource.MakingResource();
+        CharacterManager.Instance.Player.resource.MakingResource(transform.position);
     }
 
     public void OnEnemyHit()

@@ -9,6 +9,6 @@ public class CraftingSlot : MonoBehaviour
 
     public void OnClickButton()
     {
-        //uICrafting.
+        uICrafting.SelectItem(index);
     }
 }
