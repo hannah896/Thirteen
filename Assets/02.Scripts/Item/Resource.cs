@@ -27,7 +27,7 @@ public class Resource : MonoBehaviour
 
     private void OnValidate()
     {
-        _collider = GetComponentInChildren<Collider>();
+        if (_collider != null) _collider = GetComponentInChildren<Collider>();
     }
 
     //자원을 생성하는 것을 반환
@@ -46,7 +46,7 @@ public class Resource : MonoBehaviour
                 position.y + 1.2f,
                 position.z + 1.0f
             ),
-            Quaternion.Euler(Random.RandomRange(0f,360f), Random.RandomRange(0f, 360f), Random.RandomRange(0f, 360f)));
+            Quaternion.Euler(Random.Range(0f,360f), Random.Range(0f, 360f), Random.Range(0f, 360f)));
 
         Debug.Log("캐다");
         if (currentChances == 0)
@@ -59,9 +59,10 @@ public class Resource : MonoBehaviour
     private IEnumerator ResetMaximum()
     {
         Debug.Log("초기화중");
-        meshRenderer.material.color = Color.red;
+        gameObject.SetActive(false);
         yield return new WaitForSeconds(second);
-        currentChances = maxAmount; 
+        currentChances = maxAmount;
+        gameObject.SetActive(true);
         yield break;
     }
 }
