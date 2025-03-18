@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02c2de53225e6b4abeaca2c0048e5aa, type: 3}
   m_Name: Cabinet
   m_EditorClassIdentifier: 
-  displayName: cabinet
-  description: 
-  icon: {fileID: 0}
+  displayName: "\uC637\uC7A5"
+  description: "\uC637\uC7A5\uC785\uB2C8\uB2E4"
+  icon: {fileID: 21300000, guid: 1583f7fde03685346b84daa62478615e, type: 3}
   buildPrefab: {fileID: 8764328446080242703, guid: 2bf71c42a66fa1642beeb2556659ea9e, type: 3}
-  requiredResources: []
+  requiredResources:
+  - resource: {fileID: 11400000, guid: b005c0720024c8249bf7e1431484bac3, type: 2}
+    amount: 5

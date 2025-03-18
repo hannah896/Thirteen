@@ -190,11 +190,11 @@ public class UIInventory : MonoBehaviour
 
     public bool HasRequiredResources(List<ResourceCost> data)
     {
-        bool found = false;
-
         //필요한 재료 인벤토리에 존재하는지 확인
         foreach (ResourceCost cost in data)
         {
+            bool found = false;
+
             for (int i = 0; i < slots.Length; i++)
             {
                 if (slots[i].item == cost.resource & slots[i].quantity >= cost.amount)
@@ -218,18 +218,34 @@ public class UIInventory : MonoBehaviour
         {
             for (int i = 0; i < slots.Length; i++)
             {
+                //if (slots[i].item == null) continue;
+
                 if (slots[i].item == cost.resource)
                 {
                     slots[i].quantity -= cost.amount;
                     if (slots[i].quantity <= 0)
                     {
-                        slots[i] = null;
+                        slots[i].item = null;
                     }
                     break;
                 }
             }
         }
+        UpdateUI();
 
         return true;
+    }
+
+    public int GetItemQuantity(ResourceCost data)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].item == data.resource)
+            {
+                return slots[i].quantity;
+            }
+        }
+
+        return 0;
     }
 }

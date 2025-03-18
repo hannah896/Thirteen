@@ -32,9 +32,9 @@ public class UICrafting : MonoBehaviour
         craftingWindow.SetActive(false);
 
         craftingManager = GetComponent<CraftingManager>();
+
         ClearSelectedCraftingWindow();
         CreateItemList();
-        SelectItem(0);
     }
 
     public void Toggle()
@@ -45,6 +45,7 @@ public class UICrafting : MonoBehaviour
         }
         else
         {
+            SelectItem(0);
             craftingWindow.SetActive(true);
         }
     }
@@ -110,8 +111,10 @@ public class UICrafting : MonoBehaviour
 
         for (int i = 0; i < selectedItem.cost.Count; i++)
         {
-            selectedRequiredName.text += selectedItem.cost[i].resource.name + "\n";
-            selectedRequiredAmount.text += selectedItem.cost[i].amount.ToString() + "\n";
+            int resourceQuantity = InventoryManager.Instance.consumeInventory.GetItemQuantity(selectedItem.cost[i]);
+
+            selectedRequiredName.text += selectedItem.cost[i].resource.itemName + "\n";
+            selectedRequiredAmount.text += $"({resourceQuantity} / {selectedItem.cost[i].amount}) \n";
         }
 
         if (craftingManager.CanCraft(selectedItem))
