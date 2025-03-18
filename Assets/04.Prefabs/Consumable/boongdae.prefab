@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 845045188483135022}
   - component: {fileID: 3957206523678377396}
   - component: {fileID: -8981255690287068278}
+  - component: {fileID: 4275709438617416618}
   m_Layer: 8
   m_Name: boongdae
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: -0.080400005, y: 0.0925, z: -0.10310001}
-  m_LocalScale: {x: 0.21121144, y: 0.21121144, z: 0.21121144}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -141,3 +142,30 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.43206167, y: 0.111, z: 0.42549768}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &4275709438617416618
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2802410814351102829}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2393040}
   - component: {fileID: 2642360496389789546}
   - component: {fileID: 3353900692228365413}
+  - component: {fileID: 7009024836306432147}
   m_Layer: 7
   m_Name: Tree7
   m_TagString: Untagged
@@ -113,7 +114,7 @@ MonoBehaviour:
   - {fileID: 8178698732841966147, guid: 7dc429ba39198e24a83387ab5ae0ff31, type: 3}
   - {fileID: 6731065094533296834, guid: aa1ca60487af9e64395a77f4c06ca29b, type: 3}
   - {fileID: 5611550521986568852, guid: 730aaf5ef7428f143a6c051985d0d3f7, type: 3}
-  collider: {fileID: 3353900692228365413}
+  _collider: {fileID: 3353900692228365413}
   maxAmount: 10
   currentChances: 10
   second: 40
@@ -138,6 +139,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7.6201744, y: 21.934807, z: 3.5416565}
   m_Center: {x: -0.9025097, y: 9.967403, z: 1.7654533}
+--- !u!54 &7009024836306432147
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196434}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!21 &2179674
 Material:
   serializedVersion: 8
