@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 public class PlayerController : MonoBehaviour
 {
@@ -72,12 +73,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!canLook || isAttack || condition.isDie)
+        if (IsMove())
         {
-            rigid.velocity = Vector3.zero;
-            return;
+            Move();
         }
-        Move();
     }
 
     private void LateUpdate()
@@ -151,6 +150,25 @@ public class PlayerController : MonoBehaviour
             }
         }
         return false;
+    }
+
+    // 움직일 수 있는 상태인가?
+    public bool IsMove()
+    {
+        // UI가 보이거나 공격을 하거나 죽은 상태이면 못움직임
+        if (!canLook || isAttack || condition.isDie)
+        {
+            // 점프 중일 때는 아직 속도를 유지시켜야 함
+            if(!isJump)
+                rigid.velocity = Vector3.zero;
+
+            inputDir = Vector3.zero;
+            CharacterManager.Instance.Player.animController.WalkAnimation(inputDir.magnitude);
+
+            isRun = false;
+            return false;
+        }
+        return true;
     }
 
     public void OnMove(InputAction.CallbackContext context)
