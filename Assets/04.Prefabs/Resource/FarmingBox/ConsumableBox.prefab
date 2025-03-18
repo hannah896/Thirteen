@@ -128,9 +128,9 @@ MonoBehaviour:
   - {fileID: 8854999124134132407, guid: 56f3d37f524c0a843b5e5049230c4d04, type: 3}
   - {fileID: 7191999886358183138, guid: 753160efc0406614c90bc4f73c76727b, type: 3}
   _collider: {fileID: 2431641175721092466}
-  maxAmount: 0
-  currentChances: 0
-  second: 0
+  maxAmount: 5
+  currentChances: 5
+  second: 20
 --- !u!54 &4384213795280206469
 Rigidbody:
   m_ObjectHideFlags: 0

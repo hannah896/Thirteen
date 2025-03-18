@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2393040}
   - component: {fileID: -3347390506171334993}
   - component: {fileID: 8076683874257112025}
-  - component: {fileID: 5652001547557964436}
   m_Layer: 0
   m_Name: Tree9
   m_TagString: Untagged
@@ -140,33 +139,6 @@ CapsuleCollider:
   m_Height: 22.460953
   m_Direction: 1
   m_Center: {x: 0.0630703, y: 10.230476, z: 0.99603844}
---- !u!54 &5652001547557964436
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196434}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!21 &2179674
 Material:
   serializedVersion: 8

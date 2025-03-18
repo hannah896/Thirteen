@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ResourceAutoMaker : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class ResourceAutoMaker : MonoBehaviour
     public GameObject resource;
 
     [Header("GroundInfo")]
+    NavMeshAgent agent;
     GameObject terrain;
     Collider _collider;
     float minX;
@@ -28,6 +30,7 @@ public class ResourceAutoMaker : MonoBehaviour
     {
         if (terrain == null) terrain = GameObject.Find("Terrain");
         if (_collider == null) _collider = terrain.GetComponent<Collider>();
+        if (agent == null) GetComponent<NavMeshAgent>();
     }
 
     private void Awake()
@@ -42,7 +45,7 @@ public class ResourceAutoMaker : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < 500; i++)
+        for (int i = 0; i < 200; i++)
         {
             //바위 생성
             Instantiate
@@ -93,10 +96,20 @@ public class ResourceAutoMaker : MonoBehaviour
     //땅의 위치중 랜덤 위치 지정
     private Vector3 RandomPosition()
     {
-        float x = Random.Range(minX + 5, maxX - 5);
-        float z = Random.Range(minZ + 5, maxZ - 5);
+        Vector3 result;
 
-        Vector3 result = new Vector3(x, PosY, z);
-        return result;
+        for (int i = 0; i < 30; i++) // 30번 시도
+        {
+            float x = Random.Range(minX + 5, maxX - 5);
+            float z = Random.Range(minZ + 5, maxZ - 5);
+            Vector3 randomPoint = new Vector3(x, PosY, z);
+
+            if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 5f, NavMesh.AllAreas))
+            {
+                return hit.position;
+            }
+        }
+
+        return new Vector3((minX + maxX) / 2f, PosY, (minZ + maxZ) / 2f);
     }
 }
