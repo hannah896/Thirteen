@@ -53,6 +53,7 @@ public class ConsumeInventory : UIInventory
 
     public void OnUseButton()
     {
+        AudioManager.instance.PlaySFX("Button");
         if (selectedItem.itemType == ItemType.Consumable)
         {
             for (int i = 0; i < selectedItem.effect.Length; i++)
@@ -79,6 +80,7 @@ public class ConsumeInventory : UIInventory
 
     public void OnDropButton()
     {
+        AudioManager.instance.PlaySFX("Button");
         ThrowItem(selectedItem);
         RemoveSelectedItem();
     }

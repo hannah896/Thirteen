@@ -18,6 +18,7 @@ public class Resource : MonoBehaviour
 
     public GameObject[] dropItems;
     public Collider _collider;
+    public MeshRenderer meshRenderer;
 
     public int maxAmount; //최대로 캘수있는 양
     public int currentChances; //현재 캘 수 있는 횟수
@@ -45,7 +46,7 @@ public class Resource : MonoBehaviour
                 position.y + 1.2f,
                 position.z + 1.0f
             ),
-            Quaternion.identity);
+            Quaternion.Euler(Random.RandomRange(0f,360f), Random.RandomRange(0f, 360f), Random.RandomRange(0f, 360f)));
 
         Debug.Log("캐다");
         if (currentChances == 0)
@@ -58,6 +59,7 @@ public class Resource : MonoBehaviour
     private IEnumerator ResetMaximum()
     {
         Debug.Log("초기화중");
+        meshRenderer.material.color = Color.red;
         yield return new WaitForSeconds(second);
         currentChances = maxAmount; 
         yield break;

@@ -130,6 +130,7 @@ public class UIBuilding : MonoBehaviour
     //건축 버튼
     public void OnBuildingButton()
     {
+        AudioManager.instance.PlaySFX("Button");
         if (selectedBuilding == null) return;
 
         controller.isBuildMode = true;
@@ -142,6 +143,7 @@ public class UIBuilding : MonoBehaviour
     //UI 종료 버튼
     public void OnExitButton()
     {
+        AudioManager.instance.PlaySFX("Button");
         controller.CursorVisible();
         buildingWindow.SetActive(false);
     }

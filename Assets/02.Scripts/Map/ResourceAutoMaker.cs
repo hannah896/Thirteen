@@ -31,11 +31,15 @@ public class ResourceAutoMaker : MonoBehaviour
         if (terrain == null) terrain = GameObject.Find("Terrain");
         if (_collider == null) _collider = terrain.GetComponent<Collider>();
         if (agent == null) GetComponent<NavMeshAgent>();
+        if (resource == null)
+        {
+            resource = new GameObject("Resources");
+            resource.transform.position = Vector3.zero;
+        }
     }
 
     private void Awake()
     {
-        if (resource == null) resource = new GameObject("Resources");
         minX = _collider.bounds.min.x;
         minZ = _collider.bounds.min.z;
         maxX = _collider.bounds.max.x;
@@ -96,15 +100,16 @@ public class ResourceAutoMaker : MonoBehaviour
     //땅의 위치중 랜덤 위치 지정
     private Vector3 RandomPosition()
     {
-        Vector3 result;
-
         for (int i = 0; i < 30; i++) // 30번 시도
         {
+            //땅의 너비에서 테두리의 너비 5정도를 제외시킴
             float x = Random.Range(minX + 5, maxX - 5);
             float z = Random.Range(minZ + 5, maxZ - 5);
-            Vector3 randomPoint = new Vector3(x, PosY, z);
+            
+            //랜덤좌표 생성
+            Vector3 point = new Vector3(x, PosY, z);
 
-            if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 5f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(point, out NavMeshHit hit, 5f, NavMesh.AllAreas))
             {
                 return hit.position;
             }

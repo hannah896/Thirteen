@@ -171,6 +171,7 @@ public class UIInventory : MonoBehaviour
 
     public void OnDropButton()
     {
+        AudioManager.instance.PlaySFX("Button");
         ThrowItem(selectedItem);
         RemoveSelectedItem();
     }

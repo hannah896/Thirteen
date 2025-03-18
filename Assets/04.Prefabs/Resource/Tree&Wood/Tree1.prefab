@@ -114,6 +114,7 @@ MonoBehaviour:
   - {fileID: 6731065094533296834, guid: aa1ca60487af9e64395a77f4c06ca29b, type: 3}
   - {fileID: 5611550521986568852, guid: 730aaf5ef7428f143a6c051985d0d3f7, type: 3}
   _collider: {fileID: 4591110891587161587}
+  meshRenderer: {fileID: 0}
   maxAmount: 10
   currentChances: 10
   second: 40
