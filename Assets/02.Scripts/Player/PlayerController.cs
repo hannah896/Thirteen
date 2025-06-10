@@ -106,8 +106,6 @@ public class PlayerController : MonoBehaviour
 
         Vector3 moveDir = cameraContainer.forward * inputDir.y + cameraContainer.right * inputDir.x;
 
-        Debug.Log(moveDir);
-
         // 달리기 키를 입력 받았다면 뛰는 속도로 적용
         float speed = isRun ? runSpeed : walkSpeed;
         moveDir *= speed;

@@ -6,6 +6,7 @@ public class BuildingObject : MonoBehaviour
     public List<Collider> colliderList = new List<Collider>();
     public LayerMask layerMask;
 
+
     //겹치는 오브젝트 체크
     private void OnTriggerEnter(Collider other)
     {
